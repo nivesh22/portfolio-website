@@ -12,7 +12,7 @@ const sofia = Sofia_Sans({ subsets: ["latin"], weight: ["400", "600", "700"], va
 const plex = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex" });
 
 export const metadata: Metadata = {
-  title: "Nivesh Kannan Elangovanraaj — Data, AI, Impact",
+  title: "Nivesh Elangovanraaj",
   description: "Data → Decisions → Measurable Impact.",
   metadataBase: new URL("https://example.com"),
 };

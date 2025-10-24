@@ -25,7 +25,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  // Support multiple env var names for the Resend API key
+  const apiKey = process.env.RESEND_API_KEY || (process.env as any).vercelcontactform || (process.env as any).VERCELCONTACTFORM;
   const to = process.env.RESEND_TO || "nivesh@ucla.edu";
   const from = process.env.RESEND_FROM || "onboarding@resend.dev";
 
