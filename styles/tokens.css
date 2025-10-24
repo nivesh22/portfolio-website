@@ -1,0 +1,21 @@
+:root {
+  --bg-0: #0b0f14;
+  --bg-1: #0f172a;
+  --bg-2: #111827;
+
+  --text-0: #e5e7eb;
+  --text-1: #9ca3af;
+
+  --primary: #00e5ff;
+  --accent: #a855f7;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+

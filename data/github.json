@@ -1,0 +1,31 @@
+[
+  {
+    "name": "esg-dashboard",
+    "description": "Interactive ESG explorer with normalized scores and geo insights.",
+    "url": "https://github.com/example/esg-dashboard",
+    "topics": ["python", "streamlit", "viz"],
+    "image": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "name": "liquidity-forecast",
+    "description": "Simple baseline forecaster with backtests and reports.",
+    "url": "https://github.com/example/liquidity-forecast",
+    "topics": ["python", "prophet", "forecasting"],
+    "image": "https://images.unsplash.com/photo-1542228262-3d663b30656b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "name": "mom-generator",
+    "description": "Minutes-of-meeting generator with summaries and action items.",
+    "url": "https://github.com/example/mom-generator",
+    "topics": ["nlp", "summarization"],
+    "image": "https://images.unsplash.com/photo-1496180727794-817822f65950?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "name": "genai-evaluator",
+    "description": "LLM eval framework with rubrics and prompt sets.",
+    "url": "https://github.com/example/genai-evaluator",
+    "topics": ["llm", "evaluation"],
+    "image": "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop"
+  }
+]
+

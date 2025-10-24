@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  :root { @apply bg-bg-0 text-text-0; }
+  body { @apply bg-bg-0 text-text-0 antialiased; font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system; }
+  h1, h2, h3, h4 { font-family: var(--font-sofia), ui-sans-serif, system-ui, -apple-system; letter-spacing: -0.01em; }
+  code, kbd, pre { font-family: var(--font-plex), ui-monospace, SFMono-Regular, Menlo, Monaco; }
+  a { @apply text-primary hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary; }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container-max { @apply mx-auto px-4; max-width: 1200px; }

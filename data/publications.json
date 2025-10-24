@@ -1,0 +1,9 @@
+[
+  {"title":"Surgical site infection risk prediction using multimodal data","authors":["Elangovanraaj, N.K.","Doe, J.","Smith, A."],"venue":"Journal of Clinical Analytics","year":2021,"doi":"10.1234/abcd","citations":45,"badges":["peer-reviewed","first-author"]},
+  {"title":"Measuring GenAI outputs with human-aligned metrics","authors":["Elangovanraaj, N.K.","Rao, P."],"venue":"AI Systems Workshop","year":2024,"doi":"10.5678/wxyz","citations":5,"badges":["peer-reviewed"]},
+  {"title":"Liquidity forecasting at scale: feature stores and governance","authors":["Elangovanraaj, N.K."],"venue":"Applied Data Conf.","year":2023,"citations":12},
+  {"title":"Causal drivers of customer experience in e‑commerce","authors":["Elangovanraaj, N.K.","Lee, S."],"venue":"Analytics Summit","year":2022,"citations":9},
+  {"title":"Parsing market text to structured data using weak supervision","authors":["Elangovanraaj, N.K.","Gupta, R."],"venue":"FinAI Workshop","year":2022,"citations":7},
+  {"title":"Drift monitoring for production time‑series models","authors":["Elangovanraaj, N.K."],"venue":"ML Ops Days","year":2021,"citations":14},
+  {"title":"A framework for LLM guardrail evaluation","authors":["Elangovanraaj, N.K.","Patel, A."],"venue":"GenAI Practitioners","year":2024,"citations":3}
+]

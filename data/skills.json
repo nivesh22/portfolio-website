@@ -1,0 +1,10 @@
+{
+  "categories": [
+    { "name": "ML/Stats", "score": 4.5 },
+    { "name": "Data Eng", "score": 4.0 },
+    { "name": "Analytics", "score": 5.0 },
+    { "name": "Viz/Story", "score": 4.5 },
+    { "name": "Business/PM", "score": 4.2 }
+  ]
+}
+

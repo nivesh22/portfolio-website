@@ -1,0 +1,39 @@
+{
+  "name": "portfolio-website",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "node scripts/contentlayer-build.js && next dev",
+    "build": "node scripts/contentlayer-build.js && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "content": "node scripts/contentlayer-build.js"
+  },
+  "dependencies": {
+    "contentlayer": "^0.3.4",
+    "d3": "^7.9.0",
+    "echarts": "^5.5.0",
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.453.0",
+    "next": "14.2.5",
+    "plausible-tracker": "^0.3.9",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "recharts": "^2.12.0",
+    "zod": "^3.22.4",
+    "clsx": "^2.0.0",
+    "class-variance-authority": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8.4.41",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.6",
+    "typescript": "5.3.3"
+  }
+}

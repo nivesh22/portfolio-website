@@ -1,0 +1,6 @@
+{
+  "items": [
+    { "label": "Resume (PDF)", "file": "/api/download/Nivesh_Resume_MSBA2026.pdf" },
+    { "label": "Liquidity Forecasting — One Pager", "file": "/api/download/Liquidity_Forecasting_OnePager.pdf" }
+  ]
+}
