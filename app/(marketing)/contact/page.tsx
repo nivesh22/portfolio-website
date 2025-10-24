@@ -9,12 +9,16 @@ export default function ContactPage() {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    const res = await fetch("/api/contact", { method: "POST", body: fd });
-    setStatus(res.ok ? "Thanks! I’ll reply shortly." : "Something went wrong.");
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: fd });
+      setStatus(res.ok ? "Thanks! I’ll reply shortly." : "Something went wrong.");
+    } catch {
+      setStatus("Something went wrong.");
+    }
   }
   return (
     <Section>
-      <SectionIntro label="Contact" title="Say hello" lead="Email form with spam protection (stub)." />
+      <SectionIntro label="Contact" title="Say hello" lead="Email form with spam protection." />
       <div className="grid md:grid-cols-2 gap-8">
         <form onSubmit={submit} className="glass rounded-xl p-6 grid gap-4">
           <label className="grid gap-2">
@@ -59,3 +63,4 @@ export default function ContactPage() {
     </Section>
   );
 }
+

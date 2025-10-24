@@ -1,6 +1,7 @@
 import "@/styles/tokens.css";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Sofia_Sans, IBM_Plex_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -25,6 +26,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <BackToTop />
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          strategy="afterInteractive"
+          defer
+          data-cf-beacon='{"token": "30aab1d339304a75a84e6fb39f8b82e6"}'
+        />
       </body>
     </html>
   );
