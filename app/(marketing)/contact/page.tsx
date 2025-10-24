@@ -1,19 +1,27 @@
 "use client";
-import { useState } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { Calendar, Mail } from "lucide-react";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<string | null>(null);
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     try {
       const res = await fetch("/api/contact", { method: "POST", body: fd });
-      setStatus(res.ok ? "Thanks! I’ll reply shortly." : "Something went wrong.");
-    } catch {
-      setStatus("Something went wrong.");
+      if (res.ok) {
+        alert("Thanks! I’ll reply shortly.");
+        (e.currentTarget as HTMLFormElement).reset();
+      } else {
+        let msg = "Something went wrong.";
+        try {
+          const data = await res.json();
+          if (data?.detail) msg = `Send failed: ${data.detail}`;
+        } catch {}
+        alert(msg);
+      }
+    } catch (err) {
+      alert("Something went wrong.");
     }
   }
   return (
@@ -37,7 +45,6 @@ export default function ContactPage() {
           <div>
             <Button type="submit">Send</Button>
           </div>
-          {status && <div role="status" className="text-sm text-text-1">{status}</div>}
         </form>
         <div className="glass rounded-xl p-6 space-y-4">
           <p className="text-sm text-text-1">Prefer email? Reach me at</p>

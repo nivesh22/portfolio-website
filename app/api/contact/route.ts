@@ -38,8 +38,10 @@ export async function POST(req: Request) {
     process.env["VERCELCONTACTFORM"] ??
     process.env["VERCEL_CONTACTFORM"];
   const apiKey = typeof rawKey === "string" ? rawKey.trim() : undefined;
-  const to = process.env.RESEND_TO || "nivesh@ucla.edu";
+  const to = process.env.RESEND_TO || "kenivesh@gmail.com";
   const from = process.env.RESEND_FROM || "onboarding@resend.dev";
+  const testEmail = process.env.RESEND_TEST_EMAIL;
+  const sendConfirmation = (process.env.CONTACT_CONFIRMATION ?? "true").toLowerCase() !== "false";
 
   if (!apiKey) {
     return NextResponse.json({ error: "missing_api_key" }, { status: 500 });
@@ -122,23 +124,46 @@ export async function POST(req: Request) {
 
   try {
     // Send to site owner
-    await sendEmail({
-      from,
-      to,
-      subject,
-      reply_to: email,
-      text: `From: ${name} <${email}>\n\n${message}`,
-      html: ownerHtml,
-    });
+    try {
+      await sendEmail({
+        from,
+        to,
+        subject,
+        reply_to: email,
+        text: `From: ${name} <${email}>\n\n${message}`,
+        html: ownerHtml,
+      });
+    } catch (ownerErr: any) {
+      // In Resend sandbox, only the account email is allowed. If provided, retry to RESEND_TEST_EMAIL.
+      if (ownerErr?.status === 403 && testEmail && testEmail !== to) {
+        await sendEmail({
+          from,
+          to: testEmail,
+          subject,
+          reply_to: email,
+          text: `From: ${name} <${email}>\n\n${message}`,
+          html: ownerHtml,
+        });
+      } else {
+        throw ownerErr;
+      }
+    }
 
-    // Send confirmation to sender
-    await sendEmail({
-      from,
-      to: email,
-      subject: confirmSubject,
-      text: `Thanks ${name}! I’ve received your message and will get back to you shortly.\n\nYour message:\n${message}`,
-      html: confirmHtml,
-    });
+    // Send confirmation to sender (optional; skip on sandbox restrictions)
+    if (sendConfirmation) {
+      try {
+        await sendEmail({
+          from,
+          to: email,
+          subject: confirmSubject,
+          text: `Thanks ${name}! I’ve received your message and will get back to you shortly.\n\nYour message:\n${message}`,
+          html: confirmHtml,
+        });
+      } catch (confirmErr: any) {
+        // Ignore sandbox restriction errors for confirmation to avoid failing the whole request
+        if (confirmErr?.status !== 403) throw confirmErr;
+      }
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err: any) {
