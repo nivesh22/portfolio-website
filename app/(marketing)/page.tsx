@@ -65,10 +65,10 @@ export default function HomePage() {
             </div>
           </div>
           <div>
-            <Carousel images={[
-              "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop",
+            <Carousel aspect="aspect-[24/16]" images={[
+              "/images/hero/Royce hall.jpg",
+              "/images/hero/coat suit - small.png",
+              "/images/hero/Anderson.jpg",
             ]} />
           </div>
         </div>
@@ -99,9 +99,9 @@ export default function HomePage() {
         <SectionIntro label="Experience" title="Where I’ve built impact" />
         <div className="grid gap-10">
           {[
-            { year: "2023–2025", company: "Société Générale", role: "Lead Data Scientist", copy: "Deployed liquidity forecasting (ARDL/ARIMA) with CI/CD and drift monitoring; improved NBI by ~$27M over 2 years; automated RFP responses with ML + LLM workflows.", img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop" },
-            { year: "2021–2022", company: "Flipkart", role: "Senior Business Analyst", copy: "Built gradient boosting and sensitivity analysis to link CX with operations metrics; improved NPS and generated ~$5M in value.", img: "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=400&auto=format&fit=crop" },
-            { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR‑focused analytics on real‑world medical data; published peer‑reviewed work; supported COVID‑19 vaccine trials analytics.", img: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=400&auto=format&fit=crop" },
+            { year: "2023–2025", company: "Société Générale", role: "Lead Data Scientist", copy: "Deployed liquidity forecasting (ARDL/ARIMA) with CI/CD and drift monitoring; improved NBI by ~$27M over 2 years; automated RFP responses with ML + LLM workflows.", img: "/images/logos/socgen.png" },
+            { year: "2021–2022", company: "Flipkart", role: "Senior Business Analyst", copy: "Built gradient boosting and sensitivity analysis to link CX with operations metrics; improved NPS and generated ~$5M in value.", img: "/images/logos/flipkart.png" },
+            { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR‑focused analytics on real‑world medical data; published peer‑reviewed work; supported COVID‑19 vaccine trials analytics.", img: "/images/logos/musigma.png" },
           ].map((job, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
               {/* Left card */}

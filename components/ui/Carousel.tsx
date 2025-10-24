@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Carousel({ images = [] as string[], interval = 7000 }) {
+type Props = { images?: string[]; interval?: number; aspect?: string };
+
+export default function Carousel({ images = [] as string[], interval = 7000, aspect = "aspect-[9/16]" }: Props) {
   const [i, setI] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setI((p) => (p + 1) % Math.max(images.length, 1)), interval);
@@ -10,7 +12,7 @@ export default function Carousel({ images = [] as string[], interval = 7000 }) {
   }, [images.length, interval]);
   if (images.length === 0) return null;
   return (
-    <div className="relative w-full aspect-[16/7] overflow-hidden rounded-2xl">
+    <div className={`relative w-full ${aspect} overflow-hidden rounded-2xl`}>
       {images.map((src, idx) => (
         <img
           key={src + idx}

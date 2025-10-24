@@ -57,7 +57,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href="/resume/Nivesh_Resume.pdf" className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md">
+          <a href="https://ugan8z8fvc58vjdu.public.blob.vercel-storage.com/Nivesh%20-%20Data%20Scientist.pdf" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md">
             <FileDown size={16} /> Download Resume
           </a>
           <a href="https://www.linkedin.com/in/nivesh-elangovanraaj/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 hover:text-primary"><Linkedin size={18} /></a>
