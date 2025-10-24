@@ -38,9 +38,7 @@
         ".contentlayer/generated"
       ]
     },
-    "types": [
-      "contentlayer/generated"
-    ],
+    
     "incremental": true,
     "plugins": [
       {
@@ -52,6 +50,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    ".contentlayer/generated",
+    "**/*.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [

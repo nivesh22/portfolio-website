@@ -2,8 +2,8 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
 export const Project = defineDocumentType(() => ({
   name: "Project",
-  filePathPattern: `projects/**/*.mdx`,
-  contentType: "mdx",
+  filePathPattern: `projects/**/*.md`,
+  contentType: "markdown",
   fields: {
     slug: { type: "string", required: true },
     title: { type: "string", required: true },
@@ -32,8 +32,8 @@ export const Project = defineDocumentType(() => ({
 
 export const About = defineDocumentType(() => ({
   name: "About",
-  filePathPattern: `about.mdx`,
-  contentType: "mdx",
+  filePathPattern: `about.md`,
+  contentType: "markdown",
 }));
 
 export default makeSource({

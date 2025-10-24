@@ -7,7 +7,7 @@ type Segment = { domain: string; start: number; end: number };
 const DATA: Segment[] = [
   { domain: "Healthcare", start: 2018, end: 2020 },
   { domain: "Finance", start: 2020, end: 2023 },
-  { domain: "E‑commerce", start: 2023, end: 2025 },
+  { domain: "E-commerce", start: 2023, end: 2025 },
 ];
 
 export default function ExperienceTimeline({ data = DATA }: { data?: Segment[] }) {
@@ -21,12 +21,15 @@ export default function ExperienceTimeline({ data = DATA }: { data?: Segment[] }
     svg.attr("viewBox", `0 0 ${width} ${height}`);
     svg.selectAll("*").remove();
 
-    const years = [d3.min(data, (d) => d.start) || 2018, d3.max(data, (d) => d.end) || 2025];
+    const years = [
+      d3.min(data, (d: Segment) => d.start) || 2018,
+      d3.max(data, (d: Segment) => d.end) || 2025,
+    ];
     const x = d3.scaleLinear().domain(years).range([margin.left, width - margin.right]);
-    const domains = Array.from(new Set(data.map((d) => d.domain)));
+    const domains = Array.from(new Set(data.map((d: Segment) => d.domain)));
     const y = d3.scaleBand().domain(domains).range([margin.top, height - margin.bottom]).padding(0.3);
 
-    const color = d3.scaleOrdinal<string, string>()
+    const color = d3.scaleOrdinal()
       .domain(domains)
       .range(["#00E5FF", "#A855F7", "#22C55E", "#F59E0B"]);
 
@@ -36,8 +39,8 @@ export default function ExperienceTimeline({ data = DATA }: { data?: Segment[] }
       .selectAll("line")
       .data(d3.range(Math.ceil(years[0]), Math.floor(years[1]) + 1))
       .join("line")
-      .attr("x1", (d) => x(d))
-      .attr("x2", (d) => x(d))
+      .attr("x1", (d: number) => x(d))
+      .attr("x2", (d: number) => x(d))
       .attr("y1", margin.top)
       .attr("y2", height - margin.bottom);
 
@@ -45,14 +48,15 @@ export default function ExperienceTimeline({ data = DATA }: { data?: Segment[] }
       .selectAll("rect")
       .data(data)
       .join("rect")
-      .attr("x", (d) => x(d.start))
-      .attr("width", (d) => Math.max(2, x(d.end) - x(d.start)))
-      .attr("y", (d) => (y(d.domain) ?? 0))
+      .attr("x", (d: Segment) => x(d.start))
+      .attr("width", (d: Segment) => Math.max(2, x(d.end) - x(d.start)))
+      .attr("y", (d: Segment) => (y(d.domain) ?? 0))
       .attr("height", y.bandwidth())
       .attr("rx", 6)
-      .attr("fill", (d) => color(d.domain))
+      .attr("fill", (d: Segment) => color(d.domain))
       .attr("opacity", 0.8)
-      .append("title").text((d) => `${d.domain}: ${d.start}–${d.end}`);
+      .append("title")
+      .text((d: Segment) => `${d.domain}: ${d.start}-${d.end}`);
 
     const ax = d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"));
     svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`).call(ax as any).attr("color", "#9CA3AF");

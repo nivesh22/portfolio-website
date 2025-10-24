@@ -6,10 +6,14 @@
     "dev": "node scripts/contentlayer-build.js && next dev",
     "build": "node scripts/contentlayer-build.js && next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "content": "node scripts/contentlayer-build.js"
+    "typecheck": "node scripts/contentlayer-build.js && tsc --noEmit",
+    "content": "node scripts/contentlayer-build.js",
+    "fix:contentlayer": "node scripts/patch-clipanion-exit.js",
+    "postinstall": "node scripts/patch-clipanion-exit.js || exit 0"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
     "d3": "^7.9.0",
     "echarts": "^5.5.0",
@@ -20,11 +24,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recharts": "^2.12.0",
-    "zod": "^3.22.4",
-    "clsx": "^2.0.0",
-    "class-variance-authority": "^0.7.0"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
