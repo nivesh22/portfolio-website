@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 function escapeHtml(input: string) {
   return input
@@ -26,7 +27,17 @@ export async function POST(req: Request) {
   }
 
   // Support multiple env var names for the Resend API key
-  const apiKey = process.env.RESEND_API_KEY || (process.env as any).vercelcontactform || (process.env as any).VERCELCONTACTFORM;
+  const rawKey =
+    process.env.RESEND_API_KEY ??
+    process.env.vercelcontactform ??
+    process.env.VERCELCONTACTFORM ??
+    process.env.VERCEL_CONTACTFORM ??
+    process.env.RESEND ??
+    process.env.RESENDKEY ??
+    process.env["vercelcontactform"] ??
+    process.env["VERCELCONTACTFORM"] ??
+    process.env["VERCEL_CONTACTFORM"];
+  const apiKey = typeof rawKey === "string" ? rawKey.trim() : undefined;
   const to = process.env.RESEND_TO || "nivesh@ucla.edu";
   const from = process.env.RESEND_FROM || "onboarding@resend.dev";
 
