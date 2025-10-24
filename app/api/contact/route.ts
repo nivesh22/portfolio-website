@@ -110,11 +110,14 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify(payload),
     });
+    const text = await res.text().catch(() => "");
     if (!res.ok) {
-      const txt = await res.text().catch(() => "");
-      throw new Error(`Resend HTTP ${res.status}: ${txt}`);
+      const err: any = new Error(`Resend HTTP ${res.status}`);
+      err.status = res.status;
+      err.body = text;
+      throw err;
     }
-    return res.json().catch(() => ({}));
+    try { return JSON.parse(text); } catch { return {}; }
   }
 
   try {
@@ -138,8 +141,10 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
+  } catch (err: any) {
     console.error("Resend error", err);
-    return NextResponse.json({ error: "send_failed" }, { status: 500 });
+    const detail = typeof err?.body === "string" ? err.body.slice(0, 500) : String(err?.message || err);
+    const status = typeof err?.status === "number" ? err.status : 500;
+    return NextResponse.json({ error: "send_failed", status, detail }, { status: 500 });
   }
 }
