@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
@@ -76,7 +76,7 @@ function RecommendationsCarousel() {
             key={i}
             className={`absolute inset-0 transition-opacity duration-700 ${idx === i ? "opacity-100" : "opacity-0"}`}
           >
-            <div className="glass rounded-2xl px-12 py-6 border border-cyan-900/20 shadow-sm relative">
+            <div className="glass rounded-2xl px-16 py-6 border border-cyan-900/20 shadow-sm relative">
               <div className="flex items-start gap-4">
                 <Avatar name={r.name} src={r.img} />
                 <div>
@@ -348,10 +348,10 @@ export default function HomePage() {
 
       {/* Publications */}
       <Section id="publications">
-        <SectionIntro label="Publications" title="Recent research" />
+        <SectionIntro label="Publications" title="Peer reviewed publications" />
         <div className="grid md:grid-cols-3 gap-6">
           {pubs.slice(0, 7).map((p: any, i: number) => (
-            <div key={i} className="glass rounded-xl p-5">
+            <div key={i} className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
               <h3 className="font-medium mb-1 line-clamp-2 min-h-[3rem]">{p.title}</h3>
               <div className="text-xs text-text-1">{p.venue || "Venue"} · {p.year}</div>
             </div>
