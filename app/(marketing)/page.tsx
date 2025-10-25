@@ -10,7 +10,7 @@ import Sparkline from "@/components/charts/Sparkline";
 import Radar from "@/components/charts/Radar";
 import ImpactHeatmap from "@/components/charts/ImpactHeatmap";
 import SkillBars from "@/components/charts/SkillBars";
-import { Brain, BarChart3, Sparkles, ExternalLink,ChevronLeft,ChevronRight } from "lucide-react";
+import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
@@ -21,7 +21,6 @@ const HEADLINES = [
   "Practical AI for products that move the needle.",
   "From signal to strategy: I build analytics that ship.",
 ];
-
 
 // Lightweight recommendations carousel component
 function RecommendationsCarousel() {
@@ -175,7 +174,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-
       {/* About / What I do */}
       <Section id="about">
         <SectionIntro
@@ -235,14 +233,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Experience timeline (visual style similar to provided image) */}
+      {/* Experience timeline */}
       <Section id="experience">
         <SectionIntro label="Experience" title="Where I’ve built impact" />
         <div className="grid gap-10">
           {[
             { year: "2023–2025", company: "Société Générale", role: "Lead Data Scientist", copy: "Deployed liquidity forecasting (ARDL/ARIMA) with CI/CD and drift monitoring; improved NBI by ~$27M over 2 years; automated RFP responses with ML + LLM workflows.", img: "/images/logos/socgen.png" },
             { year: "2021–2022", company: "Flipkart", role: "Senior Business Analyst", copy: "Built gradient boosting and sensitivity analysis to link CX with operations metrics; improved NPS and generated ~$5M in value.", img: "/images/logos/flipkart.png" },
-            { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR‑focused analytics on real‑world medical data; published peer‑reviewed work; supported COVID‑19 vaccine trials analytics.", img: "/images/logos/musigma.png" },
+            { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR-focused analytics on real-world medical data; published peer-reviewed work; supported COVID-19 vaccine trials analytics.", img: "/images/logos/musigma.png" },
           ].map((job, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
               {/* Left card */}
@@ -258,7 +256,7 @@ export default function HomePage() {
                     <div>
                       <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
                       <ul className="list-disc pl-5 text-sm text-text-1 space-y-1">
-                        {job.copy.split(';').slice(0,3).map((b:string, idx:number) => (
+                        {job.copy.split(';').slice(0,3).map((b: string, idx: number) => (
                           <li key={idx}>{b.trim()}</li>
                         ))}
                       </ul>
@@ -283,7 +281,7 @@ export default function HomePage() {
                     <div>
                       <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
                       <ul className="list-disc pl-5 text-sm text-text-1 space-y-1">
-                        {job.copy.split(';').slice(0,3).map((b:string, idx:number) => (
+                        {job.copy.split(';').slice(0,3).map((b: string, idx: number) => (
                           <li key={idx}>{b.trim()}</li>
                         ))}
                       </ul>
@@ -321,7 +319,7 @@ export default function HomePage() {
         <SectionIntro label="Projects" title="Selected work" />
         <h3 className="text-lg font-medium mb-3">Professional Projects</h3>
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {allProjects.filter(p=>p.kind==="professional").slice(0,4).map((p) => (
+          {allProjects.filter(p => p.kind === "professional").slice(0, 4).map((p) => (
             <Link key={p.slug} href={`/projects/${p.slug}`} className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
               <img src="/images/wip.svg" alt="Project cover" className="w-full h-40 object-cover" />
               <div className="p-6">
@@ -333,13 +331,13 @@ export default function HomePage() {
         </div>
         <h3 className="text-lg font-medium mb-3">GitHub Projects</h3>
         <div className="grid md:grid-cols-2 gap-6">
-          {gh.slice(0,4).map((r:any, idx:number) => (
+          {gh.slice(0, 4).map((r: any, idx: number) => (
             <a key={idx} href={r.url} target="_blank" rel="noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
               <img src="/images/wip.svg" alt="Repo cover" className="w-full h-40 object-cover" />
               <div className="p-6">
                 <h3 className="font-semibold mb-1">{r.name}</h3>
                 <p className="text-sm text-text-1 mb-2">{r.description}</p>
-                <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics||[]).map((t:string)=> <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>)}</div>
+                <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics || []).map((t: string) => <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>)}</div>
               </div>
             </a>
           ))}
@@ -351,10 +349,16 @@ export default function HomePage() {
         <SectionIntro label="Publications" title="Peer reviewed publications" />
         <div className="grid md:grid-cols-3 gap-6">
           {pubs.slice(0, 7).map((p: any, i: number) => (
-            <div key={i} className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
+            <a
+              key={i}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 block"
+            >
               <h3 className="font-medium mb-1 line-clamp-2 min-h-[3rem]">{p.title}</h3>
               <div className="text-xs text-text-1">{p.venue || "Venue"} · {p.year}</div>
-            </div>
+            </a>
           ))}
         </div>
       </Section>
@@ -369,46 +373,46 @@ export default function HomePage() {
       <Section id="contact">
         <SectionIntro label="Contact" title="Let’s connect" lead="Send a note and I’ll reply soon." />
         <div className="grid md:grid-cols-2 gap-6">
-        <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4">
-          <label className="grid gap-2">
-            <span className="text-sm">Name</span>
-            <input name="name" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
-          </label>
-          <label className="grid gap-2">
-            <span className="text-sm">Email</span>
-            <input type="email" name="email" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
-          </label>
-          <label className="grid gap-2">
-            <span className="text-sm">Message</span>
-            <textarea name="message" rows={5} required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
-          </label>
-          <input type="text" name="company" className="hidden" aria-hidden="true" tabIndex={-1} />
-          <div>
-            <Button type="submit">Send</Button>
+          <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4">
+            <label className="grid gap-2">
+              <span className="text-sm">Name</span>
+              <input name="name" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm">Email</span>
+              <input type="email" name="email" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm">Message</span>
+              <textarea name="message" rows={5} required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+            </label>
+            <input type="text" name="company" className="hidden" aria-hidden="true" tabIndex={-1} />
+            <div>
+              <Button type="submit">Send</Button>
+            </div>
+          </form>
+          <div className="glass rounded-xl p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-medium">Calendly</h3>
+              <a
+                href="https://calendly.com/nivesh-ucla/new-meeting"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md bg-primary text-black hover:opacity-90"
+              >
+                <ExternalLink size={16} />
+              </a>
+            </div>
+            <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
+              <iframe
+                title="Calendly Scheduler"
+                src="https://calendly.com/nivesh-ucla/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+              />
+            </div>
           </div>
-        </form>
-        <div className="glass rounded-xl p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="font-medium">Calendly</h3>
-            <a
-              href="https://calendly.com/nivesh-ucla/new-meeting"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-md bg-primary text-black hover:opacity-90"
-            >
-              <ExternalLink size={16} />
-            </a>
-          </div>
-          <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
-            <iframe
-              title="Calendly Scheduler"
-              src="https://calendly.com/nivesh-ucla/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1"
-              width="100%"
-              height="100%"
-              frameBorder="0"
-            />
-          </div>
-        </div>
         </div>
       </Section>
       {/* Quote at bottom */}
@@ -421,6 +425,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-
