@@ -1,0 +1,25 @@
+[
+  { "text": "Python", "value": 48, "group": "Lang" },
+  { "text": "SQL", "value": 40, "group": "Lang" },
+  { "text": "R", "value": 18, "group": "Lang" },
+  { "text": "Streamlit", "value": 26, "group": "App" },
+  { "text": "Next.js", "value": 16, "group": "App" },
+  { "text": "D3", "value": 22, "group": "Viz" },
+  { "text": "Tableau", "value": 14, "group": "Viz" },
+  { "text": "Forecasting", "value": 28, "group": "ML" },
+  { "text": "ARIMA", "value": 20, "group": "ML" },
+  { "text": "ARDL", "value": 14, "group": "ML" },
+  { "text": "XGBoost", "value": 18, "group": "ML" },
+  { "text": "Causal", "value": 16, "group": "ML" },
+  { "text": "LLM", "value": 24, "group": "AI" },
+  { "text": "Embeddings", "value": 18, "group": "AI" },
+  { "text": "Evaluation", "value": 16, "group": "AI" },
+  { "text": "Kedro", "value": 18, "group": "Eng" },
+  { "text": "Airflow", "value": 16, "group": "Eng" },
+  { "text": "Docker", "value": 12, "group": "Eng" },
+  { "text": "BigQuery", "value": 14, "group": "Eng" },
+  { "text": "Finance", "value": 20, "group": "Dom" },
+  { "text": "Retail", "value": 14, "group": "Dom" },
+  { "text": "Healthcare", "value": 12, "group": "Dom" }
+]
+

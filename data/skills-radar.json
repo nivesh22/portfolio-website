@@ -1,0 +1,25 @@
+{
+  "tools": [
+    { "name": "Python", "level": 4.8, "years": 7 },
+    { "name": "R", "level": 3.5, "years": 3 },
+    { "name": "Spark", "level": 3.8, "years": 2 },
+    { "name": "SQL", "level": 4.5, "years": 7 },
+    { "name": "NoSQL", "level": 3.2, "years": 2 },
+    { "name": "Tableau", "level": 3.8, "years": 4 },
+    { "name": "Power BI", "level": 3.4, "years": 2 },
+    { "name": "Streamlit", "level": 4.2, "years": 3 }
+  ],
+  "techniques": [
+    { "name": "Regression", "level": 4.6, "years": 6 },
+    { "name": "Classification", "level": 4.4, "years": 6 },
+    { "name": "Clustering", "level": 4.0, "years": 5 },
+    { "name": "Forecasting", "level": 4.5, "years": 5 },
+    { "name": "LLMs", "level": 3.8, "years": 2 }
+  ],
+  "domains": [
+    { "name": "Healthcare", "level": 4.2, "years": 3 },
+    { "name": "Supply chain", "level": 4.4, "years": 3 },
+    { "name": "Banking", "level": 4.6, "years": 4 }
+  ]
+}
+

@@ -8,8 +8,9 @@ import { Card } from "@/components/ui/Card";
 import Carousel from "@/components/ui/Carousel";
 import Sparkline from "@/components/charts/Sparkline";
 import Radar from "@/components/charts/Radar";
-import ImpactHeatmap from "@/components/charts/ImpactHeatmap";
-import SkillBars from "@/components/charts/SkillBars";
+import InteractiveRadar from "@/components/charts/InteractiveRadar";
+import ProjectImpactNetwork from "@/components/charts/ProjectImpactNetwork";
+import WordCloud from "@/components/charts/WordCloud";
 import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
@@ -124,6 +125,33 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, []);
 
+  const EXPERIENCES = [
+    {
+      year: "2023–2025",
+      company: "Société Générale",
+      role: "Lead Data Scientist",
+      copy:
+        "Engineered liquidity forecasting pipelines (ARIMA/ARDL) with CI/CD and automated drift detection—established a continuously learning financial model ecosystem.; Delivered ~$27M Net Banking Income uplift over 2 years through improved liquidity allocation and early-warning signals.; Built ML + LLM RFP-response automation reducing turnaround time and freeing analysts for higher-value tasks.",
+      img: "/images/logos/socgen.png",
+    },
+    {
+      year: "2021–2022",
+      company: "Flipkart",
+      role: "Senior Business Analyst",
+      copy:
+        "Designed gradient-boosting and sensitivity frameworks linking customer experience to operations metrics—made CX quantitatively measurable.; Drove NPS improvement (+8 p.p.) and ~$5M business value through actionable insights into delivery and incentive levers.; Partnered with product and ops teams to institutionalize data-to-action loops in quarterly business reviews.",
+      img: "/images/logos/flipkart.png",
+    },
+    {
+      year: "2018–2021",
+      company: "Mu Sigma (Ethicon / J&J client)",
+      role: "Decision Scientist",
+      copy:
+        "Led HEOR and real-world evidence analytics on surgical-site infection and wound-care outcomes across 1M+ patient records.; Co-authored 6 peer-reviewed publications (45+ citations) driving evidence-based changes in global surgical guidelines.; Supported COVID-19 vaccine-trial analytics, building reproducible dashboards for safety and efficacy monitoring.",
+      img: "/images/logos/musigma.png",
+    },
+  ];
+
   return (
     <div>
       {/* Hero */}
@@ -237,11 +265,11 @@ export default function HomePage() {
       <Section id="experience">
         <SectionIntro label="Experience" title="Where I’ve built impact" />
         <div className="grid gap-10">
-          {[
+          {EXPERIENCES.map((job, i) => (
             { year: "2023–2025", company: "Société Générale", role: "Lead Data Scientist", copy: "Deployed liquidity forecasting (ARDL/ARIMA) with CI/CD and drift monitoring; improved NBI by ~$27M over 2 years; automated RFP responses with ML + LLM workflows.", img: "/images/logos/socgen.png" },
             { year: "2021–2022", company: "Flipkart", role: "Senior Business Analyst", copy: "Built gradient boosting and sensitivity analysis to link CX with operations metrics; improved NPS and generated ~$5M in value.", img: "/images/logos/flipkart.png" },
             { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR-focused analytics on real-world medical data; published peer-reviewed work; supported COVID-19 vaccine trials analytics.", img: "/images/logos/musigma.png" },
-          ].map((job, i) => (
+          
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
               {/* Left card */}
               {i % 2 === 0 ? (
@@ -300,16 +328,20 @@ export default function HomePage() {
       <Section id="skills">
         <SectionIntro label="Skills" title="Breadth with spikes where it counts" />
         <div className="glass rounded-2xl p-6">
-          <Radar data={[{ name: "ML/Stats", value: 4.5 }, { name: "Data Eng", value: 4 }, { name: "Analytics", value: 5 }, { name: "Viz/Story", value: 4.5 }, { name: "Business/PM", value: 4.2 }]} />
+          <h3 className="font-medium">My Story in Keywords</h3>
+          <p className="text-xs text-text-1 mb-3">Built from my résumé, essays, and LinkedIn — the larger the word, the more it defines my professional journey. Hover to explore categories.</p>
+          <WordCloud />
         </div>
         <div className="mt-6 grid md:grid-cols-2 gap-6">
           <div className="glass rounded-2xl p-6">
-            <h3 className="font-medium mb-3">Tooling proficiency</h3>
-            <SkillBars />
+            <h3 className="font-medium">Strengths at a Glance</h3>
+            <p className="text-xs text-text-1 mb-3">Visual snapshot of my proficiency across analytics, engineering, and strategy. Toggle to view evolution by role or time.</p>
+            <InteractiveRadar />
           </div>
           <div className="glass rounded-2xl p-6">
-            <h3 className="font-medium mb-3">Impact Heatmap</h3>
-            <ImpactHeatmap />
+            <h3 className="font-medium">Where Skills Meet Impact</h3>
+            <p className="text-xs text-text-1 mb-3">Each bubble represents a project — size shows impact, color shows domain. Hover for outcomes, click for project details.</p>
+            <ProjectImpactNetwork />
           </div>
         </div>
       </Section>
@@ -344,11 +376,20 @@ export default function HomePage() {
               </>
             );
             return isCx ? (
-              <a key={p.slug} href={(p as any).demo} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+              <a
+                key={p.slug}
+                href={(p as any).demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              >
                 {CardInner}
               </a>
             ) : (
-              <div key={p.slug} className="glass rounded-xl p-0 overflow-hidden">
+              <div
+                key={p.slug}
+                className="glass rounded-xl p-0 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              >
                 {CardInner}
               </div>
             );
@@ -368,11 +409,20 @@ export default function HomePage() {
               </>
             );
             return r.url ? (
-              <a key={idx} href={r.url} target="_blank" rel="noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+              <a
+                key={idx}
+                href={r.url}
+                target="_blank"
+                rel="noreferrer"
+                className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              >
                 {CardInner}
               </a>
             ) : (
-              <div key={idx} className="glass rounded-xl p-0 overflow-hidden">
+              <div
+                key={idx}
+                className="glass rounded-xl p-0 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              >
                 {CardInner}
               </div>
             );

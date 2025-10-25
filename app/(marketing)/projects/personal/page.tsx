@@ -27,12 +27,16 @@ export default function PersonalProjectsPage() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden"
+              className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
             >
               {CardInner}
             </a>
           ) : (
-            <Link key={p.slug} href={href} className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+            <Link
+              key={p.slug}
+              href={href}
+              className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+            >
               {CardInner}
             </Link>
           );

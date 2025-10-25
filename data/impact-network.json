@@ -1,0 +1,46 @@
+{
+  "nodes": [
+    { "id": "Liquidity Forecasting", "type": "project", "domain": "Finance", "impact": 27, "url": "/projects/liquidity-forecasting", "tools": ["Python", "Kedro", "ARIMA", "ARDL"] },
+    { "id": "Flipkart NPS", "type": "project", "domain": "Retail", "impact": 8, "url": "/projects/cx-driver-model", "tools": ["Python", "ML", "Sensitivity"] },
+    { "id": "ESG Dashboard", "type": "project", "domain": "Finance", "impact": 5, "url": "/projects/esg-dashboard", "tools": ["Python", "Streamlit", "ESG"] },
+    { "id": "GenAI Evaluator", "type": "project", "domain": "Banking", "impact": 3, "url": "/projects/genai-evaluator", "tools": ["Python", "LLM", "Embeddings"] },
+
+    { "id": "Python", "type": "skill" },
+    { "id": "Streamlit", "type": "skill" },
+    { "id": "Kedro", "type": "skill" },
+    { "id": "Forecasting", "type": "skill" },
+    { "id": "ARIMA", "type": "skill" },
+    { "id": "ARDL", "type": "skill" },
+    { "id": "Sensitivity", "type": "skill" },
+    { "id": "LLM", "type": "skill" },
+    { "id": "Embeddings", "type": "skill" },
+    { "id": "ESG", "type": "skill" },
+
+    { "id": "Finance", "type": "domain" },
+    { "id": "Retail", "type": "domain" },
+    { "id": "Banking", "type": "domain" }
+  ],
+  "links": [
+    { "source": "Liquidity Forecasting", "target": "Python", "weight": 1 },
+    { "source": "Liquidity Forecasting", "target": "Kedro", "weight": 1 },
+    { "source": "Liquidity Forecasting", "target": "Forecasting", "weight": 1 },
+    { "source": "Liquidity Forecasting", "target": "ARIMA", "weight": 1 },
+    { "source": "Liquidity Forecasting", "target": "ARDL", "weight": 1 },
+    { "source": "Liquidity Forecasting", "target": "Finance", "weight": 1 },
+
+    { "source": "Flipkart NPS", "target": "Python", "weight": 1 },
+    { "source": "Flipkart NPS", "target": "Sensitivity", "weight": 1 },
+    { "source": "Flipkart NPS", "target": "Retail", "weight": 1 },
+
+    { "source": "ESG Dashboard", "target": "Python", "weight": 1 },
+    { "source": "ESG Dashboard", "target": "Streamlit", "weight": 1 },
+    { "source": "ESG Dashboard", "target": "ESG", "weight": 1 },
+    { "source": "ESG Dashboard", "target": "Finance", "weight": 1 },
+
+    { "source": "GenAI Evaluator", "target": "Python", "weight": 1 },
+    { "source": "GenAI Evaluator", "target": "LLM", "weight": 1 },
+    { "source": "GenAI Evaluator", "target": "Embeddings", "weight": 1 },
+    { "source": "GenAI Evaluator", "target": "Banking", "weight": 1 }
+  ]
+}
+

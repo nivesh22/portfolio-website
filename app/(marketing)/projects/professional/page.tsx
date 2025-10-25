@@ -17,7 +17,11 @@ export default function ProfessionalProjectsPage() {
           };
           const imgSrc = coverMap[p.slug] || p.cover || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop";
           return (
-            <Link key={p.slug} href={`/projects/${p.slug}`} className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+            <Link
+              key={p.slug}
+              href={`/projects/${p.slug}`}
+              className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+            >
               <img src={imgSrc} alt="Project cover" className="w-full h-40 object-cover" />
               <div className="p-6">
                 <h3 className="font-semibold mb-2">{p.title}</h3>
@@ -31,4 +35,3 @@ export default function ProfessionalProjectsPage() {
     </Section>
   );
 }
-
