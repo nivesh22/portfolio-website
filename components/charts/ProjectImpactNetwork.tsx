@@ -42,17 +42,29 @@ export default function ProjectImpactNetwork() {
 
     const g = svg.append("g");
 
+    const domainColors: Record<string, string> = {
+      Finance: "#22d3ee",
+      Healthcare: "#34d399",
+      Retail: "#f59e0b",
+      Academia: "#a78bfa",
+      Banking: "#22c55e",
+    };
+    const projectColors: Record<string, string> = {
+      Finance: "#22d3ee",
+      Healthcare: "#34d399",
+      Retail: "#f59e0b",
+      Academia: "#a78bfa",
+      Banking: "#10b981",
+      Other: "#64748b",
+    };
+
     const colorFor = (d: NodeDatum) => {
       if (d.type === "domain") {
-        return { Finance: "#22d3ee", Healthcare: "#34d399", Retail: "#f59e0b", Academia: "#a78bfa", Banking: "#22c55e" }[
-          d.id as any
-        ] || "#a78bfa";
+        return domainColors[d.id as string] || "#a78bfa";
       }
       if (d.type === "project") {
-        const domain = d.domain || "Other";
-        return { Finance: "#22d3ee", Healthcare: "#34d399", Retail: "#f59e0b", Academia: "#a78bfa", Banking: "#10b981", Other: "#64748b" }[
-          domain as any
-        ] || "#64748b";
+        const domain = (d.domain || "Other") as string;
+        return projectColors[domain] || "#64748b";
       }
       return "#93c5fd";
     };
@@ -63,17 +75,20 @@ export default function ProjectImpactNetwork() {
       return 12;
     };
 
-    const linkForce = d3
-      .forceLink<LinkDatum, NodeDatum>(links as any)
+    const linkForce = (d3
+      .forceLink(links as any)
       .id((d: any) => d.id)
-      .distance((d) => 110 + (d.weight ? 30 / d.weight : 0))
-      .strength(0.8);
+      .distance((d: any) => 110 + (d.weight ? 30 / d.weight : 0))
+      .strength(0.8)) as any;
 
     const sim = d3
       .forceSimulation(nodes as any)
       .force("charge", d3.forceManyBody().strength(-180))
       .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide<NodeDatum>().radius((d) => radiusFor(d) + 12))
+      .force(
+        "collide",
+        (d3.forceCollide().radius((d: any) => radiusFor(d) + 12)) as any
+      )
       .force("link", linkForce)
       .alpha(0.9)
       .alphaDecay(0.05);
@@ -94,24 +109,24 @@ export default function ProjectImpactNetwork() {
       .enter()
       .append("g")
       .attr("class", "node cursor-pointer")
-      .on("mouseenter", (_, d) => setHover(d))
+      .on("mouseenter", (event: any, d: NodeDatum) => setHover(d))
       .on("mouseleave", () => setHover(null))
-      .on("click", (_, d: any) => {
+      .on("click", (event: any, d: any) => {
         if (d.url) window.open(d.url, "_blank");
       })
       .call(
-        d3
-          .drag<SVGGElement, NodeDatum>()
-          .on("start", (event, d) => {
+        (d3
+          .drag() as any)
+          .on("start", (event: any, d: any) => {
             if (!event.active) sim.alphaTarget(0.3).restart();
             d.fx = d.x;
             d.fy = d.y;
           })
-          .on("drag", (event, d) => {
+          .on("drag", (event: any, d: any) => {
             d.fx = event.x;
             d.fy = event.y;
           })
-          .on("end", (event, d) => {
+          .on("end", (event: any, d: any) => {
             if (!event.active) sim.alphaTarget(0);
             d.fx = null as any;
             d.fy = null as any;
@@ -120,18 +135,18 @@ export default function ProjectImpactNetwork() {
 
     node
       .append("circle")
-      .attr("r", (d) => radiusFor(d))
-      .attr("fill", (d) => colorFor(d))
-      .attr("fill-opacity", (d) => (d.type === "project" ? 0.9 : 0.7))
+      .attr("r", (d: NodeDatum) => radiusFor(d))
+      .attr("fill", (d: NodeDatum) => colorFor(d))
+      .attr("fill-opacity", (d: NodeDatum) => (d.type === "project" ? 0.9 : 0.7))
       .attr("stroke", "#0f172a")
       .attr("stroke-width", 1);
 
     node
       .append("text")
-      .text((d) => d.id)
-      .attr("x", (d) => radiusFor(d) + 8)
+      .text((d: NodeDatum) => d.id)
+      .attr("x", (d: NodeDatum) => radiusFor(d) + 8)
       .attr("y", 5)
-      .attr("font-size", (d) => {
+      .attr("font-size", (d: NodeDatum) => {
         const f = Math.max(11, Math.min(18, radiusFor(d) / 2.4));
         return f;
       })

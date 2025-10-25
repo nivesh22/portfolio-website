@@ -27,13 +27,13 @@ export default function WordCloud() {
 
     const g = svg.append("g");
 
-    const maxVal = d3.max(data, (d) => d.value) || 1;
+    const maxVal = d3.max(data, (d: Entry) => d.value) || 1;
     // Slightly smaller font sizes to avoid clipping
     const size = d3.scaleSqrt().domain([0, maxVal]).range([10, 34]);
-    const color = d3
-      .scaleOrdinal<string, string>()
+    const color = (d3
+      .scaleOrdinal()
       .domain(["Lang", "App", "Viz", "ML", "AI", "Eng", "Dom"]) // theme colors
-      .range(["#22d3ee", "#a78bfa", "#f59e0b", "#34d399", "#0ea5e9", "#22c55e", "#93c5fd"]);
+      .range(["#22d3ee", "#a78bfa", "#f59e0b", "#34d399", "#0ea5e9", "#22c55e", "#93c5fd"])) as any;
 
     // Create nodes with radius approximated by text length and font size.
     const nodes = data.map((d) => {
@@ -46,7 +46,10 @@ export default function WordCloud() {
       .forceSimulation(nodes as any)
       .force("charge", d3.forceManyBody().strength(-8))
       .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide<any>().radius((d) => d.r + 8))
+      .force(
+        "collide",
+        (d3.forceCollide().radius((d: any) => d.r + 8)) as any
+      )
       .alpha(0.9)
       .alphaDecay(0.06);
 
@@ -56,7 +59,7 @@ export default function WordCloud() {
       .enter()
       .append("g")
       .attr("class", "word cursor-pointer")
-      .on("mouseenter", (_, d: any) => setHover(d))
+      .on("mouseenter", (event: any, d: any) => setHover(d))
       .on("mouseleave", () => setHover(null));
 
     node

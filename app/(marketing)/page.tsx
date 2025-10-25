@@ -266,10 +266,6 @@ export default function HomePage() {
         <SectionIntro label="Experience" title="Where I’ve built impact" />
         <div className="grid gap-10">
           {EXPERIENCES.map((job, i) => (
-            { year: "2023–2025", company: "Société Générale", role: "Lead Data Scientist", copy: "Deployed liquidity forecasting (ARDL/ARIMA) with CI/CD and drift monitoring; improved NBI by ~$27M over 2 years; automated RFP responses with ML + LLM workflows.", img: "/images/logos/socgen.png" },
-            { year: "2021–2022", company: "Flipkart", role: "Senior Business Analyst", copy: "Built gradient boosting and sensitivity analysis to link CX with operations metrics; improved NPS and generated ~$5M in value.", img: "/images/logos/flipkart.png" },
-            { year: "2018–2021", company: "Mu Sigma", role: "Decision Scientist", copy: "HEOR-focused analytics on real-world medical data; published peer-reviewed work; supported COVID-19 vaccine trials analytics.", img: "/images/logos/musigma.png" },
-          
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
               {/* Left card */}
               {i % 2 === 0 ? (
