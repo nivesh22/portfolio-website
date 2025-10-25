@@ -323,7 +323,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {allProjects.filter(p=>p.kind==="professional").slice(0,4).map((p) => (
             <Link key={p.slug} href={`/projects/${p.slug}`} className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
-              <img src={p.cover || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"} alt="Project cover" className="w-full h-40 object-cover" />
+              <img src="/images/wip.svg" alt="Project cover" className="w-full h-40 object-cover" />
               <div className="p-6">
                 <h3 className="font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-text-1 mb-3">{p.summary || "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}</p>
@@ -335,7 +335,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2 gap-6">
           {gh.slice(0,4).map((r:any, idx:number) => (
             <a key={idx} href={r.url} target="_blank" rel="noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
-              <img src={r.image} alt="Repo cover" className="w-full h-40 object-cover" />
+              <img src="/images/wip.svg" alt="Repo cover" className="w-full h-40 object-cover" />
               <div className="p-6">
                 <h3 className="font-semibold mb-1">{r.name}</h3>
                 <p className="text-sm text-text-1 mb-2">{r.description}</p>
