@@ -1,9 +1,44 @@
 [
-  {"title":"Surgical site infection risk prediction using multimodal data","authors":["Elangovanraaj, N.K.","Doe, J.","Smith, A."],"venue":"Journal of Clinical Analytics","year":2021,"doi":"10.1234/abcd","citations":45,"badges":["peer-reviewed","first-author"]},
-  {"title":"Measuring GenAI outputs with human-aligned metrics","authors":["Elangovanraaj, N.K.","Rao, P."],"venue":"AI Systems Workshop","year":2024,"doi":"10.5678/wxyz","citations":5,"badges":["peer-reviewed"]},
-  {"title":"Liquidity forecasting at scale: feature stores and governance","authors":["Elangovanraaj, N.K."],"venue":"Applied Data Conf.","year":2023,"citations":12},
-  {"title":"Causal drivers of customer experience in e‑commerce","authors":["Elangovanraaj, N.K.","Lee, S."],"venue":"Analytics Summit","year":2022,"citations":9},
-  {"title":"Parsing market text to structured data using weak supervision","authors":["Elangovanraaj, N.K.","Gupta, R."],"venue":"FinAI Workshop","year":2022,"citations":7},
-  {"title":"Drift monitoring for production time‑series models","authors":["Elangovanraaj, N.K."],"venue":"ML Ops Days","year":2021,"citations":14},
-  {"title":"A framework for LLM guardrail evaluation","authors":["Elangovanraaj, N.K.","Patel, A."],"venue":"GenAI Practitioners","year":2024,"citations":3}
+  {
+    "title": "Surgical Site Infection After Cesarean Delivery",
+    "journal": "American Journal of Obstetrics & Gynecology Global Reports",
+    "venue": "American Journal of Obstetrics & Gynecology Global Reports",
+    "year": 2022,
+    "url": "https://doi.org/10.1016/j.xagr.2022.100144"
+  },
+  {
+    "title": "Wound Closure Methods in Cardiac Surgery",
+    "journal": "Journal of Cardiothoracic Surgery",
+    "venue": "Journal of Cardiothoracic Surgery",
+    "year": 2022,
+    "url": "https://doi.org/10.1186/s13019-022-01956-x"
+  },
+  {
+    "title": "COVID-19 Mortality and Hospital Stay Trends",
+    "journal": "Infection Control & Hospital Epidemiology",
+    "venue": "Infection Control & Hospital Epidemiology",
+    "year": 2021,
+    "url": "https://doi.org/10.1017/ice.2021.110"
+  },
+  {
+    "title": "Changing COVID-19 Treatment Patterns in 2020",
+    "journal": "International Journal of General Medicine",
+    "venue": "International Journal of General Medicine",
+    "year": 2021,
+    "url": "https://doi.org/10.2147/IJGM.S290118"
+  },
+  {
+    "title": "Skin Closure Methods in Spinal Fusion Surgery",
+    "journal": "The Spine Journal",
+    "venue": "The Spine Journal",
+    "year": 2021,
+    "url": "https://doi.org/10.1016/j.spinee.2020.08.017"
+  },
+  {
+    "title": "Surgical Stapler Comparison in Bariatric Surgery",
+    "journal": "Medical Devices: Evidence and Research",
+    "venue": "Medical Devices: Evidence and Research",
+    "year": 2020,
+    "url": "https://doi.org/10.2147/MDER.S256237"
+  }
 ]

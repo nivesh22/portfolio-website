@@ -10,7 +10,7 @@ import Sparkline from "@/components/charts/Sparkline";
 import Radar from "@/components/charts/Radar";
 import ImpactHeatmap from "@/components/charts/ImpactHeatmap";
 import SkillBars from "@/components/charts/SkillBars";
-import { Brain, BarChart3, Sparkles, ExternalLink } from "lucide-react";
+import { Brain, BarChart3, Sparkles, ExternalLink,ChevronLeft,ChevronRight } from "lucide-react";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
@@ -21,6 +21,102 @@ const HEADLINES = [
   "Practical AI for products that move the needle.",
   "From signal to strategy: I build analytics that ship.",
 ];
+
+
+// Lightweight recommendations carousel component
+function RecommendationsCarousel() {
+  type Rec = {
+    name: string;
+    title: string;
+    meta: string;
+    text: string;
+    img?: string;
+    url: string;
+  };
+  const RECS: Rec[] = [
+    {
+      name: "Simran Jain",
+      title: "Principal Data Scientist | Amateur Theatre Artist",
+      meta: "April 12, 2021 · Managed me directly",
+      text:
+        "Nivesh worked with me at the very beginning of his career and even at that early stage he showed incredible maturity in the work he did. He could see the bigger picture, beyond what he was tasked with and as a result he brought valuable ideas to the table. He's a quick study and onboarded onto any new project with ease. I have seen him raise the bar for himself repeatedly. He was a treasured teammate and I had a great time working with him!",
+      img: "",
+      url: "https://www.linkedin.com/in/nivesh-elangovanraaj/details/recommendations/",
+    },
+  ];
+  const ITEMS = [...RECS, ...RECS];
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx((p) => (p + 1) % ITEMS.length), 8000);
+    return () => clearInterval(id);
+  }, [ITEMS.length]);
+
+  const Avatar = ({ name, src }: { name: string; src?: string }) => {
+    const initials = name
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((s) => s[0]!)
+      .join("")
+      .toUpperCase();
+    return src ? (
+      <img src={src} alt={name} className="w-12 h-12 rounded-full object-cover border border-white/10" />
+    ) : (
+      <div className="w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-sm">
+        {initials}
+      </div>
+    );
+  };
+
+  return (
+    <div className="relative w-full">
+      <div className="relative min-h-[240px]">
+        {ITEMS.map((r, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-700 ${idx === i ? "opacity-100" : "opacity-0"}`}
+          >
+            <div className="glass rounded-2xl px-12 py-6 border border-cyan-900/20 shadow-sm relative">
+              <div className="flex items-start gap-4">
+                <Avatar name={r.name} src={r.img} />
+                <div>
+                  <div className="font-semibold">{r.name}</div>
+                  <div className="text-xs text-text-1">{r.title}</div>
+                  <div className="text-xs text-text-1 mt-0.5">{r.meta}</div>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-text-1 leading-relaxed">{r.text}</p>
+              <div className="mt-4">
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:underline"
+                >
+                  View on LinkedIn
+                </a>
+              </div>
+              <button
+                aria-label="Previous recommendation"
+                className="absolute left-3 top-1/2 -translate-y-1/2 glass rounded-full p-2"
+                onClick={() => setIdx((idx - 1 + ITEMS.length) % ITEMS.length)}
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                aria-label="Next recommendation"
+                className="absolute right-3 top-1/2 -translate-y-1/2 glass rounded-full p-2"
+                onClick={() => setIdx((idx + 1) % ITEMS.length)}
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
   const [t, setT] = useState(0);
@@ -263,7 +359,11 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Removed Resume section as requested */}
+      {/* LinkedIn Recommendations */}
+      <Section id="recommendations">
+        <SectionIntro label="Recommendations" title="What colleagues say" />
+        <RecommendationsCarousel />
+      </Section>
 
       {/* Contact */}
       <Section id="contact">
