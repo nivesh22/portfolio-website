@@ -10,6 +10,8 @@ import Sparkline from "@/components/charts/Sparkline";
 import Radar from "@/components/charts/Radar";
 import ImpactHeatmap from "@/components/charts/ImpactHeatmap";
 import SkillBars from "@/components/charts/SkillBars";
+import { Brain, BarChart3, Sparkles, ExternalLink } from "lucide-react";
+import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
 import { allProjects } from "contentlayer/generated";
@@ -50,15 +52,18 @@ export default function HomePage() {
                 7 years across finance, healthcare, and e-commerce. I build measurable analytics systems that translate data into outcomes.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="#projects" className="inline-block"><Button size="lg">View Projects</Button></Link>
-              <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="inline-block"><Button size="lg">Download Resume</Button></Link>
-              <Link href="#contact" className="inline-block"><Button variant="ghost" size="lg">Book a Coffee Chat</Button></Link>
+            <div className="flex flex-wrap gap-8 items-center text-primary">
+              <Link href="#projects" className="link-cta">View Projects</Link>
+              <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="link-cta">Download Resume</Link>
+              <a href="https://calendly.com/nivesh-ucla/new-meeting" target="_blank" rel="noopener noreferrer" className="link-cta">Book a Coffee Chat</a>
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
               {["$27M+ value created", "6 peer-reviewed papers", "7 yrs in analytics"].map((k) => (
-                <div key={k} className="glass rounded-lg p-3 text-center">
+                <div
+                  key={k}
+                  className="glass rounded-lg p-3 text-center border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
+                >
                   <p className="text-sm">{k}</p>
                 </div>
               ))}
@@ -74,21 +79,61 @@ export default function HomePage() {
         </div>
       </Section>
 
+
       {/* About / What I do */}
       <Section id="about">
-        <SectionIntro label="What I do" title="Applied data, built to ship" />
+        <SectionIntro
+          label="What I do"
+          title="Applied data, built to ship"
+          lead="Combining statistical rigor with engineering execution to turn data into measurable outcomes."
+        />
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { title: "Data Science", copy: "Forecasting, uplift, causal inference, evaluation.", spark: [5, 6, 8, 7, 9, 10, 12] },
-            { title: "Analytics Strategy", copy: "Roadmaps, KPIs, stakeholder alignment.", spark: [2, 3, 5, 7, 8, 8, 9] },
-            { title: "AI Enablement", copy: "GenAI evaluation, guardrails, measurement.", spark: [1, 2, 4, 5, 6, 7, 9] },
+            {
+              title: "Predictive & Causal Modeling",
+              copy: "Building interpretable ML pipelines for forecasting, uplift, and counterfactual analysis.",
+              icon: Brain,
+              spark: [5, 6, 8, 7, 9, 10, 12],
+              viz: "trend",
+            },
+            {
+              title: "Analytics Strategy & Leadership",
+              copy: "Translating data insights into business roadmaps, KPIs, and measurable impact alignment.",
+              icon: BarChart3,
+              spark: [2, 3, 5, 7, 8, 8, 9],
+              viz: "network",
+            },
+            {
+              title: "Responsible AI Enablement",
+              copy: "Evaluating GenAI outputs, defining guardrails, and designing measurement frameworks.",
+              icon: Sparkles,
+              spark: [1, 2, 4, 5, 6, 7, 9],
+              viz: "hex",
+            },
           ].map((c) => (
-            <Card key={c.title}>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-medium">{c.title}</h3>
-                <div className="w-24"><Sparkline data={c.spark} /></div>
+            <Card
+              key={c.title}
+              className="group h-44 max-w-sm border border-cyan-900/20 rounded-2xl transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <c.icon className="text-primary" size={18} />
+                  <h3 className="font-medium">{c.title}</h3>
+                </div>
+                <div className="w-20 opacity-80">
+                  {c.viz === "network" ? (
+                    <MiniNetwork />
+                  ) : c.viz === "hex" ? (
+                    <MiniHexSpin />
+                  ) : c.viz === "trend" ? (
+                    <MiniTrend />
+                  ) : (
+                    <Sparkline data={c.spark} />
+                  )}
+                </div>
               </div>
-              <p className="text-text-1 text-sm">{c.copy}</p>
+              <p className="text-text-1 text-sm leading-snug line-clamp-3">{c.copy}</p>
+              <div className="mt-3 h-0.5 bg-primary/40 w-0 group-hover:w-16 transition-all" />
             </Card>
           ))}
         </div>
@@ -112,9 +157,16 @@ export default function HomePage() {
                     <p className="text-xl font-medium">{job.company}</p>
                     <p className="text-sm text-text-1">{job.role}</p>
                   </div>
-                  <div className="glass rounded-xl p-5 flex gap-4 items-start">
+                  <div className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
                     <img src={job.img} alt="logo" className="w-12 h-12 rounded-md object-cover border border-white/10" />
-                    <p className="text-sm leading-relaxed">{job.copy}</p>
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
+                      <ul className="list-disc pl-5 text-sm text-text-1 space-y-1">
+                        {job.copy.split(';').slice(0,3).map((b:string, idx:number) => (
+                          <li key={idx}>{b.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -130,9 +182,16 @@ export default function HomePage() {
                     <p className="text-xl font-medium">{job.company}</p>
                     <p className="text-sm text-text-1">{job.role}</p>
                   </div>
-                  <div className="glass rounded-xl p-5 flex gap-4 items-start">
+                  <div className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
                     <img src={job.img} alt="logo" className="w-12 h-12 rounded-md object-cover border border-white/10" />
-                    <p className="text-sm leading-relaxed">{job.copy}</p>
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
+                      <ul className="list-disc pl-5 text-sm text-text-1 space-y-1">
+                        {job.copy.split(';').slice(0,3).map((b:string, idx:number) => (
+                          <li key={idx}>{b.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -204,16 +263,13 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Resume */}
-      <Section id="resume">
-        <SectionIntro label="Resume" title="Get the PDF" />
-        <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf"><Button size="lg">Download Resume</Button></Link>
-      </Section>
+      {/* Removed Resume section as requested */}
 
       {/* Contact */}
       <Section id="contact">
         <SectionIntro label="Contact" title="Let’s connect" lead="Send a note and I’ll reply soon." />
-        <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4 max-w-xl">
+        <div className="grid md:grid-cols-2 gap-6">
+        <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4">
           <label className="grid gap-2">
             <span className="text-sm">Name</span>
             <input name="name" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
@@ -231,7 +287,40 @@ export default function HomePage() {
             <Button type="submit">Send</Button>
           </div>
         </form>
+        <div className="glass rounded-xl p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-medium">Calendly</h3>
+            <a
+              href="https://calendly.com/nivesh-ucla/new-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-md bg-primary text-black hover:opacity-90"
+            >
+              <ExternalLink size={16} />
+            </a>
+          </div>
+          <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
+            <iframe
+              title="Calendly Scheduler"
+              src="https://calendly.com/nivesh-ucla/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+            />
+          </div>
+        </div>
+        </div>
+      </Section>
+      {/* Quote at bottom */}
+      <Section>
+        <div className="text-center text-text-1 text-sm">
+          <p className="italic">“In God we trust; all others must bring data.”</p>
+          <p className="mt-1">— W. Edwards Deming</p>
+        </div>
       </Section>
     </div>
   );
 }
+
+
+

@@ -18,3 +18,26 @@
 }
 
 .container-max { @apply mx-auto px-4; max-width: 1200px; }
+
+/* subtle animations for mini visuals */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 6s linear infinite; transform-origin: center; }
+@keyframes spin-slower { to { transform: rotate(360deg); } }
+.spin-slower { animation: spin-slower 12s linear infinite; transform-origin: center; }
+
+@keyframes dash { to { stroke-dashoffset: -14; } }
+.dash { stroke-dasharray: 4 3; animation: dash 2.5s linear infinite; }
+
+/* Text CTAs that highlight on hover without layout shift */
+.link-cta { position: relative; color: var(--primary, currentColor); }
+.link-cta::before {
+  content: "";
+  position: absolute;
+  inset: -6px -8px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.link-cta:hover::before { opacity: 1; }
