@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0e1b2e"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="400" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.12" stroke="#7dd3fc" stroke-width="1">
+    <line x1="100" y1="40" x2="100" y2="360"/>
+    <line x1="250" y1="40" x2="250" y2="360"/>
+    <line x1="400" y1="40" x2="400" y2="360"/>
+    <line x1="550" y1="40" x2="550" y2="360"/>
+    <line x1="700" y1="40" x2="700" y2="360"/>
+    <line x1="850" y1="40" x2="850" y2="360"/>
+    <line x1="1000" y1="40" x2="1000" y2="360"/>
+  </g>
+
+  <!-- Title -->
+  <g transform="translate(60, 80)">
+    <text x="0" y="0" fill="#e5e7eb" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="600">ESG Dashboard</text>
+    <text x="0" y="28" fill="#93c5fd" font-size="14" font-family="Inter, Arial, sans-serif">Explore Environment, Social, and Governance metrics interactively</text>
+  </g>
+
+  <!-- Animated bars (Sustainability metrics) -->
+  <g transform="translate(80, 130)">
+    <rect x="0" y="0" width="40" height="180" rx="6" fill="#0b1220" stroke="#1f2937" stroke-opacity="0.4"/>
+    <rect x="60" y="0" width="40" height="180" rx="6" fill="#0b1220" stroke="#1f2937" stroke-opacity="0.4"/>
+    <rect x="120" y="0" width="40" height="180" rx="6" fill="#0b1220" stroke="#1f2937" stroke-opacity="0.4"/>
+    
+    <rect x="0" y="180" width="40" height="0" rx="6" fill="url(#green)">
+      <animate attributeName="y" values="180; 90; 120; 80; 100; 180" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="0; 90; 60; 100; 80; 0" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="60" y="180" width="40" height="0" rx="6" fill="url(#blue)">
+      <animate attributeName="y" values="180; 110; 140; 70; 120; 180" dur="5.4s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="0; 70; 40; 110; 60; 0" dur="5.4s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="120" y="180" width="40" height="0" rx="6" fill="url(#green)">
+      <animate attributeName="y" values="180; 100; 160; 95; 130; 180" dur="5.8s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="0; 80; 20; 85; 50; 0" dur="5.8s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Globe with rotating orbit (Governance/Global) -->
+  <g transform="translate(540, 90)">
+    <circle cx="0" cy="110" r="86" fill="url(#glow)"/>
+    <circle cx="0" cy="110" r="72" fill="#0b1323" stroke="#1f2937" stroke-opacity="0.5"/>
+    <g stroke="#22d3ee" stroke-opacity="0.5">
+      <path d="M-60,110 A60,60 0 1,0 60,110 A60,60 0 1,0 -60,110" fill="none"/>
+      <path d="M0,50 A60,60 0 0,1 0,170 A60,60 0 0,1 0,50" fill="none"/>
+    </g>
+    <g>
+      <circle cx="0" cy="110" r="52" fill="none" stroke="#164e63" stroke-dasharray="6 6"/>
+      <g transform="rotate(0, 0, 110)">
+        <circle cx="0" cy="58" r="5" fill="#22d3ee">
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 0 110" to="360 0 110" dur="10s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </g>
+  </g>
+
+  <!-- Leaf (Environment) with pulse -->
+  <g transform="translate(920, 150)">
+    <g>
+      <path d="M0,80 C-10,40 20,10 70,0 C62,32 30,58 0,80 Z" fill="#22c55e" fill-opacity="0.9"/>
+      <path d="M0,80 C-10,40 20,10 70,0" fill="none" stroke="#065f46" stroke-width="2"/>
+      <path d="M14,54 C20,48 32,40 50,30" fill="none" stroke="#065f46" stroke-width="1.5"/>
+    </g>
+    <circle cx="10" cy="70" r="16" fill="#34d399" fill-opacity="0.2">
+      <animate attributeName="r" values="14;18;14" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.18;0.35;0.18" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Legend labels -->
+  <g font-family="Inter, Arial, sans-serif" font-size="12" fill="#93c5fd" opacity="0.9">
+    <text x="95" y="325">Scores</text>
+    <text x="515" y="325">Global View</text>
+    <text x="930" y="325">Sustainability</text>
+  </g>
+</svg>
+

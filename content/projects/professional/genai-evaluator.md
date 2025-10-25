@@ -3,11 +3,10 @@ slug: genai-evaluator
 title: "GenAI Evaluator"
 role: [Data Scientist]
 domain: Platform
-stack: [Python, Eval, Weights&Biases]
+stack: [Python, LLM, Vector Embedding, RFPs, Banking]
 year: 2024
-summary: "Framework to evaluate LLM outputs with human-aligned metrics."
-cover: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop"
+summary: "Evaluate AI-generated answers against banking SME ground-truth using embeddings, rubric scores, and error taxonomies."
+cover: "/images/projects/professional/genai-evaluator-animated.svg"
 ---
 
 Evaluation framework with prompt sets and rubrics. Lorem ipsum dolor sit amet.
-

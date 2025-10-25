@@ -3,13 +3,13 @@ slug: liquidity-forecasting
 title: "Liquidity Forecasting"
 role: [Data Scientist]
 domain: Finance
-stack: [Python, XGBoost, Airflow, BigQuery]
+stack: [Python, Kedro, Liquidity, Streamlit, Forecasting, ARIMA, ARDL]
 year: 2023
 impact:
   revenue_usd: 27000000
   metric_uplift: 0.18
-summary: "Built forecasting pipeline improving liquidity planning and delivering measurable revenue impact."
-cover: "/images/projects/liquidity-cover.jpg"
+summary: "ARIMA/ARDL-based liquidity forecasting with Kedro pipelines and Streamlit reporting, improving liquidity planning and decisioning."
+cover: "/images/projects/personal/liquidity-animated.svg"
 downloads:
   - label: "One‑Pager (PDF)"
     file: "/downloads/Liquidity_Forecasting_OnePager.pdf"
@@ -34,4 +34,3 @@ Airflow‑orchestrated pipeline on BigQuery with weekly model refresh, metrics d
 <Next>
 Introduce hierarchical reconciliation and quantile forecasting for risk bands.
 </Next>
-

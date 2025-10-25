@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0e1b2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="400" fill="url(#bg)"/>
+
+  <!-- Center: human vs AI panels -->
+  <g transform="translate(260, 110)">
+    <rect x="0" y="0" width="320" height="180" rx="16" fill="#0b1323" stroke="#1f2937" stroke-opacity="0.6"/>
+    <text x="16" y="28" fill="#e5e7eb" font-family="Inter, Arial" font-size="14" font-weight="600">Human Expert</text>
+    <g transform="translate(16, 44)" stroke="#9ca3af" stroke-linecap="round" stroke-width="4">
+      <line x1="0" y1="0" x2="280" y2="0"/>
+      <line x1="0" y1="22" x2="240" y2="22"/>
+      <line x1="0" y1="44" x2="260" y2="44"/>
+    </g>
+  </g>
+
+  <g transform="translate(620, 110)">
+    <rect x="0" y="0" width="320" height="180" rx="16" fill="#0b1323" stroke="#1f2937" stroke-opacity="0.6"/>
+    <text x="16" y="28" fill="#e5e7eb" font-family="Inter, Arial" font-size="14" font-weight="600">AI Answer</text>
+    <g transform="translate(16, 44)" stroke="#9ca3af" stroke-linecap="round" stroke-width="4">
+      <line x1="0" y1="0" x2="260" y2="0"/>
+      <line x1="0" y1="22" x2="200" y2="22"/>
+      <line x1="0" y1="44" x2="280" y2="44"/>
+    </g>
+  </g>
+
+  <!-- Similarity bar (embeddings) -->
+  <g transform="translate(380, 310)">
+    <rect x="0" y="0" width="440" height="14" rx="7" fill="#111827" stroke="#1f2937" stroke-opacity="0.6"/>
+    <rect x="0" y="0" width="0" height="14" rx="7" fill="url(#teal)">
+      <animate attributeName="width" values="0; 380; 420; 360" dur="4.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="0" y="-8" fill="#93c5fd" font-family="Inter, Arial" font-size="12">Semantic Similarity</text>
+  </g>
+
+  <!-- Rubric ticks -->
+  <g transform="translate(560, 80)">
+    <circle r="6" fill="#10b981">
+      <animate attributeName="opacity" values="0;1;1" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="22" r="6" fill="#10b981">
+      <animate attributeName="opacity" values="0;0;1" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="44" r="6" fill="#f59e0b">
+      <animate attributeName="opacity" values="0;0;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Title -->
+  <g transform="translate(60, 70)">
+    <text x="0" y="0" fill="#e5e7eb" font-size="24" font-family="Inter, Arial" font-weight="600">GenAI Evaluator</text>
+    <text x="0" y="22" fill="#93c5fd" font-size="13" font-family="Inter, Arial">Compare AI vs Human generated answers</text>
+  </g>
+</svg>
+

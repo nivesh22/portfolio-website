@@ -319,28 +319,64 @@ export default function HomePage() {
         <SectionIntro label="Projects" title="Selected work" />
         <h3 className="text-lg font-medium mb-3">Professional Projects</h3>
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {allProjects.filter(p => p.kind === "professional").slice(0, 4).map((p) => (
-            <Link key={p.slug} href={`/projects/${p.slug}`} className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
-              <img src="/images/wip.svg" alt="Project cover" className="w-full h-40 object-cover" />
-              <div className="p-6">
-                <h3 className="font-semibold mb-2">{p.title}</h3>
-                <p className="text-sm text-text-1 mb-3">{p.summary || "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}</p>
+          {allProjects.filter(p => p.kind === "professional").slice(0, 4).map((p) => {
+            const coverMap: Record<string, string> = {
+              "liquidity-forecasting": "/images/projects/personal/liquidity-animated.svg",
+              // add cache-busters to ensure browser fetches fresh assets
+              "cx-driver-model": "/images/projects/professional/cx-driver-animated.svg",
+              "genai-evaluator": "/images/projects/professional/genai-evaluator-animated.svg",
+              "market-parser": "/images/projects/professional/market-parser-animated.svg",
+            };
+            let imgSrc = coverMap[p.slug] || p.cover || "/images/wip.svg";
+            const isCx = p.slug === "cx-driver-model" && (p as any).demo;
+            const CardInner = (
+              <>
+                <img src={imgSrc} alt="Project cover" className="w-full h-40 object-cover" />
+                <div className="p-6">
+                  <h3 className="font-semibold mb-2">{p.title}</h3>
+                  <p className="text-sm text-text-1 mb-3">{p.summary || "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}</p>
+                  <div className="flex flex-wrap gap-1 text-xs text-text-1">
+                    {(p.stack as string[] | undefined)?.slice(0, 6).map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            );
+            return isCx ? (
+              <a key={p.slug} href={(p as any).demo} target="_blank" rel="noopener noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+                {CardInner}
+              </a>
+            ) : (
+              <div key={p.slug} className="glass rounded-xl p-0 overflow-hidden">
+                {CardInner}
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
         <h3 className="text-lg font-medium mb-3">GitHub Projects</h3>
         <div className="grid md:grid-cols-2 gap-6">
-          {gh.slice(0, 4).map((r: any, idx: number) => (
-            <a key={idx} href={r.url} target="_blank" rel="noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
-              <img src="/images/wip.svg" alt="Repo cover" className="w-full h-40 object-cover" />
-              <div className="p-6">
-                <h3 className="font-semibold mb-1">{r.name}</h3>
-                <p className="text-sm text-text-1 mb-2">{r.description}</p>
-                <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics || []).map((t: string) => <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>)}</div>
+          {gh.slice(0, 4).map((r: any, idx: number) => {
+            const CardInner = (
+              <>
+                <img src={r.image || "/images/wip.svg"} alt="Repo cover" className="w-full h-40 object-cover" />
+                <div className="p-6">
+                  <h3 className="font-semibold mb-1">{r.name}</h3>
+                  <p className="text-sm text-text-1 mb-2">{r.description}</p>
+                  <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics || []).map((t: string) => <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>)}</div>
+                </div>
+              </>
+            );
+            return r.url ? (
+              <a key={idx} href={r.url} target="_blank" rel="noreferrer" className="glass rounded-xl p-0 block hover:opacity-90 overflow-hidden">
+                {CardInner}
+              </a>
+            ) : (
+              <div key={idx} className="glass rounded-xl p-0 overflow-hidden">
+                {CardInner}
               </div>
-            </a>
-          ))}
+            );
+          })}
         </div>
       </Section>
 
