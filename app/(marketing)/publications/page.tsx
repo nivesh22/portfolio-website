@@ -1,10 +1,25 @@
-﻿import { Section, SectionIntro } from "@/components/layout/Section";
+import { Section, SectionIntro } from "@/components/layout/Section";
 import pubs from "@/data/publications.json";
+import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
+import { ExternalLink } from "lucide-react";
 
 export default function PublicationsPage() {
   return (
     <Section>
       <SectionIntro label="Publications" title="Peer reviewed publications" />
+      <div className="glass rounded-2xl p-6 mb-6 relative">
+        <a
+          href="https://scholar.google.co.in/citations?hl=en&amp;user=X_vjctwAAAAJ"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute right-4 top-4 p-2 rounded-md bg-primary text-black hover:opacity-90"
+          aria-label="Open Google Scholar profile"
+          title="Open Google Scholar profile"
+        >
+          <ExternalLink size={16} />
+        </a>
+        <ScholarImpactCard title="Google Scholar Impact" lead="Citations, h-index and i10-index with yearly trend." />
+      </div>
       <div className="grid gap-4">
         {pubs.map((p: any, i: number) => (
           <a

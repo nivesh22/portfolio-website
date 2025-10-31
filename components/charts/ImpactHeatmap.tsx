@@ -15,7 +15,7 @@ function makeData() {
   return vals;
 }
 
-export default function ImpactHeatmap() {
+export default function ImpactHeatmap({ height = 320 }: { height?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -33,7 +33,6 @@ export default function ImpactHeatmap() {
     const onResize = () => chart.resize();
     window.addEventListener("resize", onResize);
     return () => { window.removeEventListener("resize", onResize); chart.dispose(); };
-  }, []);
-  return <div ref={ref} style={{ width: "100%", height: 320 }} aria-label="Impact heatmap" />;
+  }, [height]);
+  return <div ref={ref} style={{ width: "100%", height }} aria-label="Impact heatmap" />;
 }
-

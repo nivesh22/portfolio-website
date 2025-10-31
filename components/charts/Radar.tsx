@@ -4,7 +4,7 @@ import * as echarts from "echarts";
 
 type Skill = { name: string; value: number };
 
-export default function Radar({ data }: { data: Skill[] }) {
+export default function Radar({ data, height = 320 }: { data: Skill[]; height?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -40,6 +40,6 @@ export default function Radar({ data }: { data: Skill[] }) {
       window.removeEventListener("resize", onResize);
       chart.dispose();
     };
-  }, [data]);
-  return <div ref={ref} style={{ height: 320, width: "100%" }} aria-label="Skills radar chart" />;
+  }, [data, height]);
+  return <div ref={ref} style={{ height, width: "100%" }} aria-label="Skills radar chart" />;
 }

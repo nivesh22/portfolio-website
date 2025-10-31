@@ -3,9 +3,9 @@ import * as d3 from "d3";
 import { useEffect, useMemo, useRef, useState } from "react";
 import words from "@/data/wordcloud.json";
 
-type Entry = { text: string; value: number; group?: string };
+type Entry = { text: string; value: number; group?: string; tooltip?: string; links?: string[] };
 
-export default function WordCloud() {
+export default function WordCloud({ height = 260 }: { height?: number }) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [hover, setHover] = useState<Entry | null>(null);
 
@@ -13,12 +13,12 @@ export default function WordCloud() {
 
   useEffect(() => {
     const width = 900;
-    const height = 260;
+    const h = height;
     const pad = 12;
 
     const svg = d3
       .select(svgRef.current!)
-      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("viewBox", `0 0 ${width} ${h}`)
       .attr("width", "100%")
       .attr("height", "100%")
       .style("display", "block");
@@ -80,6 +80,9 @@ export default function WordCloud() {
       .attr("fill", "#e5e7eb")
       .attr("pointer-events", "none");
 
+    // Native tooltip fallback (browser title)
+    node.append("title").text((d: any) => d.tooltip || d.text);
+
     sim.on("tick", () => {
       node.attr("transform", (d: any) => {
         // Clamp within bounds to avoid clipping
@@ -90,23 +93,19 @@ export default function WordCloud() {
     });
 
     return () => sim.stop();
-  }, [data]);
+  }, [data, height]);
 
   return (
     <div className="relative w-full">
-      <svg ref={svgRef} className="w-full h-[260px] rounded-xl" />
+      <svg ref={svgRef} className="w-full rounded-xl" style={{ height }} />
       {hover && (
-        <div className="absolute left-2 top-2 glass rounded-md px-3 py-1.5 text-xs pointer-events-none">
-          <div className="font-medium">{hover.text}</div>
-          <div className="text-text-1">Weight: {hover.value}</div>
-          <div className="text-text-1">Category: {(() => {
-            const g = (hover.group || '').toLowerCase();
-            if (["lang","app","viz","ml","ai","eng"].includes(g)) return "Technical";
-            if (["dom","domain"].includes(g)) return "Domain";
-            if (g === "impact") return "Impact";
-            if (g === "lead" || g === "leadership") return "Leadership";
-            return "Technical";
-          })()}</div>
+        <div className="absolute left-2 top-2 glass rounded-md px-3 py-1.5 text-xs pointer-events-none max-w-[80%]">
+          <div className="font-medium mb-0.5">{hover.text}</div>
+          {hover.tooltip ? (
+            <div className="text-text-1 leading-snug">{hover.tooltip}</div>
+          ) : (
+            <div className="text-text-1">Weight: {hover.value}</div>
+          )}
         </div>
       )}
     </div>

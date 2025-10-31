@@ -11,7 +11,9 @@ import Radar from "@/components/charts/Radar";
 import InteractiveRadar from "@/components/charts/InteractiveRadar";
 import ProjectImpactNetwork from "@/components/charts/ProjectImpactNetwork";
 import WordCloud from "@/components/charts/WordCloud";
-import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import ExpandableChart from "@/components/ui/ExpandableChart";
+import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
+import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight, Rocket, Download, Coffee } from "lucide-react";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
@@ -19,9 +21,13 @@ import { allProjects } from "contentlayer/generated";
 
 const HEADLINES = [
   "Data to Decisions to Impact.",
-  "Practical AI for products that move the needle.",
+  "Building ML solutions end-to-end: from model to integration.",
+  "Turning analytics into actions that matter.",
   "From signal to strategy: I build analytics that ship.",
+  "Practical AI for products that move the needle.",
+  "Where data science meets business outcomes.",
 ];
+
 
 // Lightweight recommendations carousel component
 function RecommendationsCarousel() {
@@ -159,6 +165,8 @@ export default function HomePage() {
         <div className="grid gap-8 md:grid-cols-2 items-center">
           <div>
             <div className="mb-6">
+              {/* Name label above headline */}
+              <div className="text-cyan-400 font-semibold text-2xl md:text-3xl mb-2">Nivesh Elangovanraaj</div>
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={t}
@@ -176,19 +184,24 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-8 items-center text-primary">
-              <Link href="#projects" className="link-cta">View Projects</Link>
-              <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="link-cta">Download Resume</Link>
-              <a href="https://calendly.com/nivesh-ucla/new-meeting" target="_blank" rel="noopener noreferrer" className="link-cta">Book a Coffee Chat</a>
+              <Link href={{ pathname: "/", hash: "projects" }} className="link-cta inline-flex items-center gap-2"><Rocket size={16} /> <span>View Projects</span></Link>
+              <a href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="link-cta inline-flex items-center gap-2"><Download size={16} /> <span>Download Resume</span></a>
+              <a href="https://calendly.com/nivesh-ucla/new-meeting" target="_blank" rel="noopener noreferrer" className="link-cta inline-flex items-center gap-2"><Coffee size={16} /> <span>Book a Coffee Chat</span></a>
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              {["$27M+ value created", "6 peer-reviewed papers", "7 yrs in analytics"].map((k) => (
-                <div
-                  key={k}
+              {[
+                { label: "$27M+ value created", href: { pathname: "/", hash: "experience" } },
+                { label: "6 peer-reviewed papers", href: { pathname: "/", hash: "publications" } },
+                { label: "7 yrs in analytics", href: { pathname: "/", hash: "experience" } },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="glass rounded-lg p-3 text-center border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
                 >
-                  <p className="text-sm">{k}</p>
-                </div>
+                  <p className="text-sm">{item.label}</p>
+                </Link>
               ))}
             </div>
           </div>
@@ -206,28 +219,28 @@ export default function HomePage() {
       <Section id="about">
         <SectionIntro
           label="What I do"
-          title="Applied data, built to ship"
-          lead="Combining statistical rigor with engineering execution to turn data into measurable outcomes."
+          title="From data to deployment."
+          lead="Bridging statistical rigor and engineering execution to turn data into measurable outcomes."
         />
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               title: "Predictive & Causal Modeling",
-              copy: "Building interpretable ML pipelines for forecasting, uplift, and counterfactual analysis.",
+              copy: "I build end-to-end ML solutions — from problem framing and modeling to validation and product integration.",
               icon: Brain,
               spark: [5, 6, 8, 7, 9, 10, 12],
               viz: "trend",
             },
             {
               title: "Analytics Strategy & Leadership",
-              copy: "Translating data insights into business roadmaps, KPIs, and measurable impact alignment.",
+              copy: "I help businesses move from dashboards to decisions — creating KPI frameworks, AOP insights, and cross-functional alignment that deliver real value.",
               icon: BarChart3,
               spark: [2, 3, 5, 7, 8, 8, 9],
               viz: "network",
             },
             {
               title: "Responsible AI Enablement",
-              copy: "Evaluating GenAI outputs, defining guardrails, and designing measurement frameworks.",
+              copy: "I build evaluation frameworks for GenAI & LLM solutions — testing accuracy, bias & guardrails to ensure AI drives trustworthy impact.",
               icon: Sparkles,
               spark: [1, 2, 4, 5, 6, 7, 9],
               viz: "hex",
@@ -324,20 +337,26 @@ export default function HomePage() {
       <Section id="skills">
         <SectionIntro label="Skills" title="Breadth with spikes where it counts" />
         <div className="glass rounded-2xl p-6">
-          <h3 className="font-medium">My Story in Keywords</h3>
-          <p className="text-xs text-text-1 mb-3">Built from my résumé, essays, and LinkedIn — the larger the word, the more it defines my professional journey. Hover to explore categories.</p>
-          <WordCloud />
+          <h3 className="font-medium">The Stack Behind My Work</h3>
+          <p className="text-xs text-text-1 mb-3">Built from my work across finance, healthcare, and retail — the larger the word, the more often I’ve applied it in real projects.</p>
+          <ExpandableChart title="Word Cloud" inlineHeight={260} expandedHeight={720}>
+            <WordCloud />
+          </ExpandableChart>
         </div>
         <div className="mt-6 grid md:grid-cols-2 gap-6">
           <div className="glass rounded-2xl p-6">
             <h3 className="font-medium">Strengths at a Glance</h3>
             <p className="text-xs text-text-1 mb-3">Visual snapshot of my proficiency across analytics, engineering, and strategy. Toggle to view evolution by role or time.</p>
-            <InteractiveRadar />
+            <ExpandableChart title="Interactive Radar" inlineHeight={320} expandedHeight={720}>
+              <InteractiveRadar />
+            </ExpandableChart>
           </div>
           <div className="glass rounded-2xl p-6">
             <h3 className="font-medium">Where Skills Meet Impact</h3>
             <p className="text-xs text-text-1 mb-3">Each bubble represents a project — size shows impact, color shows domain. Hover for outcomes, click for project details.</p>
-            <ProjectImpactNetwork />
+            <ExpandableChart title="Project Impact Network" inlineHeight={320} expandedHeight={720}>
+              <ProjectImpactNetwork />
+            </ExpandableChart>
           </div>
         </div>
       </Section>
@@ -429,6 +448,19 @@ export default function HomePage() {
       {/* Publications */}
       <Section id="publications">
         <SectionIntro label="Publications" title="Peer reviewed publications" />
+        <div className="glass rounded-2xl p-6 mb-6 relative">
+          <a
+            href="https://scholar.google.co.in/citations?hl=en&amp;user=X_vjctwAAAAJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute right-4 top-4 p-2 rounded-md bg-primary text-black hover:opacity-90"
+            aria-label="Open Google Scholar profile"
+            title="Open Google Scholar profile"
+          >
+            <ExternalLink size={16} />
+          </a>
+          <ScholarImpactCard title="Research Impact Over Time" lead="Citations, h-index and i10-index with yearly trend." />
+        </div>
         <div className="grid md:grid-cols-3 gap-6">
           {pubs.slice(0, 7).map((p: any, i: number) => (
             <a

@@ -12,7 +12,7 @@ const SKILLS = [
   { name: "Tableau/Power BI", v: 4 },
 ];
 
-export default function SkillBars() {
+export default function SkillBars({ height = 280 }: { height?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -36,7 +36,6 @@ export default function SkillBars() {
     const onResize = () => chart.resize();
     window.addEventListener("resize", onResize);
     return () => { window.removeEventListener("resize", onResize); chart.dispose(); };
-  }, []);
-  return <div ref={ref} style={{ width: "100%", height: 280 }} aria-label="Skill proficiency bars" />;
+  }, [height]);
+  return <div ref={ref} style={{ width: "100%", height }} aria-label="Skill proficiency bars" />;
 }
-

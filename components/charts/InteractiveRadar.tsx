@@ -11,7 +11,7 @@ function computeYears(items: Item[]) {
   return items.map((d) => ({ name: d.name, value: d.years }));
 }
 
-export default function InteractiveRadar() {
+export default function InteractiveRadar({ height = 320 }: { height?: number }) {
   const data = raw as unknown as DataShape;
   const [tab, setTab] = useState<"tools" | "techniques" | "domains">("tools");
   const chartRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ export default function InteractiveRadar() {
       window.removeEventListener("resize", onResize);
       chart.dispose();
     };
-  }, [seriesData]);
+  }, [seriesData, height]);
 
   return (
     <div>
@@ -81,7 +81,7 @@ export default function InteractiveRadar() {
         <span className="text-xs text-text-1 ml-2">Values reflect years of experience</span>
       </div>
 
-      <div ref={chartRef} style={{ height: 320, width: "100%" }} aria-label="Interactive skills radar" />
+      <div ref={chartRef} style={{ height, width: "100%" }} aria-label="Interactive skills radar" />
     </div>
   );
 }

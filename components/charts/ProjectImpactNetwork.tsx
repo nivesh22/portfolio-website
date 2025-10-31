@@ -16,7 +16,7 @@ type NodeDatum = {
 
 type LinkDatum = { source: string; target: string; weight?: number };
 
-export default function ProjectImpactNetwork() {
+export default function ProjectImpactNetwork({ height = 320 }: { height?: number }) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [hover, setHover] = useState<NodeDatum | null>(null);
 
@@ -28,12 +28,12 @@ export default function ProjectImpactNetwork() {
 
   useEffect(() => {
     const width = 900;
-    const height = 320;
+    const h = height;
     const pad = 20;
 
     const svg = d3
       .select(svgRef.current!)
-      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("viewBox", `0 0 ${width} ${h}`)
       .attr("width", "100%")
       .attr("height", "100%")
       .style("display", "block");
@@ -84,7 +84,7 @@ export default function ProjectImpactNetwork() {
     const sim = d3
       .forceSimulation(nodes as any)
       .force("charge", d3.forceManyBody().strength(-180))
-      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("center", d3.forceCenter(width / 2, h / 2))
       .force(
         "collide",
         (d3.forceCollide().radius((d: any) => radiusFor(d) + 12)) as any
@@ -163,17 +163,17 @@ export default function ProjectImpactNetwork() {
       node.attr("transform", (d: any) => {
         const r = (d.type === "project" ? 10 + Math.min(28, (d.impact || 4) * 1.2) : d.type === "domain" ? 12 : 8) + 6;
         d.x = Math.max(r + pad, Math.min(width - (r + pad), d.x));
-        d.y = Math.max(r + pad, Math.min(height - (r + pad), d.y));
+        d.y = Math.max(r + pad, Math.min(h - (r + pad), d.y));
         return `translate(${d.x},${d.y})`;
       });
     });
 
     return () => sim.stop();
-  }, [nodes, links]);
+  }, [nodes, links, height]);
 
   return (
     <div className="relative w-full">
-      <svg ref={svgRef} className="w-full h-[320px] rounded-xl" />
+      <svg ref={svgRef} className="w-full rounded-xl" style={{ height }} />
       {hover && (
         <div className="absolute left-2 top-2 glass rounded-md px-3 py-2 text-xs pointer-events-none">
           <div className="font-medium">{hover.id}</div>
