@@ -1,4 +1,4 @@
-"use client";
+ï»¿"use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
@@ -133,23 +133,23 @@ export default function HomePage() {
 
   const EXPERIENCES = [
     {
-      year: "2023–2025",
-      company: "Société Générale",
+      year: "2023â€“2025",
+      company: "SociÃ©tÃ© GÃ©nÃ©rale",
       role: "Lead Data Scientist",
       copy:
-        "Engineered liquidity forecasting pipelines (ARIMA/ARDL) with CI/CD and automated drift detection—established a continuously learning financial model ecosystem.; Delivered ~$27M Net Banking Income uplift over 2 years through improved liquidity allocation and early-warning signals.; Built ML + LLM RFP-response automation reducing turnaround time and freeing analysts for higher-value tasks.",
+        "Engineered liquidity forecasting pipelines (ARIMA/ARDL) with CI/CD and automated drift detectionâ€”established a continuously learning financial model ecosystem.; Delivered ~$27M Net Banking Income uplift over 2 years through improved liquidity allocation and early-warning signals.; Built ML + LLM RFP-response automation reducing turnaround time and freeing analysts for higher-value tasks.",
       img: "/images/logos/socgen.png",
     },
     {
-      year: "2021–2022",
+      year: "2021â€“2022",
       company: "Flipkart",
       role: "Senior Business Analyst",
       copy:
-        "Designed gradient-boosting and sensitivity frameworks linking customer experience to operations metrics—made CX quantitatively measurable.; Drove NPS improvement (+8 p.p.) and ~$5M business value through actionable insights into delivery and incentive levers.; Partnered with product and ops teams to institutionalize data-to-action loops in quarterly business reviews.",
+        "Designed gradient-boosting and sensitivity frameworks linking customer experience to operations metricsâ€”made CX quantitatively measurable.; Drove NPS improvement (+8 p.p.) and ~$5M business value through actionable insights into delivery and incentive levers.; Partnered with product and ops teams to institutionalize data-to-action loops in quarterly business reviews.",
       img: "/images/logos/flipkart.png",
     },
     {
-      year: "2018–2021",
+      year: "2018â€“2021",
       company: "Mu Sigma (Ethicon / J&J client)",
       role: "Decision Scientist",
       copy:
@@ -180,7 +180,7 @@ export default function HomePage() {
                 </motion.h1>
               </AnimatePresence>
               <p className="text-text-1 mt-4 max-w-xl">
-                7 years applying data science across finance, healthcare, and e-commerce — designing end-to-end analytics systems that turn data into measurable business outcomes.
+                7 years applying data science across finance, healthcare, and e-commerce â€” designing end-to-end analytics systems that turn data into measurable business outcomes.
               </p>
             </div>
             <div className="flex flex-wrap gap-8 items-center text-primary">
@@ -227,21 +227,21 @@ export default function HomePage() {
           {[
             {
               title: "Predictive & Causal Modeling",
-              copy: "I build end-to-end ML solutions — from problem framing and modeling to validation and product integration.",
+              copy: "I build end-to-end ML solutions â€” from problem framing and modeling to validation and product integration.",
               icon: Brain,
               spark: [5, 6, 8, 7, 9, 10, 12],
               viz: "trend",
             },
             {
               title: "Analytics Strategy & Leadership",
-              copy: "I help businesses move from dashboards to decisions — creating KPI frameworks, AOP insights, and cross-functional alignment that deliver real value.",
+              copy: "I help businesses move from dashboards to decisions â€” creating KPI frameworks, AOP insights, and cross-functional alignment that deliver real value.",
               icon: BarChart3,
               spark: [2, 3, 5, 7, 8, 8, 9],
               viz: "network",
             },
             {
               title: "Responsible AI Enablement",
-              copy: "I build evaluation frameworks for GenAI & LLM solutions — testing accuracy, bias & guardrails to ensure AI drives trustworthy impact.",
+              copy: "I build evaluation frameworks for GenAI & LLM solutions â€” testing accuracy, bias & guardrails to ensure AI drives trustworthy impact.",
               icon: Sparkles,
               spark: [1, 2, 4, 5, 6, 7, 9],
               viz: "hex",
@@ -277,7 +277,7 @@ export default function HomePage() {
 
       {/* Experience timeline */}
       <Section id="experience">
-        <SectionIntro label="Experience" title="Where I’ve built impact" />
+        <SectionIntro label="Experience" title="Where Iâ€™ve built impact" />
         <div className="grid gap-10">
           {EXPERIENCES.map((job, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
@@ -339,7 +339,7 @@ export default function HomePage() {
         <SectionIntro label="Skills" title="Breadth with spikes where it counts" />
         <div className="glass rounded-2xl p-6">
           <h3 className="font-medium">The Stack Behind My Work</h3>
-          <p className="text-xs text-text-1 mb-3">Built from my work across finance, healthcare, and retail — the larger the word, the more often I’ve applied it in real projects.</p>
+          <p className="text-xs text-text-1 mb-3">Built from my work across finance, healthcare, and retail â€” the larger the word, the more often Iâ€™ve applied it in real projects.</p>
           <ExpandableChart title="Word Cloud" inlineHeight={260} expandedHeight={720}>
             <WordCloud />
           </ExpandableChart>
@@ -354,7 +354,7 @@ export default function HomePage() {
           </div>
           <div className="glass rounded-2xl p-6">
             <h3 className="font-medium">Where Skills Meet Impact</h3>
-            <p className="text-xs text-text-1 mb-3">Each bubble represents a project — size shows impact, color shows domain. Hover for outcomes, click for project details.</p>
+            <p className="text-xs text-text-1 mb-3">Each bubble represents a project â€” size shows impact, color shows domain. Hover for outcomes, click for project details.</p>
             <ExpandableChart title="Project Impact Network" inlineHeight={320} expandedHeight={720}>
               <ProjectImpactNetwork />
             </ExpandableChart>
@@ -479,7 +479,7 @@ export default function HomePage() {
               className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 block"
             >
               <h3 className="font-medium mb-1 line-clamp-2 min-h-[3rem]">{p.title}</h3>
-              <div className="text-xs text-text-1">{p.venue || "Venue"} · {p.year}</div>
+              <div className="text-xs text-text-1">{p.venue || "Venue"} Â· {p.year}</div>
             </a>
           ))}
         </div>
@@ -493,7 +493,7 @@ export default function HomePage() {
 
       {/* Contact */}
       <Section id="contact">
-        <SectionIntro label="Contact" title="Let’s connect" lead="Send a note and I’ll reply soon." />
+        <SectionIntro label="Contact" title="Letâ€™s connect" lead="Send a note and Iâ€™ll reply soon." />
         <div className="grid md:grid-cols-2 gap-6">
           <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4">
             <label className="grid gap-2">
