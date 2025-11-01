@@ -3,11 +3,11 @@
     "tooltip": "Primary language for ML/DS — from notebooks to APIs; ARIMA/XGBoost, LLM eval, data apps.",
     "links": ["/projects", "/skills#python"] },
 
-  { "text": "SQL", "value": 40, "group": "Lang",
+  { "text": "SQL", "value": 50, "group": "Lang",
     "tooltip": "Analytics & feature queries; BigQuery ELT; KPI tables feeding dashboards.",
     "links": ["/skills#sql"] },
 
-  { "text": "R", "value": 18, "group": "Lang",
+  { "text": "R", "value": 40, "group": "Lang",
     "tooltip": "Statistical modeling & causal inference; RMarkdown; MSBA coursework.",
     "links": ["/skills#r"] },
 
@@ -15,11 +15,11 @@
     "tooltip": "Deployed ESG Dashboard (2024) and rapid model demos.",
     "links": ["/projects/esg-dashboard"] },
 
-  { "text": "Next.js", "value": 16, "group": "App",
+  { "text": "Next.js", "value": 5, "group": "App",
     "tooltip": "Portfolio + interactive data UIs; MDX content; charts integration.",
     "links": ["/"] },
 
-  { "text": "D3", "value": 22, "group": "Viz",
+  { "text": "D3", "value": 5, "group": "Viz",
     "tooltip": "Custom visuals (Impact Network, skill radar, micro-charts) in dark theme.",
     "links": ["/projects/impact-network"] },
 
@@ -27,7 +27,7 @@
     "tooltip": "Executive dashboards; CX/NPS monitoring; decision reviews.",
     "links": ["/projects/flipkart-cx"] },
 
-  { "text": "Forecasting", "value": 28, "group": "ML",
+  { "text": "Forecasting", "value": 19, "group": "ML",
     "tooltip": "End-to-end forecasting systems with monitoring & backtests; scenario planning.",
     "links": ["/projects/forecasting-suite"] },
 
@@ -39,11 +39,11 @@
     "tooltip": "Econometric modeling for mixed-order integration; interpretable effects.",
     "links": ["/projects/forecasting-suite"] },
 
-  { "text": "XGBoost", "value": 18, "group": "ML",
+  { "text": "XGBoost", "value": 25, "group": "ML",
     "tooltip": "Driver models & uplift; SHAP-based explanations for stakeholders.",
     "links": ["/projects/cx-driver-model"] },
 
-  { "text": "Causal", "value": 16, "group": "ML",
+  { "text": "Causal", "value": 30, "group": "ML",
     "tooltip": "A/B testing, diff-in-diff, uplift; turning signals into decisions.",
     "links": ["/skills#causal"] },
 
@@ -63,15 +63,15 @@
     "tooltip": "Reproducible ML pipelines; data catalogs; modular project structure.",
     "links": ["/projects/ml-pipeline"] },
 
-  { "text": "Airflow", "value": 16, "group": "Eng",
+  { "text": "Airflow", "value": 7, "group": "Eng",
     "tooltip": "Orchestrated ETL/model retrains; SLAs & alerts.",
     "links": ["/projects/ml-pipeline"] },
 
-  { "text": "Docker", "value": 12, "group": "Eng",
+  { "text": "Docker", "value": 6, "group": "Eng",
     "tooltip": "Containerized apps (Streamlit/APIs); local-to-cloud parity.",
     "links": ["/projects"] },
 
-  { "text": "BigQuery", "value": 14, "group": "Eng",
+  { "text": "Jenkins", "value": 14, "group": "Eng",
     "tooltip": "Warehouse modeling, ELT pipelines, materialized views for BI.",
     "links": ["/projects"] },
 

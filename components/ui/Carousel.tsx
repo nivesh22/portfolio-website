@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-type Props = { images?: string[]; interval?: number; aspect?: string };
+type Props = { images?: string[]; interval?: number; aspect?: string; className?: string };
 
-export default function Carousel({ images = [] as string[], interval = 7000, aspect = "aspect-[9/16]" }: Props) {
+export default function Carousel({ images = [] as string[], interval = 7000, aspect = "aspect-[9/16]", className }: Props) {
   const [i, setI] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setI((p) => (p + 1) % Math.max(images.length, 1)), interval);
@@ -12,7 +13,7 @@ export default function Carousel({ images = [] as string[], interval = 7000, asp
   }, [images.length, interval]);
   if (images.length === 0) return null;
   return (
-    <div className={`relative w-full ${aspect} overflow-hidden rounded-2xl`}>
+    <div className={cn("relative w-full overflow-hidden rounded-2xl", aspect, className)}>
       {images.map((src, idx) => (
         <img
           key={src + idx}

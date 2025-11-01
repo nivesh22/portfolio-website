@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-export function Section({ id, children }: { id?: string; children: ReactNode }) {
+export function Section({ id, children, className }: { id?: string; children: ReactNode; className?: string }) {
   return (
-    <section id={id} className="py-20">
+    <section id={id} className={cn("py-20", className)}>
       <div className="container-max">{children}</div>
     </section>
   );
@@ -17,4 +18,3 @@ export function SectionIntro({ label, title, lead }: { label?: string; title: st
     </div>
   );
 }
-

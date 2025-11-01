@@ -9,14 +9,14 @@
   {
     "name": "Liquidity Forecasting",
     "description": "ARIMA/ARDL-based liquidity forecasting with Kedro pipelines and Streamlit reporting dashboards.",
-    "url": "https://github.com/nivesh22/Liquidity_forecasting",
+    "url": "https://liquidityforecast.streamlit.app/",
     "topics": ["Python", "Kedro", "Liquidity", "Streamlit", "Forecasting", "ARIMA", "ARDL"],
     "image": "/images/projects/personal/liquidity-animated.svg"
   },
   {
     "name": "Minutes of Meeting Generator",
     "description": "Generate minutes from transcripts with concise summaries, action items, and follow-ups.",
-    "url": "https://github.com/nivesh22/minutes_of_meeting_generator",
+    "url": "https://mom-gen.streamlit.app/",
     "topics": ["Python", "LLM", "Streamlit", "OpenAI", "NLP", "Summarization"],
     "image": "/images/projects/personal/mom-animated.svg"
   },

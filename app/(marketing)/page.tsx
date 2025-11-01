@@ -14,19 +14,21 @@ import WordCloud from "@/components/charts/WordCloud";
 import ExpandableChart from "@/components/ui/ExpandableChart";
 import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
 import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight, Rocket, Download, Coffee } from "lucide-react";
+import Modal from "@/components/ui/Modal";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
 import { allProjects } from "contentlayer/generated";
 
 const HEADLINES = [
-  "Data to Decisions to Impact.",
   "Building ML solutions end-to-end: from model to integration.",
-  "Turning analytics into actions that matter.",
-  "From signal to strategy: I build analytics that ship.",
-  "Practical AI for products that move the needle.",
-  "Where data science meets business outcomes.",
+  "Translating data to decisions: measurable, scalable, impactful.",
+  "Designing analytics systems that move from insight to action.",
+  "From signal to strategy: building data products that ship.",
+  "Applying practical AI: from prototypes to production value.",
+  "Where data science meets business impact, not just outcomes."
 ];
+
 
 
 // Lightweight recommendations carousel component
@@ -46,7 +48,7 @@ function RecommendationsCarousel() {
       meta: "April 12, 2021 · Managed me directly",
       text:
         "Nivesh worked with me at the very beginning of his career and even at that early stage he showed incredible maturity in the work he did. He could see the bigger picture, beyond what he was tasked with and as a result he brought valuable ideas to the table. He's a quick study and onboarded onto any new project with ease. I have seen him raise the bar for himself repeatedly. He was a treasured teammate and I had a great time working with him!",
-      img: "",
+      img: "/images/recommendations/Simran%20Jain.jpeg",
       url: "https://www.linkedin.com/in/nivesh-elangovanraaj/details/recommendations/",
     },
   ];
@@ -126,6 +128,7 @@ function RecommendationsCarousel() {
 
 export default function HomePage() {
   const [t, setT] = useState(0);
+  const [ppError, setPpError] = useState(false);
   useEffect(() => {
     const id = setInterval(() => setT((p) => (p + 1) % HEADLINES.length), 6000);
     return () => clearInterval(id);
@@ -161,12 +164,12 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <Section id="hero">
-        <div className="grid gap-8 md:grid-cols-2 items-center">
+      <Section id="hero" className="pt-12 pb-12 md:pt-14 md:pb-16">
+        <div className="grid gap-8 md:grid-cols-2 items-start">
           <div>
             <div className="mb-6">
               {/* Name label above headline */}
-              <div className="text-cyan-400 font-semibold text-2xl md:text-3xl mb-2">Nivesh Elangovanraaj</div>
+              <div className="text-cyan-400 font-semibold text-3xl md:text-4xl mb-10 md:mb-12">Nivesh Elangovanraaj</div>
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={t}
@@ -180,7 +183,7 @@ export default function HomePage() {
                 </motion.h1>
               </AnimatePresence>
               <p className="text-text-1 mt-4 max-w-xl">
-                7 years across finance, healthcare, and e-commerce. I build measurable analytics systems that translate data into outcomes.
+                7 years applying data science across finance, healthcare, and e-commerce — designing end-to-end analytics systems that turn data into measurable business outcomes.
               </p>
             </div>
             <div className="flex flex-wrap gap-8 items-center text-primary">
@@ -189,7 +192,7 @@ export default function HomePage() {
               <a href="https://calendly.com/nivesh-ucla/new-meeting" target="_blank" rel="noopener noreferrer" className="link-cta inline-flex items-center gap-2"><Coffee size={16} /> <span>Book a Coffee Chat</span></a>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-3">
+            <div className="mt-6 grid grid-cols-3 gap-3">
               {[
                 { label: "$27M+ value created", href: { pathname: "/", hash: "experience" } },
                 { label: "6 peer-reviewed papers", href: { pathname: "/", hash: "publications" } },
@@ -206,9 +209,10 @@ export default function HomePage() {
             </div>
           </div>
           <div>
-            <Carousel aspect="aspect-[24/16]" images={[
+          <Carousel className="max-w-[360px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto" aspect="aspect-[14/16]" images={[
               "/images/hero/Royce hall.jpg",
-              "/images/hero/coat suit - small.png",
+              "/images/hero/black suit.png",
+              "/images/hero/coat suit - small.jpg",
               "/images/hero/Anderson.jpg",
             ]} />
           </div>
@@ -401,15 +405,22 @@ export default function HomePage() {
                 {CardInner}
               </a>
             ) : (
-              <div
+              <button
                 key={p.slug}
-                className="glass rounded-xl p-0 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+                type="button"
+                onClick={() => setPpError(true)}
+                className="text-left w-full glass rounded-xl p-0 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden cursor-pointer"
               >
                 {CardInner}
-              </div>
+              </button>
             );
           })}
         </div>
+        <Modal open={ppError} title="File unavailable" onClose={() => setPpError(false)}>
+          <div className="p-2 sm:p-3 text-sm">
+            Unable to fetch the Powerpoint document at this time.
+          </div>
+        </Modal>
         <h3 className="text-lg font-medium mb-3">GitHub Projects</h3>
         <div className="grid md:grid-cols-2 gap-6">
           {gh.slice(0, 4).map((r: any, idx: number) => {

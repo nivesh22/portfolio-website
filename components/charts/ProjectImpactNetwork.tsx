@@ -78,16 +78,16 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
     const linkForce = (d3
       .forceLink(links as any)
       .id((d: any) => d.id)
-      .distance((d: any) => 110 + (d.weight ? 30 / d.weight : 0))
+      .distance((d: any) => 140 + (d.weight ? 30 / d.weight : 0))
       .strength(0.8)) as any;
 
     const sim = d3
       .forceSimulation(nodes as any)
-      .force("charge", d3.forceManyBody().strength(-180))
+      .force("charge", d3.forceManyBody().strength(-280))
       .force("center", d3.forceCenter(width / 2, h / 2))
       .force(
         "collide",
-        (d3.forceCollide().radius((d: any) => radiusFor(d) + 12)) as any
+        (d3.forceCollide().radius((d: any) => radiusFor(d) + 16)) as any
       )
       .force("link", linkForce)
       .alpha(0.9)
@@ -100,7 +100,7 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
       .append("line")
       .attr("class", "link")
       .attr("stroke", "#334155")
-      .attr("stroke-opacity", 0.6)
+      .attr("stroke-opacity", 0.45)
       .attr("stroke-width", 1.2);
 
     const node = g
@@ -141,17 +141,35 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
       .attr("stroke", "#0f172a")
       .attr("stroke-width", 1);
 
+    // Labels with halo for readability; show for larger nodes by default
     node
       .append("text")
       .text((d: NodeDatum) => d.id)
-      .attr("x", (d: NodeDatum) => radiusFor(d) + 8)
+      .attr("x", (d: NodeDatum) => radiusFor(d) + 6)
       .attr("y", 5)
       .attr("font-size", (d: NodeDatum) => {
-        const f = Math.max(11, Math.min(18, radiusFor(d) / 2.4));
+        const f = Math.max(11, Math.min(18, radiusFor(d) / 2.2));
         return f;
       })
-      .attr("fill", "#cbd5e1")
+      .attr("fill", "#e5e7eb")
+      .attr("stroke", "#0f172a")
+      .attr("stroke-width", 3)
+      .attr("paint-order", "stroke")
+      .style("opacity", (d: NodeDatum) => (radiusFor(d) >= 22 || d.type === "domain" ? 0.95 : 0))
       .attr("pointer-events", "none");
+
+    // On hover, surface the label even for small nodes
+    node
+      .on("mouseenter.label", (event: any) => {
+        d3.select(event.currentTarget as SVGGElement)
+          .select("text")
+          .style("opacity", 1);
+      })
+      .on("mouseleave.label", (event: any, d: NodeDatum) => {
+        d3.select(event.currentTarget as SVGGElement)
+          .select("text")
+          .style("opacity", (radiusFor(d) >= 22 || d.type === "domain") ? 0.95 : 0);
+      });
 
     sim.on("tick", () => {
       linkEl
@@ -166,6 +184,26 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
         d.y = Math.max(r + pad, Math.min(h - (r + pad), d.y));
         return `translate(${d.x},${d.y})`;
       });
+    });
+
+    // After the layout settles, fit content to both axes (non-uniform scale) to use full space
+    sim.on("end", () => {
+      const estLabelW = (d: any) => {
+        const f = Math.max(11, Math.min(18, radiusFor(d) / 2.2));
+        return f * (String(d.id).length * 0.6);
+      };
+      const minX = Math.min(...(nodes as any).map((d: any) => d.x - radiusFor(d)));
+      const maxX = Math.max(...(nodes as any).map((d: any) => d.x + radiusFor(d) + 6 + estLabelW(d)));
+      const minY = Math.min(...(nodes as any).map((d: any) => d.y - radiusFor(d)));
+      const maxY = Math.max(...(nodes as any).map((d: any) => d.y + radiusFor(d)));
+      const dx = Math.max(1, maxX - minX);
+      const dy = Math.max(1, maxY - minY);
+      const margin = 10;
+      const sx = (width - 2 * margin) / dx;
+      const sy = (h - 2 * margin) / dy;
+      const tx = margin - sx * minX;
+      const ty = margin - sy * minY;
+      g.attr("transform", `translate(${tx},${ty}) scale(${sx},${sy})`);
     });
 
     return () => sim.stop();
