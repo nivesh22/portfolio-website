@@ -68,7 +68,7 @@ export default function ContactPage() {
             <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
               <iframe
                 title="Calendly Scheduler"
-                src="https://calendly.com/nivesh-ucla/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1"
+                src="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh?hide_event_type_details=1&hide_gdpr_banner=1"
                 width="100%"
                 height="100%"
                 frameBorder="0"

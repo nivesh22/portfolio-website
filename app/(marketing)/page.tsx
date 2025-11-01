@@ -189,7 +189,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-8 items-center text-primary">
               <Link href={{ pathname: "/", hash: "projects" }} className="link-cta inline-flex items-center gap-2"><Rocket size={16} /> <span>View Projects</span></Link>
               <a href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="link-cta inline-flex items-center gap-2"><Download size={16} /> <span>Download Resume</span></a>
-              <a href="https://calendly.com/nivesh-ucla/new-meeting" target="_blank" rel="noopener noreferrer" className="link-cta inline-flex items-center gap-2"><Coffee size={16} /> <span>Book a Coffee Chat</span></a>
+              <a href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh" target="_blank" rel="noopener noreferrer" className="link-cta inline-flex items-center gap-2"><Coffee size={16} /> <span>Book a Coffee Chat</span></a>
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
@@ -520,7 +520,7 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-medium">Calendly</h3>
               <a
-                href="https://calendly.com/nivesh-ucla/new-meeting"
+                href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-md bg-primary text-black hover:opacity-90"
@@ -531,7 +531,7 @@ export default function HomePage() {
             <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
               <iframe
                 title="Calendly Scheduler"
-                src="https://calendly.com/nivesh-ucla/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1"
+                src="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh?hide_event_type_details=1&hide_gdpr_banner=1"
                 width="100%"
                 height="100%"
                 frameBorder="0"

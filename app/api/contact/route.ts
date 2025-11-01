@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     </div>
     <div style="margin-top:12px;">
       <a href="mailto:${safeEmail}" style="display:inline-block;background:#00e5ff;color:#0b1020;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:600;">Reply</a>
-      <a href="https://calendly.com/nivesh-ucla/new-meeting" style="display:inline-block;margin-left:8px;background:#a855f7;color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:600;">Schedule</a>
+      <a href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh" style="display:inline-block;margin-left:8px;background:#a855f7;color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:600;">Schedule</a>
     </div>
   `);
 
@@ -99,7 +99,7 @@ export async function POST(req: Request) {
     </div>
     <p style="margin:12px 0;color:#cbd5e1;">If it’s urgent, feel free to email me directly at <a href="mailto:nivesh@ucla.edu" style="color:#00e5ff;">nivesh@ucla.edu</a> or book a time:</p>
     <div>
-      <a href="https://calendly.com/nivesh-ucla/new-meeting" style="display:inline-block;background:#00e5ff;color:#0b1020;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:600;">Book a meeting</a>
+      <a href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh" style="display:inline-block;background:#00e5ff;color:#0b1020;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:600;">Book a meeting</a>
     </div>
   `);
 
