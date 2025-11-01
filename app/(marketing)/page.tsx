@@ -16,6 +16,7 @@ import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
 import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight, Rocket, Download, Coffee } from "lucide-react";
 import Modal from "@/components/ui/Modal";
 import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
+import quotes from "@/data/quotes.json";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
 import { allProjects } from "contentlayer/generated";
@@ -129,8 +130,13 @@ function RecommendationsCarousel() {
 export default function HomePage() {
   const [t, setT] = useState(0);
   const [ppError, setPpError] = useState(false);
+  const [q, setQ] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setT((p) => (p + 1) % HEADLINES.length), 6000);
+    return () => clearInterval(id);
+  }, []);
+  useEffect(() => {
+    const id = setInterval(() => setQ((p) => (p + 1) % (quotes as any[]).length), 9000);
     return () => clearInterval(id);
   }, []);
 
@@ -211,7 +217,7 @@ export default function HomePage() {
           <div>
           <Carousel className="max-w-[360px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto" aspect="aspect-[14/16]" images={[
               "/images/hero/Royce hall.jpg",
-              "/images/hero/black suit.png",
+              // "/images/hero/black suit.png",
               "/images/hero/coat suit - small.jpg",
               "/images/hero/Anderson.jpg",
             ]} />
@@ -543,8 +549,8 @@ export default function HomePage() {
       {/* Quote at bottom */}
       <Section>
         <div className="text-center text-text-1 text-sm">
-          <p className="italic">“In God we trust; all others must bring data.”</p>
-          <p className="mt-1">— W. Edwards Deming</p>
+          <p className="italic">"{(quotes as any[])[q]?.text}"</p>
+          <p className="mt-1">- {(quotes as any[])[q]?.author}</p>
         </div>
       </Section>
     </div>
