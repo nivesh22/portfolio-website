@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteMetadata } from "@/lib/siteMetadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -167,6 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <BackToTop />
         <Analytics />
+        <SpeedInsights />
         <Script id="person-schema" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify(personJsonLd)}
         </Script>
