@@ -5,13 +5,9 @@ on:
     branches:
       - main
 
-env:
-  SITE_URL: ${{ secrets.PRODUCTION_SITE_URL }}
-
 jobs:
   notify:
     runs-on: ubuntu-latest
-    if: ${{ env.SITE_URL != '' }}
     steps:
       - name: Wait for deployment to finish
         run: sleep 80
@@ -20,4 +16,4 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json" \
             -d '{"includeAll": true}' \
-            "${SITE_URL%/}/api/indexnow"
+            "${{ secrets.PRODUCTION_SITE_URL }}/api/indexnow"
