@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 import { siteMetadata } from "@/lib/siteMetadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -169,6 +171,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BackToTop />
         <Analytics />
         <SpeedInsights />
+        {GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-script" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
         <Script id="person-schema" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify(personJsonLd)}
         </Script>
