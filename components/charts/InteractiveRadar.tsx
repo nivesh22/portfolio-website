@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as echarts from "echarts";
 import raw from "@/data/skills-radar.json";
+import { trackEvent } from "@/lib/analytics";
 
 type Item = { name: string; level: number; years: number };
 type DataShape = { tools: Item[]; techniques: Item[]; domains: Item[] };
@@ -71,7 +72,10 @@ export default function InteractiveRadar({ height = 320 }: { height?: number }) 
           {["tools", "techniques", "domains"].map((k) => (
             <button
               key={k}
-              onClick={() => setTab(k as any)}
+              onClick={() => {
+                setTab(k as any);
+                trackEvent("skills_interaction", { action_type: "radar_tab", value: k });
+              }}
               className={`px-3 py-1.5 text-xs ${tab === k ? "bg-primary text-black" : "bg-white/5 text-white"}`}
             >
               {String(k).charAt(0).toUpperCase() + String(k).slice(1)}

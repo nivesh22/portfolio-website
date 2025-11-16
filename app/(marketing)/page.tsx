@@ -1,6 +1,6 @@
 ﻿"use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -21,6 +21,7 @@ import quotes from "@/data/quotes.json";
 import gh from "@/data/github.json";
 import pubs from "@/data/publications.json";
 import { allProjects } from "contentlayer/generated";
+import { trackEvent } from "@/lib/analytics";
 
 const HEADLINES = [
   "Building ML solutions end-to-end: from model to integration.",
@@ -30,6 +31,9 @@ const HEADLINES = [
   "Applying practical AI: from prototypes to production value.",
   "Where data science meets business impact, not just outcomes."
 ];
+
+type ProjectFilter = "professional" | "personal" | "all";
+const PROJECT_FILTERS: ProjectFilter[] = ["professional", "personal", "all"];
 
 
 
@@ -122,6 +126,10 @@ export default function HomePage() {
   const [t, setT] = useState(0);
   const [ppError, setPpError] = useState(false);
   const [q, setQ] = useState(0);
+  const [projectFilter, setProjectFilter] = useState<ProjectFilter>("professional");
+  const [inlineContactStatus, setInlineContactStatus] = useState<{ msg: string; kind: "success" | "error" } | null>(null);
+  const timelineTracked = useRef<Set<string>>(new Set());
+  const inlineContactTimer = useRef<number | null>(null);
   useEffect(() => {
     const id = setInterval(() => setT((p) => (p + 1) % HEADLINES.length), 6000);
     return () => clearInterval(id);
@@ -129,6 +137,11 @@ export default function HomePage() {
   useEffect(() => {
     const id = setInterval(() => setQ((p) => (p + 1) % (quotes as any[]).length), 9000);
     return () => clearInterval(id);
+  }, []);
+  useEffect(() => {
+    return () => {
+      if (inlineContactTimer.current) window.clearTimeout(inlineContactTimer.current);
+    };
   }, []);
 
   const EXPERIENCES = [
@@ -158,6 +171,48 @@ export default function HomePage() {
     },
   ];
 
+  const filteredProjects = allProjects
+    .filter((project) => (projectFilter === "all" ? true : project.kind === projectFilter))
+    .slice(0, 4);
+
+  const handleHeroCtaClick = (cta: string) => trackEvent("hero_cta_click", { cta });
+  const handleResumeDownload = (source: string) => trackEvent("resume_download", { source });
+  const handleBookChatClick = (source: string) => trackEvent("book_chat_click", { source });
+  const handleProjectCardClick = (projectId: string, context: string) => trackEvent("project_card_click", { project_id: projectId, context });
+  const handleProjectGithubClick = (projectId: string, repoUrl: string) => trackEvent("project_github_click", { project_id: projectId, repo_url: repoUrl });
+  const handleProjectFilterChange = (value: ProjectFilter) => {
+    setProjectFilter(value);
+    trackEvent("project_filter_changed", { filter_type: "kind", filter_value: value });
+  };
+  const handleTimelineInteraction = (jobId: string) => {
+    if (timelineTracked.current.has(jobId)) return;
+    timelineTracked.current.add(jobId);
+    trackEvent("timeline_interaction", { item_id: jobId });
+  };
+  const showInlineContactStatus = (msg: string, kind: "success" | "error") => {
+    setInlineContactStatus({ msg, kind });
+    if (inlineContactTimer.current) window.clearTimeout(inlineContactTimer.current);
+    inlineContactTimer.current = window.setTimeout(() => setInlineContactStatus(null), 4000);
+  };
+  const handleInlineContactSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: fd });
+      if (res.ok) {
+        showInlineContactStatus("Thanks! I’ll reply shortly.", "success");
+        (e.currentTarget as HTMLFormElement).reset();
+        trackEvent("contact_form_submit", { status: "success", location: "home" });
+      } else {
+        showInlineContactStatus("Something went wrong.", "error");
+        trackEvent("contact_form_submit", { status: "error", detail: "server", location: "home" });
+      }
+    } catch {
+      showInlineContactStatus("Something went wrong.", "error");
+      trackEvent("contact_form_submit", { status: "error", detail: "network", location: "home" });
+    }
+  };
+
   return (
     <div>
       {/* Hero */}
@@ -184,9 +239,36 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-8 items-center text-primary">
-              <Link href={{ pathname: "/", hash: "projects" }} className="link-cta inline-flex items-center gap-2"><Rocket size={16} /> <span>View Projects</span></Link>
-              <a href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="link-cta inline-flex items-center gap-2"><Download size={16} /> <span>Download Resume</span></a>
-              <a href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh" target="_blank" rel="noopener noreferrer" className="link-cta inline-flex items-center gap-2"><Coffee size={16} /> <span>Book a Coffee Chat</span></a>
+              <Link
+                href={{ pathname: "/", hash: "projects" }}
+                className="link-cta inline-flex items-center gap-2"
+                onClick={() => handleHeroCtaClick("view_projects")}
+              >
+                <Rocket size={16} /> <span>View Projects</span>
+              </Link>
+              <a
+                href="/api/download/Nivesh_Resume_MSBA2026.pdf"
+                className="link-cta inline-flex items-center gap-2"
+                onClick={() => {
+                  handleHeroCtaClick("download_resume");
+                  handleResumeDownload("hero");
+                }}
+              >
+                <Download size={16} /> <span>Download Resume</span>
+              </a>
+              <a
+                href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-cta inline-flex items-center gap-2"
+                onClick={() => {
+                  handleHeroCtaClick("book_chat");
+                  handleBookChatClick("hero");
+                }}
+                data-external-context="hero-calendly"
+              >
+                <Coffee size={16} /> <span>Book a Coffee Chat</span>
+              </a>
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
@@ -279,7 +361,9 @@ export default function HomePage() {
       <Section id="experience">
         <SectionIntro label="Experience" title="Where I’ve built impact" />
         <div className="grid gap-10">
-          {EXPERIENCES.map((job, i) => (
+          {EXPERIENCES.map((job, i) => {
+            const jobId = `${job.company}-${job.year}-${i}`;
+            return (
             <div key={i} className="grid grid-cols-1 md:grid-cols-[1fr_40px_1fr] items-center gap-6">
               {/* Left card */}
               {i % 2 === 0 ? (
@@ -289,7 +373,10 @@ export default function HomePage() {
                     <p className="text-xl font-medium">{job.company}</p>
                     <p className="text-sm text-text-1">{job.role}</p>
                   </div>
-                  <div className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
+                  <div
+                    className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
+                    onMouseEnter={() => handleTimelineInteraction(jobId)}
+                  >
                     <img src={job.img} alt="logo" className="w-12 h-12 rounded-md object-cover border border-white/10" />
                     <div>
                       <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
@@ -314,7 +401,10 @@ export default function HomePage() {
                     <p className="text-xl font-medium">{job.company}</p>
                     <p className="text-sm text-text-1">{job.role}</p>
                   </div>
-                  <div className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20">
+                  <div
+                    className="glass rounded-xl p-5 flex gap-4 items-start border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
+                    onMouseEnter={() => handleTimelineInteraction(jobId)}
+                  >
                     <img src={job.img} alt="logo" className="w-12 h-12 rounded-md object-cover border border-white/10" />
                     <div>
                       <p className="text-xs uppercase tracking-wide text-primary mb-1">Impact</p>
@@ -330,7 +420,8 @@ export default function HomePage() {
                 <div />
               )}
             </div>
-          ))}
+          );
+          })}
         </div>
       </Section>
 
@@ -365,9 +456,23 @@ export default function HomePage() {
       {/* Projects */}
       <Section id="projects">
         <SectionIntro label="Projects" title="Selected work" />
-        <h3 className="text-lg font-medium mb-3">Professional Projects</h3>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <h3 className="text-lg font-medium">Featured Projects</h3>
+          <div className="inline-flex rounded-md overflow-hidden border border-white/10 text-xs">
+            {PROJECT_FILTERS.map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => handleProjectFilterChange(option)}
+                className={`px-3 py-1.5 capitalize ${projectFilter === option ? "bg-primary text-black" : "bg-white/5 text-white"}`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {allProjects.filter(p => p.kind === "professional").slice(0, 4).map((p) => {
+          {filteredProjects.map((p) => {
             const coverMap: Record<string, string> = {
               "liquidity-forecasting": "/images/projects/personal/liquidity-animated.svg",
               // add cache-busters to ensure browser fetches fresh assets
@@ -398,6 +503,8 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+                onClick={() => handleProjectCardClick(p.slug, "home-external")}
+                data-external-context="home-project-card"
               >
                 {CardInner}
               </a>
@@ -405,7 +512,10 @@ export default function HomePage() {
               <button
                 key={p.slug}
                 type="button"
-                onClick={() => setPpError(true)}
+                onClick={() => {
+                  setPpError(true);
+                  handleProjectCardClick(p.slug, "home-internal");
+                }}
                 className="text-left w-full glass rounded-xl p-0 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden cursor-pointer"
               >
                 {CardInner}
@@ -438,6 +548,8 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+                onClick={() => handleProjectGithubClick(r.name, r.url)}
+                data-external-context="home-github"
               >
                 {CardInner}
               </a>
@@ -464,6 +576,8 @@ export default function HomePage() {
             className="absolute right-4 top-4 p-2 rounded-md bg-primary text-black hover:opacity-90"
             aria-label="Open Google Scholar profile"
             title="Open Google Scholar profile"
+            onClick={() => trackEvent("publication_click", { title: "Google Scholar Profile", url: "https://scholar.google.co.in/citations?hl=en&user=X_vjctwAAAAJ" })}
+            data-external-context="home-scholar"
           >
             <ExternalLink size={16} />
           </a>
@@ -477,6 +591,8 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 block"
+              onClick={() => trackEvent("publication_click", { title: p.title, url: p.url })}
+              data-external-context="home-publication"
             >
               <h3 className="font-medium mb-1 line-clamp-2 min-h-[3rem]">{p.title}</h3>
               <div className="text-xs text-text-1">{p.venue || "Venue"} · {p.year}</div>
@@ -495,7 +611,7 @@ export default function HomePage() {
       <Section id="contact">
         <SectionIntro label="Contact" title="Let’s connect" lead="Send a note and I’ll reply soon." />
         <div className="grid md:grid-cols-2 gap-6">
-          <form action="/api/contact" method="post" className="glass rounded-xl p-6 grid gap-4">
+          <form onSubmit={handleInlineContactSubmit} className="glass rounded-xl p-6 grid gap-4">
             <label className="grid gap-2">
               <span className="text-sm">Name</span>
               <input name="name" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
@@ -512,6 +628,11 @@ export default function HomePage() {
             <div>
               <Button type="submit">Send</Button>
             </div>
+            {inlineContactStatus ? (
+              <p className={`text-xs ${inlineContactStatus.kind === "success" ? "text-green-400" : "text-red-400"}`}>
+                {inlineContactStatus.msg}
+              </p>
+            ) : null}
           </form>
           <div className="glass rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
@@ -521,6 +642,8 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-md bg-primary text-black hover:opacity-90"
+                onClick={() => handleBookChatClick("contact-section")}
+                data-external-context="home-calendly"
               >
                 <ExternalLink size={16} />
               </a>

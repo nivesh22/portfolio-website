@@ -28,6 +28,9 @@ export default function PersonalProjectsPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              data-external-context="projects-personal"
+              data-project-id={p.slug}
+              data-project-context="projects-personal-external"
             >
               {CardInner}
             </a>
@@ -36,6 +39,8 @@ export default function PersonalProjectsPage() {
               key={p.slug}
               href={href}
               className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              data-project-id={p.slug}
+              data-project-context="projects-personal-internal"
             >
               {CardInner}
             </Link>

@@ -21,6 +21,8 @@ export default function ProfessionalProjectsPage() {
               key={p.slug}
               href={`/projects/${p.slug}`}
               className="glass rounded-xl p-0 block border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 overflow-hidden"
+              data-project-id={p.slug}
+              data-project-context="projects-professional"
             >
               <img src={imgSrc} alt="Project cover" className="w-full h-40 object-cover" />
               <div className="p-6">

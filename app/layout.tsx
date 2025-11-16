@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
+import { Suspense } from "react";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 import { siteMetadata } from "@/lib/siteMetadata";
@@ -157,6 +159,7 @@ export const metadata: Metadata = {
     "geo.region": "US-CA",
     "geo.placename": siteMetadata.location.city,
     "geo.position": "34.0522;-118.2437",
+    "msvalidate.01": "48A73D3EFF38FE364E22984A165EA361",
   },
 };
 
@@ -171,6 +174,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BackToTop />
         <Analytics />
         <SpeedInsights />
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
         {GA_MEASUREMENT_ID ? (
           <>
             <Script

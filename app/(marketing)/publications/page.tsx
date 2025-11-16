@@ -15,6 +15,9 @@ export default function PublicationsPage() {
           className="absolute right-4 top-4 p-2 rounded-md bg-primary text-black hover:opacity-90"
           aria-label="Open Google Scholar profile"
           title="Open Google Scholar profile"
+          data-external-context="publications-scholar"
+          data-publication-title="Google Scholar Profile"
+          data-publication-url="https://scholar.google.co.in/citations?hl=en&user=X_vjctwAAAAJ"
         >
           <ExternalLink size={16} />
         </a>
@@ -28,6 +31,9 @@ export default function PublicationsPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="glass rounded-xl p-5 border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20 block"
+            data-external-context="publications-card"
+            data-publication-title={p.title}
+            data-publication-url={p.url}
           >
             <div className="flex items-center justify-between gap-3">
               <h3 className="font-medium">{p.title}</h3>

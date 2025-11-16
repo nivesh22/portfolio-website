@@ -32,7 +32,7 @@ export default function ResumePage() {
           <h1 className="text-2xl font-semibold">Nivesh Kannan Elangovanraaj</h1>
           <div className="text-sm text-text-1">
             <span>(682) 403-0035 · </span>
-            <a className="underline" href="mailto:nivesh@ucla.edu">
+            <a className="underline" href="mailto:nivesh@ucla.edu" data-email-context="resume-page">
               nivesh@ucla.edu
             </a>
             <span> · Los Angeles, CA (open to relocation across the US)</span>
@@ -139,7 +139,7 @@ export default function ResumePage() {
 
         <div className="pt-2 text-sm">
           PDF download:{" "}
-          <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="underline">
+          <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="underline" data-resume-source="resume-page">
             Los Angeles Data Science Resume (PDF)
           </Link>
         </div>

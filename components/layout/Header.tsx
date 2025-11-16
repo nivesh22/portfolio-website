@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Calendar, FileDown, Github, Linkedin, BookOpen, Mail } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const links = [
   { href: "/#hero", label: "Home", id: "hero" },
@@ -56,14 +57,54 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href="https://ugan8z8fvc58vjdu.public.blob.vercel-storage.com/Nivesh%20-%20Data%20Scientist.pdf" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md">
+          <a
+            href="https://ugan8z8fvc58vjdu.public.blob.vercel-storage.com/Nivesh%20-%20Data%20Scientist.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md"
+            onClick={() => trackEvent("resume_download", { source: "header" })}
+            data-external-context="header-resume"
+          >
             <FileDown size={16} /> Download Resume
           </a>
-          <a href="https://www.linkedin.com/in/nivesh-elangovanraaj/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 hover:text-primary"><Linkedin size={18} /></a>
-          <a href="https://github.com/nivesh22" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 hover:text-primary"><Github size={18} /></a>
-          <a href="mailto:nivesh@ucla.edu" aria-label="Email" className="p-2 hover:text-primary"><Mail size={18} /></a>
-          <a href="https://scholar.google.co.in/citations?hl=en&user=X_vjctwAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Publications" className="p-2 hover:text-primary"><BookOpen size={18} /></a>
-          <Link href="/contact" className="hidden sm:inline-flex items-center gap-2 bg-accent/20 text-white px-3 py-1.5 rounded-md hover:bg-accent/30">
+          <a
+            href="https://www.linkedin.com/in/nivesh-elangovanraaj/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="p-2 hover:text-primary"
+            data-external-context="header-linkedin"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="https://github.com/nivesh22"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="p-2 hover:text-primary"
+            data-external-context="header-github"
+          >
+            <Github size={18} />
+          </a>
+          <a href="mailto:nivesh@ucla.edu" aria-label="Email" className="p-2 hover:text-primary" data-email-context="header">
+            <Mail size={18} />
+          </a>
+          <a
+            href="https://scholar.google.co.in/citations?hl=en&user=X_vjctwAAAAJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Publications"
+            className="p-2 hover:text-primary"
+            data-external-context="header-scholar"
+          >
+            <BookOpen size={18} />
+          </a>
+          <Link
+            href="/contact"
+            className="hidden sm:inline-flex items-center gap-2 bg-accent/20 text-white px-3 py-1.5 rounded-md hover:bg-accent/30"
+            onClick={() => trackEvent("book_chat_click", { source: "header" })}
+          >
             <Calendar size={16} /> Book a Chat
           </Link>
         </div>
