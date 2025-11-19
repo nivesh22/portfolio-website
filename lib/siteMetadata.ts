@@ -1,4 +1,4 @@
-const fallbackUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.nivesh.dev").replace(/\/+$/, "");
+const fallbackUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.nivesh.uk").replace(/\/+$/, "");
 
 export const siteMetadata = {
   name: "Nivesh Elangovanraaj",
