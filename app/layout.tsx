@@ -160,6 +160,7 @@ export const metadata: Metadata = {
     "geo.placename": siteMetadata.location.city,
     "geo.position": "34.0522;-118.2437",
     "msvalidate.01": "48A73D3EFF38FE364E22984A165EA361",
+    "google-site-verification": "EvIH1k0xV5EFSJQ7Xz_eLAxYDwF4KvwHr2PvhaKOJ5g",
   },
 };
 
