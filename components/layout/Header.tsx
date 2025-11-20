@@ -58,9 +58,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href="https://ugan8z8fvc58vjdu.public.blob.vercel-storage.com/Nivesh%20-%20Data%20Scientist.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/api/download/Nivesh_Resume_MSBA2026.pdf"
             className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md"
             onClick={() => trackEvent("resume_download", { source: "header" })}
             data-external-context="header-resume"

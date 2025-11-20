@@ -7,7 +7,7 @@ stack: [Python, Machine learning, NPS, Driver model, Sensitivity analysis, Custo
 year: 2021
 summary: "Customer experience driver modeling for NPS in large-appliance delivery and installation; identifies operational levers via feature sensitivity and explains impact on customer satisfaction."
 cover: "/images/projects/professional/cx-driver-animated.svg"
-demo: "https://ugan8z8fvc58vjdu.public.blob.vercel-storage.com/Projects/Flipkart%20-%20Cx%20Driver%20model%20project.pptx"
+demo: "/api/download/cx-driver-deck.pptx"
 ---
 
 Modeled how supply-chain touchpoints (routing accuracy, delivery slot adherence, installation quality, reschedules) influence Net Promoter Score (NPS) for large-appliance orders.
