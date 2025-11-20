@@ -290,12 +290,15 @@ export default function HomePage() {
             </div>
           </div>
           <div>
-          <Carousel className="max-w-[360px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto" aspect="aspect-[14/16]" images={[
-              "/images/hero/Royce hall.jpg",
-              // "/images/hero/black suit.png",
-              "/images/hero/coat suit - small.jpg",
-              "/images/hero/Anderson.jpg",
-            ]} />
+          <Carousel
+            className="max-w-[360px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto"
+            aspect="aspect-[14/16]"
+            images={[
+              { src: "/images/hero/Royce hall.jpg", alt: "Nivesh at UCLA's Royce Hall" },
+              { src: "/images/hero/coat suit - small.jpg", alt: "Nivesh in coat suit portrait" },
+              { src: "/images/hero/Anderson.jpg", alt: "Nivesh at UCLA Anderson" },
+            ]}
+          />
           </div>
         </div>
       </Section>

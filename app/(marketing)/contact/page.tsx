@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 "use client";
 import { useState } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { Calendar, Mail } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact Nivesh Elangovanraaj for data science consulting, collaboration, or opportunities.",
+};
 
 export default function ContactPage() {
   const [toast, setToast] = useState<{ msg: string; kind: "success" | "error" } | null>(null);

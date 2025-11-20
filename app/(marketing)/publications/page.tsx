@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import pubs from "@/data/publications.json";
 import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
 import { ExternalLink } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Publications",
+  description: "Peer-reviewed publications, citations, and impact metrics for Nivesh Elangovanraaj.",
+};
 
 export default function PublicationsPage() {
   return (

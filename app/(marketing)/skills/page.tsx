@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import Radar from "@/components/charts/Radar";
 import ImpactHeatmap from "@/components/charts/ImpactHeatmap";
 import SkillBars from "@/components/charts/SkillBars";
 import ExpandableChart from "@/components/ui/ExpandableChart";
+
+export const metadata: Metadata = {
+  title: "Skills",
+  description: "Interactive view of Nivesh Elangovanraaj's skills across ML, analytics, data engineering, and business impact.",
+};
 
 export default function SkillsPage() {
   return (

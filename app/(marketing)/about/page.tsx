@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import { allAbouts } from "contentlayer/generated";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn more about Nivesh Elangovanraaj's background, approach, and path from engineering to measurable impact.",
+};
 
 export default function AboutPage() {
   const about = allAbouts[0];

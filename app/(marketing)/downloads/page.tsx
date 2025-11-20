@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import manifest from "@/data/downloads.json";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Downloads",
+  description: "Download resume, decks, and one-pagers from Nivesh Elangovanraaj's data science portfolio.",
+};
 
 export default function DownloadsPage() {
   return (
