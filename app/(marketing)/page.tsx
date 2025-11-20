@@ -248,6 +248,8 @@ export default function HomePage() {
               </Link>
               <a
                 href="/api/download/Nivesh_Resume_MSBA2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="link-cta inline-flex items-center gap-2"
                 onClick={() => {
                   handleHeroCtaClick("download_resume");

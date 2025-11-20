@@ -38,6 +38,7 @@ export const downloadManifest: Manifest = {
   "Nivesh_Resume_MSBA2026.pdf": {
     type: "remote",
     url: env("REMOTE_RESUME_URL"),
+    downloadName: "Nivesh-Resume.pdf",
     contentType: "application/pdf",
     disposition: "inline",
     cacheSeconds: 300,

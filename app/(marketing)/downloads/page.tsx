@@ -11,6 +11,8 @@ export default function DownloadsPage() {
           <Link
             key={it.file}
             href={it.file}
+            target="_blank"
+            rel="noopener noreferrer"
             className="glass rounded-lg p-4 hover:opacity-90"
             data-resume-source={String(it.file).includes("Resume") ? "downloads-page" : undefined}
           >

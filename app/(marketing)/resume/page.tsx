@@ -139,8 +139,14 @@ export default function ResumePage() {
 
         <div className="pt-2 text-sm">
           PDF download:{" "}
-          <Link href="/api/download/Nivesh_Resume_MSBA2026.pdf" className="underline" data-resume-source="resume-page">
-            Los Angeles Data Science Resume (PDF)
+          <Link
+            href="/api/download/Nivesh_Resume_MSBA2026.pdf"
+            className="underline"
+            data-resume-source="resume-page"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          Nivesh - Resume (PDF)
           </Link>
         </div>
       </div>
