@@ -5,7 +5,7 @@ import { allProjects } from "contentlayer/generated";
 
 function collectSiteUrls() {
   const baseUrl = siteMetadata.url.replace(/\/+$/, "");
-  const staticRoutes = ["/", "/about", "/contact", "/projects/personal", "/projects/professional", "/skills", "/publications", "/resume", "/downloads"].map((path) =>
+  const staticRoutes = ["/", "/about", "/projects/personal", "/projects/professional", "/skills", "/publications", "/resume", "/downloads"].map((path) =>
     path === "/" ? baseUrl : `${baseUrl}${path}`
   );
   const projectRoutes = allProjects.map((project) => `${baseUrl}${project.url}`);

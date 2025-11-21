@@ -104,7 +104,7 @@ export default function Header() {
             <BookOpen size={18} />
           </a>
           <Link
-            href="/contact"
+            href={{ pathname: "/", hash: "contact" }}
             className="hidden sm:inline-flex items-center gap-2 border border-[color:var(--btn-border)] bg-[color:var(--btn-bg)] text-[color:var(--btn-text)] hover:bg-[color:var(--btn-bg-hover)] hover:border-[color:var(--btn-border-hover)] px-3 py-1.5 rounded-md"
             onClick={() => trackEvent("book_chat_click", { source: "header" })}
           >
