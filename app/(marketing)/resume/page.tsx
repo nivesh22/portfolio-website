@@ -4,6 +4,18 @@ import { Section, SectionIntro } from "@/components/layout/Section";
 import { siteMetadata } from "@/lib/siteMetadata";
 
 const resumeCanonicalUrl = new URL("/resume", siteMetadata.url).toString();
+const portraitUrl = new URL("/images/hero/coat%20suit%20-%20small.jpg", siteMetadata.url).toString();
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteMetadata.name,
+  alternateName: siteMetadata.legalName,
+  url: siteMetadata.url,
+  image: portraitUrl,
+  jobTitle: siteMetadata.jobTitle,
+  email: `mailto:${siteMetadata.email}`,
+  sameAs: siteMetadata.sameAs,
+};
 
 export const metadata: Metadata = {
   title: "Resume | Los Angeles based Data Scientist",
@@ -17,11 +29,34 @@ export const metadata: Metadata = {
     "Data scientist in Los Angeles",
     "AI leader resume United States",
   ],
+  openGraph: {
+    type: "article",
+    url: resumeCanonicalUrl,
+    title: "Nivesh Elangovanraaj — Resume",
+    description:
+      "Resume for Nivesh Elangovanraaj, Los Angeles–based data scientist with experience across finance, healthcare, and e-commerce.",
+    images: [
+      {
+        url: portraitUrl,
+        width: 1200,
+        height: 1200,
+        alt: "Portrait of Nivesh Elangovanraaj",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nivesh Elangovanraaj — Resume",
+    description:
+      "Resume for Nivesh Elangovanraaj, Los Angeles–based data scientist with experience across finance, healthcare, and e-commerce.",
+    images: [portraitUrl],
+  },
 };
 
 export default function ResumePage() {
   return (
-    <Section>
+    <>
+      <Section>
       <SectionIntro
         label="Resume"
         title="Resume — HTML preview + PDF download"
@@ -225,5 +260,10 @@ export default function ResumePage() {
         </div>
       </div>
     </Section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+    </>
   );
 }
