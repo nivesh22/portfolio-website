@@ -28,7 +28,7 @@ export default function ThemeToggle() {
     return lightCandidate ?? themes[0];
   }, [themes]);
 
-  const useLimited = TOGGLE_MODE === "limited" || (!TOGGLE_MODE && IS_PROD);
+  const useLimited = TOGGLE_MODE === "limited" || (!TOGGLE_MODE && (IS_PROD || !!ENV_LIGHT_THEME));
   const allowedThemes = useMemo(
     () => (useLimited ? [DARK_THEME, lightTheme].filter(Boolean) : themes),
     [useLimited, lightTheme, themes],
