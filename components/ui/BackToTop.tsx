@@ -28,10 +28,9 @@ export default function BackToTop() {
       onClick={scrollTop}
       aria-label="Go to top"
       title="Go to top"
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center rounded-full bg-primary text-background shadow-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary w-11 h-11"
+      className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center rounded-full bg-primary text-[color:var(--bg-0)] shadow-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary w-11 h-11"
     >
       <ArrowUp size={18} />
     </button>
   );
 }
-

@@ -15,6 +15,8 @@ export default function Carousel({ images = [] as ImageItem[], interval = 7000, 
     return () => clearInterval(id);
   }, [normalized.length, interval]);
   if (normalized.length === 0) return null;
+  const navBtn =
+    "absolute top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 glass text-[color:var(--text-0,#0f172a)] opacity-40 hover:opacity-100";
   return (
     <div className={cn("relative w-full overflow-hidden rounded-2xl", aspect, className)}>
       {normalized.map((img, idx) => (
@@ -25,10 +27,10 @@ export default function Carousel({ images = [] as ImageItem[], interval = 7000, 
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${i === idx ? "opacity-100" : "opacity-0"}`}
         />
       ))}
-      <button aria-label="Previous" className="absolute left-3 top-1/2 -translate-y-1/2 glass rounded-full p-2" onClick={() => setI((i - 1 + normalized.length) % normalized.length)}>
+      <button aria-label="Previous" className={cn(navBtn, "left-3")} onClick={() => setI((i - 1 + normalized.length) % normalized.length)}>
         <ChevronLeft />
       </button>
-      <button aria-label="Next" className="absolute right-3 top-1/2 -translate-y-1/2 glass rounded-full p-2" onClick={() => setI((i + 1) % normalized.length)}>
+      <button aria-label="Next" className={cn(navBtn, "right-3")} onClick={() => setI((i + 1) % normalized.length)}>
         <ChevronRight />
       </button>
     </div>

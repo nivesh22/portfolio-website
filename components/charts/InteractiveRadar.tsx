@@ -25,6 +25,10 @@ export default function InteractiveRadar({ height = 320 }: { height?: number }) 
   useEffect(() => {
     if (!chartRef.current) return;
     const chart = echarts.init(chartRef.current, undefined, { renderer: "canvas" });
+    const primary = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim() || "#2563EB";
+    const text1 = getComputedStyle(document.documentElement).getPropertyValue("--text-1").trim() || "#6B7280";
+    const grid = getComputedStyle(document.documentElement).getPropertyValue("--border-subtle").trim() || "#E5E7EB";
+    const fill = `color-mix(in srgb, ${primary} 30%, transparent)`;
     const maxYears = Math.max(1, ...seriesData.map((d) => d.value as number));
     const option: echarts.EChartsOption = {
       backgroundColor: "transparent",
@@ -38,8 +42,8 @@ export default function InteractiveRadar({ height = 320 }: { height?: number }) 
       radar: {
         indicator: seriesData.map((d) => ({ name: d.name, max: maxYears })),
         splitNumber: 5,
-        axisName: { color: "#9CA3AF" },
-        splitLine: { lineStyle: { color: ["#1f2937"] } },
+        axisName: { color: text1 },
+        splitLine: { lineStyle: { color: [grid] } },
         splitArea: { areaStyle: { color: ["transparent"] } },
       },
       series: [
@@ -48,8 +52,8 @@ export default function InteractiveRadar({ height = 320 }: { height?: number }) 
           data: [
             {
               value: seriesData.map((d) => d.value),
-              areaStyle: { color: "rgba(168, 85, 247, 0.25)" },
-              lineStyle: { color: "#00E5FF" },
+              areaStyle: { color: fill },
+              lineStyle: { color: primary, width: 2 },
               symbol: "none",
             },
           ],
@@ -68,19 +72,26 @@ export default function InteractiveRadar({ height = 320 }: { height?: number }) 
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2 mb-3">
-        <div className="inline-flex rounded-md overflow-hidden border border-white/10">
-          {["tools", "techniques", "domains"].map((k) => (
-            <button
-              key={k}
-              onClick={() => {
-                setTab(k as any);
-                trackEvent("skills_interaction", { action_type: "radar_tab", value: k });
-              }}
-              className={`px-3 py-1.5 text-xs ${tab === k ? "bg-primary text-black" : "bg-white/5 text-white"}`}
-            >
-              {String(k).charAt(0).toUpperCase() + String(k).slice(1)}
-            </button>
-          ))}
+        <div className="inline-flex rounded-md overflow-hidden border border-[color:var(--card-border)]">
+          {["tools", "techniques", "domains"].map((k) => {
+            const active = tab === k;
+            return (
+              <button
+                key={k}
+                onClick={() => {
+                  setTab(k as any);
+                  trackEvent("skills_interaction", { action_type: "radar_tab", value: k });
+                }}
+                className={`px-3 py-1.5 text-xs ${
+                  active
+                    ? "bg-primary text-black"
+                    : "bg-[color:var(--bg-1)] text-[color:var(--text-0)] border-l border-[color:var(--card-border)]"
+                }`}
+              >
+                {String(k).charAt(0).toUpperCase() + String(k).slice(1)}
+              </button>
+            );
+          })}
         </div>
         <span className="text-xs text-text-1 ml-2">Values reflect years of experience</span>
       </div>

@@ -20,14 +20,38 @@ export default function ImpactHeatmap({ height = 320 }: { height?: number }) {
   useEffect(() => {
     if (!ref.current) return;
     const chart = echarts.init(ref.current, undefined, { renderer: "canvas" });
+    const primary = "var(--primary)";
+    const accent = "var(--accent)";
+    const axisColor = "var(--text-1)";
+    const gridColor = "var(--border-subtle)";
     const option: echarts.EChartsOption = {
       backgroundColor: "transparent",
       tooltip: { position: "top" },
       grid: { height: "70%", top: 20 },
-      xAxis: { type: "category", data: DOMAINS, axisLine: { lineStyle: { color: "#9CA3AF" } } },
-      yAxis: { type: "category", data: IMPACTS, axisLine: { lineStyle: { color: "#9CA3AF" } } },
-      visualMap: { min: 0, max: 100, calculable: false, orient: "horizontal", left: "center", bottom: 0, inRange: { color: ["#0ea5e9", "#a855f7"] } },
-      series: [{ type: "heatmap", data: makeData(), emphasis: { itemStyle: { borderColor: "#fff" } } }],
+      xAxis: {
+        type: "category",
+        data: DOMAINS,
+        axisLine: { lineStyle: { color: axisColor } },
+        axisTick: { show: false },
+        splitLine: { lineStyle: { color: gridColor } },
+      },
+      yAxis: {
+        type: "category",
+        data: IMPACTS,
+        axisLine: { lineStyle: { color: axisColor } },
+        axisTick: { show: false },
+        splitLine: { lineStyle: { color: gridColor } },
+      },
+      visualMap: {
+        min: 0,
+        max: 100,
+        calculable: false,
+        orient: "horizontal",
+        left: "center",
+        bottom: 0,
+        inRange: { color: [primary, accent] },
+      },
+      series: [{ type: "heatmap", data: makeData(), emphasis: { itemStyle: { borderColor: primary } } }],
     };
     chart.setOption(option);
     const onResize = () => chart.resize();

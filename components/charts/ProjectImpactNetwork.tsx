@@ -16,9 +16,52 @@ type NodeDatum = {
 
 type LinkDatum = { source: string; target: string; weight?: number };
 
+type ThemePalette = {
+  primary: string;
+  accent: string;
+  success: string;
+  warning: string;
+  text: string;
+  textMut: string;
+  border: string;
+};
+
+const readPalette = (): ThemePalette => {
+  if (typeof window === "undefined") {
+    return {
+      primary: "#22d3ee",
+      accent: "#a855f7",
+      success: "#22c55e",
+      warning: "#f59e0b",
+      text: "#e5e7eb",
+      textMut: "#94a3b8",
+      border: "#334155",
+    };
+  }
+  const styles = getComputedStyle(document.documentElement);
+  const read = (k: string, fallback: string) => styles.getPropertyValue(k)?.trim() || fallback;
+  return {
+    primary: read("--primary", "#22d3ee"),
+    accent: read("--accent", "#a855f7"),
+    success: read("--success", "#22c55e"),
+    warning: read("--warning", "#f59e0b"),
+    text: read("--text-0", "#e5e7eb"),
+    textMut: read("--text-1", "#94a3b8"),
+    border: read("--border-subtle", "#334155"),
+  };
+};
+
 export default function ProjectImpactNetwork({ height = 320 }: { height?: number }) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [hover, setHover] = useState<NodeDatum | null>(null);
+  const [palette, setPalette] = useState<ThemePalette>(() => readPalette());
+
+  useEffect(() => {
+    const update = () => setPalette(readPalette());
+    update();
+    window.addEventListener("theme-changed", update);
+    return () => window.removeEventListener("theme-changed", update);
+  }, []);
 
   const { nodes, links } = useMemo(() => {
     const n = (data as any).nodes as NodeDatum[];
@@ -43,19 +86,20 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
     const g = svg.append("g");
 
     const domainColors: Record<string, string> = {
-      Finance: "#22d3ee",
-      Healthcare: "#34d399",
-      Retail: "#f59e0b",
-      Academia: "#a78bfa",
-      Banking: "#22c55e",
+      Finance: palette.primary,
+      Healthcare: palette.success,
+      Retail: palette.warning,
+      Academia: palette.accent,
+      Banking: palette.success,
+      Other: palette.textMut,
     };
     const projectColors: Record<string, string> = {
-      Finance: "#22d3ee",
-      Healthcare: "#34d399",
-      Retail: "#f59e0b",
-      Academia: "#a78bfa",
-      Banking: "#10b981",
-      Other: "#64748b",
+      Finance: palette.primary,
+      Healthcare: palette.success,
+      Retail: palette.warning,
+      Academia: palette.accent,
+      Banking: palette.success,
+      Other: palette.textMut,
     };
 
     const colorFor = (d: NodeDatum) => {
@@ -99,7 +143,7 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
       .enter()
       .append("line")
       .attr("class", "link")
-      .attr("stroke", "#334155")
+      .attr("stroke", palette.border)
       .attr("stroke-opacity", 0.45)
       .attr("stroke-width", 1.2);
 
@@ -138,7 +182,7 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
       .attr("r", (d: NodeDatum) => radiusFor(d))
       .attr("fill", (d: NodeDatum) => colorFor(d))
       .attr("fill-opacity", (d: NodeDatum) => (d.type === "project" ? 0.9 : 0.7))
-      .attr("stroke", "#0f172a")
+      .attr("stroke", "rgba(0,0,0,0.35)")
       .attr("stroke-width", 1);
 
     // Labels with halo for readability; show for larger nodes by default
@@ -152,7 +196,7 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
         return f;
       })
       .attr("fill", "#e5e7eb")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", "rgba(0,0,0,0.45)")
       .attr("stroke-width", 3)
       .attr("paint-order", "stroke")
       .style("opacity", (d: NodeDatum) => (radiusFor(d) >= 22 || d.type === "domain" ? 0.95 : 0))
@@ -207,7 +251,7 @@ export default function ProjectImpactNetwork({ height = 320 }: { height?: number
     });
 
     return () => sim.stop();
-  }, [nodes, links, height]);
+  }, [nodes, links, height, palette]);
 
   return (
     <div className="relative w-full">

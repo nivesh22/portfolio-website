@@ -1,6 +1,6 @@
 ﻿"use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useRef, useState, FormEvent } from "react";
+import { useEffect, useRef, useState, FormEvent, type ComponentType, type SVGProps } from "react";
 import { Section, SectionIntro } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -13,9 +13,16 @@ import ProjectImpactNetwork from "@/components/charts/ProjectImpactNetwork";
 import WordCloud from "@/components/charts/WordCloud";
 import ExpandableChart from "@/components/ui/ExpandableChart";
 import ScholarImpactCard from "@/components/charts/ScholarImpactCard";
-import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight, Rocket, Download, Coffee } from "lucide-react";
+import { Brain, BarChart3, Sparkles, ExternalLink, ChevronLeft, ChevronRight, Info, Download, Coffee } from "lucide-react";
 import Modal from "@/components/ui/Modal";
-import { MiniNetwork, MiniHexSpin, MiniTrend } from "@/components/ui/MiniViz";
+import { MiniNetwork, MiniResponsibleAI, MiniCausalPredict } from "@/components/ui/MiniViz";
+import CxDriverCover from "../../public/images/projects/professional/cx-driver-animated.svg";
+import GenaiEvaluatorCover from "../../public/images/projects/professional/genai-evaluator-animated.svg";
+import MarketParserCover from "../../public/images/projects/professional/market-parser-animated.svg";
+import LiquidityCover from "../../public/images/projects/personal/liquidity-animated.svg";
+import EsgCover from "../../public/images/projects/personal/esg-animated.svg";
+import MomCover from "../../public/images/projects/personal/mom-animated.svg";
+import Data4GoodCover from "../../public/images/projects/personal/data4good-animated.svg";
 import recs from "@/data/recommendations.json";
 import quotes from "@/data/quotes.json";
 import gh from "@/data/github.json";
@@ -72,13 +79,18 @@ function RecommendationsCarousel() {
     );
   };
 
+  const navBtn =
+    "absolute top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full p-2 glass text-[color:var(--text-0,#0f172a)] opacity-90 hover:opacity-100";
+
   return (
     <div className="relative w-full">
       <div className="relative min-h-[240px]">
-        {ITEMS.map((r, i) => (
+        {ITEMS.map((r, i) => {
+          const isActive = idx === i;
+          return (
           <div
             key={i}
-            className={`absolute inset-0 transition-opacity duration-700 ${idx === i ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
           >
             <div className="glass rounded-2xl px-16 py-6 border border-cyan-900/20 shadow-sm relative">
               <div className="flex items-start gap-4">
@@ -102,21 +114,21 @@ function RecommendationsCarousel() {
               </div>
               <button
                 aria-label="Previous recommendation"
-                className="absolute left-3 top-1/2 -translate-y-1/2 glass rounded-full p-2"
-                onClick={() => setIdx((idx - 1 + ITEMS.length) % ITEMS.length)}
+                className={`${navBtn} left-3`}
+                onClick={() => setIdx((p) => (p - 1 + ITEMS.length) % ITEMS.length)}
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 aria-label="Next recommendation"
-                className="absolute right-3 top-1/2 -translate-y-1/2 glass rounded-full p-2"
-                onClick={() => setIdx((idx + 1) % ITEMS.length)}
+                className={`${navBtn} right-3`}
+                onClick={() => setIdx((p) => (p + 1) % ITEMS.length)}
               >
                 <ChevronRight size={18} />
               </button>
             </div>
           </div>
-        ))}
+        );})}
       </div>
     </div>
   );
@@ -175,6 +187,19 @@ export default function HomePage() {
     .filter((project) => (projectFilter === "all" ? true : project.kind === projectFilter))
     .slice(0, 4);
 
+  const coverComponents: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+    "liquidity-forecasting": LiquidityCover,
+    "cx-driver-model": CxDriverCover,
+    "genai-evaluator": GenaiEvaluatorCover,
+    "market-parser": MarketParserCover,
+  };
+  const githubCoverComponents: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+    "ESG Dashboard": EsgCover,
+    "Liquidity Forecasting": LiquidityCover,
+    "Minutes of Meeting Generator": MomCover,
+    "Data for Good": Data4GoodCover,
+  };
+
   const handleHeroCtaClick = (cta: string) => trackEvent("hero_cta_click", { cta });
   const handleResumeDownload = (source: string) => trackEvent("resume_download", { source });
   const handleBookChatClick = (source: string) => trackEvent("book_chat_click", { source });
@@ -221,7 +246,7 @@ export default function HomePage() {
           <div>
             <div className="mb-6">
               {/* Name label above headline */}
-              <div className="text-cyan-400 font-semibold text-3xl md:text-4xl mb-10 md:mb-12">Nivesh Elangovanraaj</div>
+              <div className="font-semibold text-3xl md:text-4xl mb-10 md:mb-12 text-[color:var(--primary)]">Nivesh Elangovanraaj</div>
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={t}
@@ -244,7 +269,7 @@ export default function HomePage() {
                 className="link-cta inline-flex items-center gap-2"
                 onClick={() => handleHeroCtaClick("view_projects")}
               >
-                <Rocket size={16} /> <span>View Projects</span>
+                <Info size={16} /> <span>View Projects</span>
               </Link>
               <a
                 href="/api/download/Nivesh_Resume_MSBA2026.pdf"
@@ -282,7 +307,7 @@ export default function HomePage() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="glass rounded-lg p-3 text-center border border-cyan-900/20 transition-transform duration-200 transform-gpu hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/20"
+                  className="glass shadow-primary rounded-lg p-3 text-center border border-[color:var(--card-border)] transition-transform duration-200 transform-gpu hover:-translate-y-0.5"
                 >
                   <p className="text-sm">{item.label}</p>
                 </Link>
@@ -347,9 +372,9 @@ export default function HomePage() {
                   {c.viz === "network" ? (
                     <MiniNetwork />
                   ) : c.viz === "hex" ? (
-                    <MiniHexSpin />
+                    <MiniResponsibleAI />
                   ) : c.viz === "trend" ? (
-                    <MiniTrend />
+                    <MiniCausalPredict />
                   ) : (
                     <Sparkline data={c.spark} />
                   )}
@@ -461,41 +486,48 @@ export default function HomePage() {
       {/* Projects */}
       <Section id="projects">
         <SectionIntro label="Projects" title="Selected work" />
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-          <h3 className="text-lg font-medium">Featured Projects</h3>
-          <div className="inline-flex rounded-md overflow-hidden border border-white/10 text-xs">
-            {PROJECT_FILTERS.map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => handleProjectFilterChange(option)}
-                className={`px-3 py-1.5 capitalize ${projectFilter === option ? "bg-primary text-black" : "bg-white/5 text-white"}`}
-              >
-                {option}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h3 className="text-lg font-medium">Featured Projects</h3>
+          <div className="inline-flex rounded-md overflow-hidden border border-[color:var(--card-border)] text-xs">
+            {PROJECT_FILTERS.map((option) => {
+              const isActive = projectFilter === option;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => handleProjectFilterChange(option)}
+                  className={`px-3 py-1.5 capitalize ${
+                    isActive
+                      ? "bg-primary text-black"
+                      : "bg-[color:var(--bg-1)] text-[color:var(--text-0)] border border-[color:var(--card-border)]"
+                  }`}
+                >
+                  {option}
+                </button>
+              );
+            })}
           </div>
         </div>
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {filteredProjects.map((p) => {
-            const coverMap: Record<string, string> = {
-              "liquidity-forecasting": "/images/projects/personal/liquidity-animated.svg",
-              // add cache-busters to ensure browser fetches fresh assets
-              "cx-driver-model": "/images/projects/professional/cx-driver-animated.svg",
-              "genai-evaluator": "/images/projects/professional/genai-evaluator-animated.svg",
-              "market-parser": "/images/projects/professional/market-parser-animated.svg",
-            };
-            let imgSrc = coverMap[p.slug] || p.cover || "/images/wip.svg";
+            const Cover = coverComponents[p.slug];
+            let imgSrc = p.cover || "/images/wip.svg";
             const isCx = p.slug === "cx-driver-model" && (p as any).demo;
             const CardInner = (
               <>
-                <img src={imgSrc} alt="Project cover" className="w-full h-40 object-cover" />
+                <div className="relative w-full h-40 overflow-hidden [&_svg]:absolute [&_svg]:inset-0 [&_svg]:w-full [&_svg]:h-full">
+                  {Cover ? (
+                    <Cover aria-label={`${p.title} cover illustration`} />
+                  ) : (
+                    <img src={imgSrc} alt="Project cover" className="w-full h-full object-cover" />
+                  )}
+                </div>
                 <div className="p-6">
                   <h3 className="font-semibold mb-2">{p.title}</h3>
                   <p className="text-sm text-text-1 mb-3">{p.summary || "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}</p>
                   <div className="flex flex-wrap gap-1 text-xs text-text-1">
                     {(p.stack as string[] | undefined)?.slice(0, 6).map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>
+                      <span key={t} className="px-2 py-0.5 rounded-full bg-[color:var(--badge-bg)] border border-[color:var(--badge-border)] text-[color:var(--text-0)]">{t}</span>
                     ))}
                   </div>
                 </div>
@@ -536,13 +568,20 @@ export default function HomePage() {
         <h3 className="text-lg font-medium mb-3">GitHub Projects</h3>
         <div className="grid md:grid-cols-2 gap-6">
           {gh.slice(0, 4).map((r: any, idx: number) => {
+            const GhCover = githubCoverComponents[r.name as keyof typeof githubCoverComponents];
             const CardInner = (
               <>
-                <img src={r.image || "/images/wip.svg"} alt="Repo cover" className="w-full h-40 object-cover" />
+                <div className="relative w-full h-40 overflow-hidden [&_svg]:absolute [&_svg]:inset-0 [&_svg]:w-full [&_svg]:h-full">
+                  {GhCover ? (
+                    <GhCover aria-label={`${r.name} cover illustration`} />
+                  ) : (
+                    <img src={r.image || "/images/wip.svg"} alt="Repo cover" className="w-full h-full object-cover" />
+                  )}
+                </div>
                 <div className="p-6">
                   <h3 className="font-semibold mb-1">{r.name}</h3>
                   <p className="text-sm text-text-1 mb-2">{r.description}</p>
-                  <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics || []).map((t: string) => <span key={t} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">{t}</span>)}</div>
+                  <div className="flex flex-wrap gap-1 text-xs text-text-1">{(r.topics || []).map((t: string) => <span key={t} className="px-2 py-0.5 rounded-full bg-[color:var(--badge-bg)] border border-[color:var(--badge-border)] text-[color:var(--text-0)]">{t}</span>)}</div>
                 </div>
               </>
             );
@@ -578,7 +617,7 @@ export default function HomePage() {
             href="https://scholar.google.co.in/citations?hl=en&amp;user=X_vjctwAAAAJ"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute right-4 top-4 p-2 rounded-md bg-primary text-black hover:opacity-90"
+            className="absolute right-4 top-4 p-2 rounded-md bg-primary text-[color:var(--btn-text,#ffffff)] hover:opacity-90"
             aria-label="Open Google Scholar profile"
             title="Open Google Scholar profile"
             onClick={() => trackEvent("publication_click", { title: "Google Scholar Profile", url: "https://scholar.google.co.in/citations?hl=en&user=X_vjctwAAAAJ" })}
@@ -616,21 +655,21 @@ export default function HomePage() {
       <Section id="contact">
         <SectionIntro label="Contact" title="Let’s connect" lead="Send a note and I’ll reply soon." />
         <div className="grid md:grid-cols-2 gap-6">
-          <form onSubmit={handleInlineContactSubmit} className="glass rounded-xl p-6 grid gap-4">
+          <form onSubmit={handleInlineContactSubmit} className="glass rounded-xl p-6 grid gap-3">
             <label className="grid gap-2">
               <span className="text-sm">Name</span>
-              <input name="name" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+              <input name="name" required className="bg-bg-2 rounded-md px-3 h-11 border border-white/10" />
             </label>
             <label className="grid gap-2">
               <span className="text-sm">Email</span>
-              <input type="email" name="email" required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+              <input type="email" name="email" required className="bg-bg-2 rounded-md px-3 h-11 border border-white/10" />
             </label>
             <label className="grid gap-2">
               <span className="text-sm">Message</span>
-              <textarea name="message" rows={5} required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10" />
+              <textarea name="message" rows={4} required className="bg-bg-2 rounded-md px-3 py-2 border border-white/10 min-h-[140px]" />
             </label>
             <input type="text" name="company" className="hidden" aria-hidden="true" tabIndex={-1} />
-            <div>
+            <div className="mt-1">
               <Button type="submit">Send</Button>
             </div>
             {inlineContactStatus ? (
@@ -646,14 +685,14 @@ export default function HomePage() {
                 href="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-md bg-primary text-black hover:opacity-90"
+                className="p-2 rounded-md bg-primary text-[color:var(--bg-0)] hover:opacity-90"
                 onClick={() => handleBookChatClick("contact-section")}
                 data-external-context="home-calendly"
               >
                 <ExternalLink size={16} />
               </a>
             </div>
-            <div className="rounded-lg overflow-hidden border border-white/10 aspect-video">
+            <div className="rounded-lg overflow-hidden border border-white/10" style={{ height: 602 }}>
               <iframe
                 title="Calendly Scheduler"
                 src="https://calendly.com/nivesh-ucla/coffee-chat-with-nivesh?hide_event_type_details=1&hide_gdpr_banner=1"

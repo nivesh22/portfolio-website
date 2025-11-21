@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="100%" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1220"/>
-      <stop offset="100%" stop-color="#0e1b2e"/>
+      <stop offset="0%" stop-color="var(--bg-0, #0b0f14)"/>
+      <stop offset="100%" stop-color="var(--bg-1, #0f172a)"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#6366f1"/>
+      <stop offset="0%" stop-color="var(--svg-2, var(--accent, #a855f7))"/>
+      <stop offset="100%" stop-color="var(--svg-2, var(--accent-strong, #7c3aed))"/>
     </linearGradient>
     <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="100%" stop-color="#0ea5e9"/>
+      <stop offset="0%" stop-color="var(--svg-1, var(--primary, #00e5ff))"/>
+      <stop offset="100%" stop-color="var(--svg-1, var(--primary-strong, #38bdf8))"/>
     </linearGradient>
     <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="100%" stop-color="#16a34a"/>
+      <stop offset="0%" stop-color="var(--svg-3, var(--success, #22c55e))"/>
+      <stop offset="100%" stop-color="var(--svg-3, var(--success-strong, #16a34a))"/>
     </linearGradient>
   </defs>
 
@@ -23,8 +23,8 @@
 
   <!-- Center: NPS gauge -->
   <g transform="translate(600,200)">
-    <circle r="90" fill="#0b1323" stroke="#1f2937" stroke-opacity="0.6"/>
-    <path d="M-70 0 A70 70 0 1 1 70 0" fill="none" stroke="#334155" stroke-width="14" stroke-linecap="round"/>
+    <circle r="90" fill="var(--bg-2, #111827)" stroke="var(--border-subtle, #1f2937)" stroke-opacity="0.6"/>
+    <path d="M-70 0 A70 70 0 1 1 70 0" fill="none" stroke="var(--border-subtle, #1f2937)" stroke-width="14" stroke-linecap="round"/>
     <path d="M-70 0 A70 70 0 0 1 40 -58" fill="none" stroke="url(#green)" stroke-width="14" stroke-linecap="round">
       <animate attributeName="d" dur="4s" repeatCount="indefinite"
         values="M-70 0 A70 70 0 0 1 -10 -69; M-70 0 A70 70 0 0 1 40 -58; M-70 0 A70 70 0 0 1 -10 -69"/>
@@ -33,21 +33,21 @@
       <line x1="0" y1="0" x2="0" y2="-70" stroke="url(#accent)" stroke-width="6">
         <animateTransform attributeName="transform" type="rotate" from="-120 0 0" to="0 0 0" dur="4s" repeatCount="indefinite"/>
       </line>
-      <circle r="4" fill="#e5e7eb"/>
+      <circle r="4" fill="var(--svg-5, var(--text-0, #e5e7eb))"/>
     </g>
-    <text x="0" y="40" text-anchor="middle" font-family="Inter, Arial" font-size="14" fill="#93c5fd">NPS Drivers</text>
+    <text x="0" y="40" text-anchor="middle" font-family="Inter, Arial" font-size="14" fill="var(--svg-5, var(--text-1, #9ca3af))">NPS Drivers</text>
   </g>
 
   <!-- Left: delivery route with moving truck -->
   <g transform="translate(120, 140)">
     <path id="route" d="M0,120 C100,20 200,220 300,120" stroke="url(#teal)" stroke-width="3" fill="none" stroke-opacity="0.8"/>
     <g>
-      <rect x="-12" y="-8" width="24" height="16" fill="#22d3ee" rx="3">
+      <rect x="-12" y="-8" width="24" height="16" fill="url(#teal)" rx="3">
         <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
           <mpath href="#route"/>
         </animateMotion>
       </rect>
-      <rect x="-20" y="-6" width="8" height="12" fill="#0ea5e9">
+      <rect x="-20" y="-6" width="8" height="12" fill="url(#accent)">
         <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
           <mpath href="#route"/>
         </animateMotion>
@@ -57,7 +57,7 @@
 
   <!-- Right: sensitivity bars -->
   <g transform="translate(920, 120)">
-    <rect x="0" y="0" width="220" height="160" rx="12" fill="#0b1323" stroke="#1f2937" stroke-opacity="0.6"/>
+    <rect x="0" y="0" width="220" height="160" rx="12" fill="var(--bg-2, #111827)" stroke="var(--border-subtle, #1f2937)" stroke-opacity="0.6"/>
     <g transform="translate(16, 24)">
       <rect x="0" y="0" width="0" height="14" fill="url(#green)">
         <animate attributeName="width" values="0;180;120;160" dur="4s" repeatCount="indefinite"/>
@@ -71,9 +71,8 @@
     </g>
   </g>
 
-  <g font-family="Inter, Arial" font-size="12" fill="#93c5fd" opacity="0.9">
+  <g font-family="Inter, Arial" font-size="12" fill="var(--svg-5, var(--text-1, #9ca3af))" opacity="0.9">
     <text x="120" y="320">Delivery and Installation</text>
     <text x="930" y="300">Sensitivity</text>
   </g>
 </svg>
-

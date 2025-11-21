@@ -1,0 +1,823 @@
+[
+  {
+    "name": "default-dark",
+    "colorScheme": "dark",
+    "_doc": {
+      "colors.background": "Page background color",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "svgPalette": "Array up to 5 colors for SVG assets, exposed as --svg-1 ... --svg-5",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#0b0f14",
+      "surface": "#0f172a",
+      "surfaceAlt": "#111827",
+      "primary": "#00e5ff",
+      "accent": "#a855f7",
+      "textMain": "#e5e7eb",
+      "textMuted": "#9ca3af",
+      "borderSubtle": "#1f2937",
+      "success": "#22c55e",
+      "warning": "#f59e0b",
+      "error": "#ef4444"
+    },
+    "ambient": {
+      "base": "#050b12",
+      "blobs": {
+        "topLeft": "rgba(58, 199, 255, 0.08)",
+        "topRight": "rgba(142, 126, 255, 0.08)",
+        "bottomLeft": "rgba(104, 210, 170, 0.08)",
+        "bottomRight": "rgba(120, 144, 168, 0.07)",
+        "center": "rgba(255, 255, 255, 0.03)"
+      }
+    },
+    "svgPalette": ["#00e5ff", "#a855f7", "#22c55e", "#f59e0b", "#9ca3af"],
+    "surfaces": {
+      "cardBg": "rgba(255,255,255,0.05)",
+      "cardBorder": "rgba(255,255,255,0.12)",
+      "badgeBg": "rgba(255,255,255,0.06)",
+      "badgeBorder": "rgba(255,255,255,0.12)"
+    },
+    "controls": {
+      "buttonBg": "transparent",
+      "buttonText": "#ffffff",
+      "buttonBorder": "transparent",
+      "buttonBgHover": "rgba(255,255,255,0.08)",
+      "buttonBorderHover": "transparent",
+      "outlineText": "#00e5ff",
+      "ghostHoverBg": "rgba(255,255,255,0.08)"
+    },
+    "animations": {
+      "spinSlow": "6s",
+      "spinSlower": "12s",
+      "dash": "2.5s"
+    },
+    "charts": {
+      "grid": "rgba(255,255,255,0.14)",
+      "bar": "#00e5ff",
+      "barHover": "#00b3c7"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(0,0,0,0.35)",
+      "cardHover": "0 12px 28px rgba(0,0,0,0.5)",
+      "primary": "0 6px 12px -4px rgba(0,229,255,0.28)",
+      "primaryHover": "0 8px 16px -6px rgba(0,229,255,0.36)"
+    }
+  },
+
+  {
+    "name": "research-notebook",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#F6F1E7",
+      "surface": "#FFFBF5",
+      "surfaceAlt": "#F0E2CF",
+      "primary": "#1D4ED8",
+      "accent": "#B45309",
+      "textMain": "#1F2933",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#E5D5C2",
+      "success": "#15803D",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#f6f1e7",
+      "blobs": {
+        "topLeft": "rgba(98, 142, 233, 0.12)",
+        "topRight": "rgba(223, 162, 94, 0.10)",
+        "bottomLeft": "rgba(188, 178, 144, 0.10)",
+        "bottomRight": "rgba(205, 189, 166, 0.08)",
+        "center": "rgba(255, 255, 255, 0.09)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#FFFBF5",
+      "cardBorder": "#E5D5C2",
+      "badgeBg": "#F3E9DA",
+      "badgeBorder": "#E5D5C2"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(148,112,72,0.18)",
+      "cardHover": "0 12px 28px rgba(148,112,72,0.26)",
+      "primary": "0 6px 12px -4px rgba(29,78,216,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(29,78,216,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#1D4ED8",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(29,78,216,0.35)",
+      "buttonBgHover": "#1E40AF",
+      "buttonBorderHover": "rgba(30,64,175,0.55)",
+      "outlineText": "#1D4ED8",
+      "ghostHoverBg": "#E0E7FF"
+    },
+    "animations": {
+      "spinSlow": "8s",
+      "spinSlower": "14s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#E5D5C2",
+      "bar": "#1D4ED8",
+      "barHover": "#1E40AF"
+    }
+  },
+
+  {
+    "name": "ucla-bruin-light",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#F7FAFF",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#E8F1FF",
+      "primary": "#2774AE",
+      "accent": "#FFD100",
+      "textMain": "#0F172A",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#DFE7F4",
+      "success": "#15803D",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#f7faff",
+      "blobs": {
+        "topLeft": "rgba(39, 116, 174, 0.14)",
+        "topRight": "rgba(255, 209, 0, 0.10)",
+        "bottomLeft": "rgba(136, 172, 224, 0.12)",
+        "bottomRight": "rgba(191, 219, 254, 0.10)",
+        "center": "rgba(255, 255, 255, 0.09)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#FFFFFF",
+      "cardBorder": "#DFE7F4",
+      "badgeBg": "#E5F0FF",
+      "badgeBorder": "#BFDBFE"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(15,23,42,0.06)",
+      "cardHover": "0 12px 28px rgba(15,23,42,0.12)",
+      "primary": "0 6px 12px -4px rgba(39,116,174,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(39,116,174,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#2774AE",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(39,116,174,0.4)",
+      "buttonBgHover": "#205D89",
+      "buttonBorderHover": "rgba(32,93,137,0.7)",
+      "outlineText": "#2774AE",
+      "ghostHoverBg": "#E0ECFF"
+    },
+    "animations": {
+      "spinSlow": "10s",
+      "spinSlower": "18s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#DFE7F4",
+      "bar": "#2774AE",
+      "barHover": "#205D89"
+    }
+  },
+
+  {
+    "name": "minimal-graph-paper",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#FDFDFC",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F3F4F6",
+      "primary": "#0F766E",
+      "accent": "#4B5563",
+      "textMain": "#111827",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#E5E7EB",
+      "success": "#16A34A",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#fdfdfc",
+      "blobs": {
+        "topLeft": "rgba(79, 209, 197, 0.10)",
+        "topRight": "rgba(148, 163, 184, 0.09)",
+        "bottomLeft": "rgba(148, 196, 171, 0.09)",
+        "bottomRight": "rgba(203, 213, 225, 0.08)",
+        "center": "rgba(255, 255, 255, 0.06)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#FFFFFF",
+      "cardBorder": "#E5E7EB",
+      "badgeBg": "#EEF2FF",
+      "badgeBorder": "#D1D5DB"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(15,23,42,0.06)",
+      "cardHover": "0 12px 28px rgba(15,23,42,0.12)",
+      "primary": "0 6px 12px -4px rgba(15,118,110,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(15,118,110,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#0F766E",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(15,118,110,0.4)",
+      "buttonBgHover": "#115E59",
+      "buttonBorderHover": "rgba(17,94,89,0.7)",
+      "outlineText": "#0F766E",
+      "ghostHoverBg": "#E0F2F1"
+    },
+    "animations": {
+      "spinSlow": "9s",
+      "spinSlower": "16s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#E5E7EB",
+      "bar": "#0F766E",
+      "barHover": "#115E59"
+    }
+  },
+
+  {
+    "name": "terminal-dark-minimal",
+    "colorScheme": "dark",
+    "_doc": {
+      "colors.background": "Page background color",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#020813",
+      "surface": "#020813",
+      "surfaceAlt": "#020813",
+      "primary": "#22C55E",
+      "accent": "#38BDF8",
+      "textMain": "#E5E7EB",
+      "textMuted": "#9CA3AF",
+      "borderSubtle": "#111827",
+      "success": "#22C55E",
+      "warning": "#FACC15",
+      "error": "#F97373"
+    },
+    "ambient": {
+      "base": "#020813",
+      "blobs": {
+        "topLeft": "rgba(34, 197, 94, 0.12)",
+        "topRight": "rgba(56, 189, 248, 0.10)",
+        "bottomLeft": "rgba(16, 185, 129, 0.10)",
+        "bottomRight": "rgba(30, 64, 175, 0.08)",
+        "center": "rgba(15, 23, 42, 0.35)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#020817",
+      "cardBorder": "#111827",
+      "badgeBg": "#020817",
+      "badgeBorder": "#111827"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(0,0,0,0.35)",
+      "cardHover": "0 12px 28px rgba(0,0,0,0.5)",
+      "primary": "0 6px 12px -4px rgba(34,197,94,0.28)",
+      "primaryHover": "0 8px 16px -6px rgba(34,197,94,0.36)"
+    },
+    "controls": {
+      "buttonBg": "#22C55E",
+      "buttonText": "#020617",
+      "buttonBorder": "rgba(34,197,94,0.5)",
+      "buttonBgHover": "#16A34A",
+      "buttonBorderHover": "rgba(22,163,74,0.8)",
+      "outlineText": "#22C55E",
+      "ghostHoverBg": "rgba(15,23,42,0.9)"
+    },
+    "animations": {
+      "spinSlow": "7s",
+      "spinSlower": "13s",
+      "dash": "2.5s"
+    },
+    "charts": {
+      "grid": "rgba(148,163,184,0.3)",
+      "bar": "#22C55E",
+      "barHover": "#16A34A"
+    }
+  },
+
+  {
+    "name": "quant-lab-dark",
+    "colorScheme": "dark",
+    "_doc": {
+      "colors.background": "Page background color (quant dashboards)",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (stripes, side panels)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#020617",
+      "surface": "#020617",
+      "surfaceAlt": "#020617",
+      "primary": "#F59E0B",
+      "accent": "#22D3EE",
+      "textMain": "#E5E7EB",
+      "textMuted": "#9CA3AF",
+      "borderSubtle": "#111827",
+      "success": "#22C55E",
+      "warning": "#FACC15",
+      "error": "#F97373"
+    },
+    "ambient": {
+      "base": "#020617",
+      "blobs": {
+        "topLeft": "rgba(245, 158, 11, 0.16)",
+        "topRight": "rgba(34, 211, 238, 0.12)",
+        "bottomLeft": "rgba(37, 99, 235, 0.12)",
+        "bottomRight": "rgba(15, 23, 42, 0.6)",
+        "center": "rgba(15, 23, 42, 0.35)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#020617",
+      "cardBorder": "#111827",
+      "badgeBg": "#020617",
+      "badgeBorder": "#111827"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(0,0,0,0.35)",
+      "cardHover": "0 12px 28px rgba(0,0,0,0.5)",
+      "primary": "0 6px 12px -4px rgba(245,158,11,0.30)",
+      "primaryHover": "0 8px 16px -6px rgba(245,158,11,0.40)"
+    },
+    "controls": {
+      "buttonBg": "#F59E0B",
+      "buttonText": "#020617",
+      "buttonBorder": "rgba(245,158,11,0.5)",
+      "buttonBgHover": "#D97706",
+      "buttonBorderHover": "rgba(217,119,6,0.8)",
+      "outlineText": "#F59E0B",
+      "ghostHoverBg": "rgba(15,23,42,0.9)"
+    },
+    "animations": {
+      "spinSlow": "7s",
+      "spinSlower": "13s",
+      "dash": "2.5s"
+    },
+    "charts": {
+      "grid": "rgba(148,163,184,0.3)",
+      "bar": "#F59E0B",
+      "barHover": "#D97706"
+    }
+  },
+
+  {
+    "name": "healthcare-rwe-soft",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color (healthcare/RWE focus)",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent (clinical/teal)",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#ECF6F7",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#D9F2F2",
+      "primary": "#0EA5E9",
+      "accent": "#059669",
+      "textMain": "#0F172A",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#D1E5E8",
+      "success": "#16A34A",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#ecf6f7",
+      "blobs": {
+        "topLeft": "rgba(56, 189, 248, 0.14)",
+        "topRight": "rgba(45, 212, 191, 0.12)",
+        "bottomLeft": "rgba(134, 239, 172, 0.10)",
+        "bottomRight": "rgba(191, 219, 254, 0.10)",
+        "center": "rgba(255, 255, 255, 0.09)"
+      }
+    },
+    "svgPalette": ["#0EA5E9", "#059669", "#16A34A", "#D97706", "#6B7280"],
+    "surfaces": {
+      "cardBg": "#FFFFFF",
+      "cardBorder": "#D1E5E8",
+      "badgeBg": "#E0F2FE",
+      "badgeBorder": "#BAE6FD"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(15,23,42,0.06)",
+      "cardHover": "0 12px 28px rgba(15,23,42,0.12)",
+      "primary": "0 6px 12px -4px rgba(14,165,233,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(14,165,233,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#0EA5E9",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(14,165,233,0.4)",
+      "buttonBgHover": "#0284C7",
+      "buttonBorderHover": "rgba(2,132,199,0.7)",
+      "outlineText": "#0EA5E9",
+      "ghostHoverBg": "#E0F2FE"
+    },
+    "animations": {
+      "spinSlow": "9s",
+      "spinSlower": "16s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#D1E5E8",
+      "bar": "#0EA5E9",
+      "barHover": "#0284C7"
+    }
+  },
+
+  {
+    "name": "product-analytics-soft",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color (product analytics focus)",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent (pink for highlights)",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#F9F5FF",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F5F3FF",
+      "primary": "#7C3AED",
+      "accent": "#EC4899",
+      "textMain": "#111827",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#E5E7EB",
+      "success": "#16A34A",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#f9f5ff",
+      "blobs": {
+        "topLeft": "rgba(124, 58, 237, 0.14)",
+        "topRight": "rgba(236, 72, 153, 0.12)",
+        "bottomLeft": "rgba(129, 140, 248, 0.12)",
+        "bottomRight": "rgba(196, 181, 253, 0.10)",
+        "center": "rgba(255, 255, 255, 0.09)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#FFFFFF",
+      "cardBorder": "#E5E7EB",
+      "badgeBg": "#EEF2FF",
+      "badgeBorder": "#C7D2FE"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(15,23,42,0.06)",
+      "cardHover": "0 12px 28px rgba(15,23,42,0.12)",
+      "primary": "0 6px 12px -4px rgba(124,58,237,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(124,58,237,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#7C3AED",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(124,58,237,0.4)",
+      "buttonBgHover": "#6D28D9",
+      "buttonBorderHover": "rgba(109,40,217,0.7)",
+      "outlineText": "#7C3AED",
+      "ghostHoverBg": "#EEF2FF"
+    },
+    "animations": {
+      "spinSlow": "9s",
+      "spinSlower": "16s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#E5E7EB",
+      "bar": "#7C3AED",
+      "barHover": "#6D28D9"
+    }
+  },
+
+  {
+    "name": "exec-dashboard-neutral",
+    "colorScheme": "light",
+    "_doc": {
+      "colors.background": "Page background color (executive-friendly dashboards)",
+      "colors.surface": "Primary surface (panels, nav)",
+      "colors.surfaceAlt": "Alternate surface (sections/stripes)",
+      "colors.primary": "Primary accent for links/CTAs/icons",
+      "colors.accent": "Secondary accent",
+      "colors.textMain": "Main text color",
+      "colors.textMuted": "Secondary/muted text",
+      "colors.borderSubtle": "Subtle borders/dividers",
+      "colors.success": "Positive state color",
+      "colors.warning": "Warning state color",
+      "colors.error": "Error state color",
+      "surfaces.cardBg": "Card background",
+      "surfaces.cardBorder": "Card border",
+      "surfaces.badgeBg": "Badge/tag background",
+      "surfaces.badgeBorder": "Badge/tag border",
+      "controls.buttonBg": "Primary button background",
+      "controls.buttonText": "Primary button text/icon color",
+      "controls.buttonBorder": "Primary button border",
+      "controls.buttonBgHover": "Primary button hover background",
+      "controls.buttonBorderHover": "Primary button hover border",
+      "controls.outlineText": "Outline button text/icon color",
+      "controls.ghostHoverBg": "Ghost/inline button hover background",
+      "animations.spinSlow": "Slow spin animation duration",
+      "animations.spinSlower": "Slower spin animation duration",
+      "animations.dash": "Dash animation duration",
+      "charts.grid": "Chart grid line color",
+      "charts.bar": "Chart bar color",
+      "charts.barHover": "Chart bar hover color",
+      "shadows.card": "Default card shadow",
+      "shadows.cardHover": "Hover card shadow"
+    },
+    "colors": {
+      "background": "#F4F3EF",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#E5E4DE",
+      "primary": "#0F766E",
+      "accent": "#1F2937",
+      "textMain": "#111827",
+      "textMuted": "#6B7280",
+      "borderSubtle": "#E0E0D7",
+      "success": "#16A34A",
+      "warning": "#D97706",
+      "error": "#B91C1C"
+    },
+    "ambient": {
+      "base": "#f4f3ef",
+      "blobs": {
+        "topLeft": "rgba(15, 118, 110, 0.12)",
+        "topRight": "rgba(148, 163, 184, 0.10)",
+        "bottomLeft": "rgba(156, 163, 175, 0.10)",
+        "bottomRight": "rgba(209, 213, 219, 0.09)",
+        "center": "rgba(255, 255, 255, 0.08)"
+      }
+    },
+    "surfaces": {
+      "cardBg": "#FFFFFF",
+      "cardBorder": "#E0E0D7",
+      "badgeBg": "#E5E7EB",
+      "badgeBorder": "#D1D5DB"
+    },
+    "shadows": {
+      "card": "0 8px 20px rgba(15,23,42,0.06)",
+      "cardHover": "0 12px 28px rgba(15,23,42,0.12)",
+      "primary": "0 6px 12px -4px rgba(15,118,110,0.24)",
+      "primaryHover": "0 8px 16px -6px rgba(15,118,110,0.32)"
+    },
+    "controls": {
+      "buttonBg": "#0F766E",
+      "buttonText": "#FFFFFF",
+      "buttonBorder": "rgba(15,118,110,0.4)",
+      "buttonBgHover": "#115E59",
+      "buttonBorderHover": "rgba(17,94,89,0.7)",
+      "outlineText": "#0F766E",
+      "ghostHoverBg": "#E0F2F1"
+    },
+    "animations": {
+      "spinSlow": "9s",
+      "spinSlower": "16s",
+      "dash": "3s"
+    },
+    "charts": {
+      "grid": "#D1D5DB",
+      "bar": "#0F766E",
+      "barHover": "#115E59"
+    }
+  }
+]

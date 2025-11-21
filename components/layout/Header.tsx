@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Calendar, FileDown, Github, Linkedin, BookOpen, Mail } from "lucide-react";
+import { Calendar, FileDown, Linkedin, Github,BookOpen, Mail } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 const links = [
@@ -61,7 +61,7 @@ export default function Header() {
             href="/api/download/Nivesh_Resume_MSBA2026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 bg-accent/80 hover:bg-accent/90 text-white px-3 py-1.5 rounded-md"
+            className="hidden sm:inline-flex items-center gap-2 border border-[color:var(--btn-border)] bg-[color:var(--btn-bg)] text-[color:var(--btn-text)] hover:bg-[color:var(--btn-bg-hover)] hover:border-[color:var(--btn-border-hover)] px-3 py-1.5 rounded-md"
             onClick={() => trackEvent("resume_download", { source: "header" })}
             data-external-context="header-resume"
           >
@@ -72,6 +72,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
+            title="View LinkedIn profile"
             className="p-2 hover:text-primary"
             data-external-context="header-linkedin"
           >
@@ -82,12 +83,13 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
+            title="View GitHub projects"
             className="p-2 hover:text-primary"
             data-external-context="header-github"
           >
             <Github size={18} />
           </a>
-          <a href="mailto:nivesh@ucla.edu" aria-label="Email" className="p-2 hover:text-primary" data-email-context="header">
+          <a href="mailto:nivesh@ucla.edu" aria-label="Email" title="Send e-mail" className="p-2 hover:text-primary" data-email-context="header">
             <Mail size={18} />
           </a>
           <a
@@ -95,6 +97,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Publications"
+            title="View Publications"
             className="p-2 hover:text-primary"
             data-external-context="header-scholar"
           >
@@ -102,7 +105,7 @@ export default function Header() {
           </a>
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center gap-2 bg-accent/20 text-white px-3 py-1.5 rounded-md hover:bg-accent/30"
+            className="hidden sm:inline-flex items-center gap-2 border border-[color:var(--btn-border)] bg-[color:var(--btn-bg)] text-[color:var(--btn-text)] hover:bg-[color:var(--btn-bg-hover)] hover:border-[color:var(--btn-border-hover)] px-3 py-1.5 rounded-md"
             onClick={() => trackEvent("book_chat_click", { source: "header" })}
           >
             <Calendar size={16} /> Book a Chat

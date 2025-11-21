@@ -10,6 +10,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
 import { Suspense } from "react";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import { getActiveThemeCss } from "@/lib/theme";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 import { siteMetadata } from "@/lib/siteMetadata";
@@ -165,19 +167,26 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const themeCss = getActiveThemeCss();
   return (
     <html lang="en" className={`${inter.variable} ${sofia.variable} ${plex.variable}`}>
       <body>
-        <div id="top" />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <BackToTop />
-        <Analytics />
-        <SpeedInsights />
-        <Suspense fallback={null}>
-          <AnalyticsTracker />
-        </Suspense>
+        <style id="theme-css" dangerouslySetInnerHTML={{ __html: themeCss }} />
+        <div className="ambient-bg" aria-hidden="true" />
+        <div className="pointer-events-none fixed inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-transparent animate-[ambient-fade_48s_ease-in-out_infinite_alternate]" aria-hidden="true" />
+        <div className="relative z-[2]">
+          <div id="top" />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <BackToTop />
+          <ThemeToggle />
+          <Analytics />
+          <SpeedInsights />
+          <Suspense fallback={null}>
+            <AnalyticsTracker />
+          </Suspense>
+        </div>
         {GA_MEASUREMENT_ID ? (
           <>
             <Script

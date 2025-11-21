@@ -1,0 +1,5 @@
+@keyframes ambient-fade {
+  0% { opacity: 0.06; }
+  50% { opacity: 0.12; }
+  100% { opacity: 0.06; }
+}

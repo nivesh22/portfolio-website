@@ -10,9 +10,17 @@
   {
     "name": "Rusha Chaudhuri",
     "title": "Senior Lead Data Scientist",
-    "meta": "November 1, 2025, Nivesh was senior to Rusha but didn't manage Rusha directly",
+    "meta": "November 1, 2025, Rusha was senior to Nivesh but didn't manage Rusha directly",
     "text": "I had the pleasure of working with Nivesh, and they’re one of those fun people who combine deep technical strength with a genuinely fun and positive attitude. They approach complex problems with intelligence and creativity, and they’re always the first to offer help or share knowledge with others. Working with Nivesh made the team better, both technically and socially.",
     "img": "/images/recommendations/Rusha%20Chaudhuri.jpeg",
+    "url": "https://www.linkedin.com/in/nivesh-elangovanraaj/details/recommendations/"
+  },
+  {
+    "name": "Aatheep Gurubaran",
+    "title": "Data Analyst",
+    "meta": "November 12, 2025, Aatheep worked with Nivesh on the same team",
+    "text": "I had the chance to work closely with Nivesh on multiple Real World Evidence (RWE) studies at Mu Sigma. He built several custom R packages that streamlined key parts of our analysis workflow. Tasks that once took hours were reduced to minutes, and those tools are still being used by the team even five years later. His technical depth and problem solving mindset consistently improved the team’s output and efficiency.\n Beyond his technical skills, Nivesh was one of the most collaborative teammates I have worked with. He actively contributed to cross learning sessions, shared new methods and tools, and helped others upskill in R and data science best practices. His mix of technical rigor and team first attitude made a lasting impact on the group.",
+    "img": "/images/recommendations/Aatheep%20Gurubaran.jpg",
     "url": "https://www.linkedin.com/in/nivesh-elangovanraaj/details/recommendations/"
   }
 ]

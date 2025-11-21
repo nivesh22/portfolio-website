@@ -4,12 +4,35 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import words from "@/data/wordcloud.json";
 
 type Entry = { text: string; value: number; group?: string; tooltip?: string; links?: string[] };
+type ThemePalette = { text: string; primary: string; accent: string; success: string };
+
+function readPalette(): ThemePalette {
+  if (typeof window === "undefined") {
+    return { text: "#e5e7eb", primary: "#00e5ff", accent: "#a855f7", success: "#22c55e" };
+  }
+  const styles = getComputedStyle(document.documentElement);
+  const read = (key: string, fallback: string) => styles.getPropertyValue(key)?.trim() || fallback;
+  return {
+    text: read("--text-0", "#e5e7eb"),
+    primary: read("--primary", "#00e5ff"),
+    accent: read("--accent", "#a855f7"),
+    success: read("--success", "#22c55e"),
+  };
+}
 
 export default function WordCloud({ height = 260 }: { height?: number }) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [hover, setHover] = useState<Entry | null>(null);
+  const [palette, setPalette] = useState<ThemePalette>(() => readPalette());
 
   const data = useMemo(() => (words as any as Entry[]).slice(0).sort((a, b) => b.value - a.value), []);
+
+  useEffect(() => {
+    const update = () => setPalette(readPalette());
+    update();
+    window.addEventListener("theme-changed", update);
+    return () => window.removeEventListener("theme-changed", update);
+  }, []);
 
   useEffect(() => {
     const width = 900;
@@ -30,10 +53,11 @@ export default function WordCloud({ height = 260 }: { height?: number }) {
     const maxVal = d3.max(data, (d: Entry) => d.value) || 1;
     // Slightly smaller font sizes to avoid clipping
     const size = d3.scaleSqrt().domain([0, maxVal]).range([10, 34]);
-    const color = (d3
-      .scaleOrdinal()
-      .domain(["Lang", "App", "Viz", "ML", "AI", "Eng", "Dom"]) // theme colors
-      .range(["#22d3ee", "#a78bfa", "#f59e0b", "#34d399", "#0ea5e9", "#22c55e", "#93c5fd"])) as any;
+    const color = (d3.scaleOrdinal().domain(["primary", "accent-blue", "accent-green"]).range([
+      palette.text,
+      palette.primary,
+      palette.accent || palette.success,
+    ])) as any;
 
     // Create nodes with radius approximated by text length and font size.
     const nodes = data.map((d) => {
@@ -66,8 +90,8 @@ export default function WordCloud({ height = 260 }: { height?: number }) {
       .append("circle")
       .attr("r", (d: any) => d.r)
       .attr("fill", (d: any) => color(d.group || "Dom"))
-      .attr("fill-opacity", 0.18)
-      .attr("stroke", "#0f172a")
+      .attr("fill-opacity", 0.14)
+      .attr("stroke", palette.text)
       .attr("stroke-width", 1);
 
     node
@@ -77,7 +101,7 @@ export default function WordCloud({ height = 260 }: { height?: number }) {
       .attr("dominant-baseline", "central")
       .attr("font-size", (d: any) => d.fs)
       .attr("font-weight", 600)
-      .attr("fill", "#e5e7eb")
+      .attr("fill", palette.text)
       .attr("pointer-events", "none");
 
     // Native tooltip fallback (browser title)
@@ -93,7 +117,7 @@ export default function WordCloud({ height = 260 }: { height?: number }) {
     });
 
     return () => sim.stop();
-  }, [data, height]);
+  }, [data, height, palette]);
 
   return (
     <div className="relative w-full">
